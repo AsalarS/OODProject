@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace OODProject
 {
-    public partial class Form1 : Form
+    public partial class adminDash : Form
     {
-        public Form1()
+        public adminDash()
         {
             InitializeComponent();
         }
@@ -28,6 +28,16 @@ namespace OODProject
         }
 
         private void panelMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
