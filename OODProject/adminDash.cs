@@ -17,6 +17,18 @@ namespace OODProject
             InitializeComponent();
         }
 
+        public void showScreen(object Form)
+        {
+            if (this.mainScreen.Controls.Count > 0)
+                this.mainScreen.Controls.RemoveAt(0);
+            Form f = Form as Form;
+            f.TopLevel = false;
+            f.Dock = DockStyle.Fill;
+            this.mainScreen.Controls.Add(f);
+            this.mainScreen.Tag = f;
+            f.Show();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -50,6 +62,11 @@ namespace OODProject
         private void logoutBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void branchesBtn_Click(object sender, EventArgs e)
+        {
+            showScreen(new Form1());
         }
     }
 }

@@ -52,6 +52,24 @@
     <Compile Include="adminDash.Designer.cs">
       <DependentUpon>adminDash.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="studentDash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="studentDash.Designer.cs">
+      <DependentUpon>studentDash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="teachDash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="teachDash.Designer.cs">
+      <DependentUpon>teachDash.cs</DependentUpon>
+    </Compile>
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +80,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="adminDash.resx">
       <DependentUpon>adminDash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="studentDash.resx">
+      <DependentUpon>studentDash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="teachDash.resx">
+      <DependentUpon>teachDash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
