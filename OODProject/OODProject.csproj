@@ -46,17 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="adminDash.cs">
+    <Compile Include="Admin\adminDash.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="adminDash.Designer.cs">
+    <Compile Include="Admin\adminDash.Designer.cs">
       <DependentUpon>adminDash.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Admin\branches.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Admin\branches.Designer.cs">
+      <DependentUpon>branches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\branchDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\branchDetails.Designer.cs">
+      <DependentUpon>branchDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="studentDash.cs">
       <SubType>Form</SubType>
@@ -78,11 +84,26 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="adminDash.resx">
+    <Compile Include="UserControlListWithTwoButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlListWithTwoButton.Designer.cs">
+      <DependentUpon>UserControlListWithTwoButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlNormalList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlNormalList.Designer.cs">
+      <DependentUpon>UserControlNormalList.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Admin\adminDash.resx">
       <DependentUpon>adminDash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Admin\branchDetails.resx">
+      <DependentUpon>branchDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\branches.resx">
+      <DependentUpon>branches.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="studentDash.resx">
       <DependentUpon>studentDash.cs</DependentUpon>
@@ -97,6 +118,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlListWithTwoButton.resx">
+      <DependentUpon>UserControlListWithTwoButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlNormalList.resx">
+      <DependentUpon>UserControlNormalList.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -123,6 +150,7 @@
     <None Include="Resources\courses.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\SF-Pro.ttf" />
     <None Include="Resources\staff.png" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +176,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\loginDesign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left-arrow-24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left-arrow1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right-gray-arrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

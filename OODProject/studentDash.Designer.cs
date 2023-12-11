@@ -30,8 +30,6 @@
         {
             this.seperator = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,6 +40,7 @@
             this.logoutBtn = new System.Windows.Forms.Button();
             this.mainScreen = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelLogo.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.mainScreen.SuspendLayout();
@@ -71,42 +70,6 @@
             this.label1.Text = "Student";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button5
-            // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.button5.Image = global::OODProject.Properties.Resources.feedback;
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(0, 365);
-            this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.button5.Size = new System.Drawing.Size(200, 60);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Feedback";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.button4.Image = global::OODProject.Properties.Resources.download;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(0, 305);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.button4.Size = new System.Drawing.Size(200, 60);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Download";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // button3
             // 
             this.button3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -121,7 +84,7 @@
             this.button3.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.button3.Size = new System.Drawing.Size(200, 60);
             this.button3.TabIndex = 3;
-            this.button3.Text = "Upload";
+            this.button3.Text = "Feedback";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -139,7 +102,7 @@
             this.button2.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.button2.Size = new System.Drawing.Size(200, 60);
             this.button2.TabIndex = 2;
-            this.button2.Text = "Staff";
+            this.button2.Text = "Mail";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -157,7 +120,7 @@
             this.button1.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.button1.Size = new System.Drawing.Size(200, 60);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Courses";
+            this.button1.Text = "Learning";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -175,7 +138,7 @@
             this.branchesBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.branchesBtn.Size = new System.Drawing.Size(200, 60);
             this.branchesBtn.TabIndex = 0;
-            this.branchesBtn.Text = "Branches";
+            this.branchesBtn.Text = "Courses";
             this.branchesBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.branchesBtn.UseVisualStyleBackColor = true;
             // 
@@ -194,8 +157,6 @@
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(201)))), ((int)(((byte)(255)))));
             this.panelMenu.Controls.Add(this.button6);
             this.panelMenu.Controls.Add(this.logoutBtn);
-            this.panelMenu.Controls.Add(this.button5);
-            this.panelMenu.Controls.Add(this.button4);
             this.panelMenu.Controls.Add(this.button3);
             this.panelMenu.Controls.Add(this.button2);
             this.panelMenu.Controls.Add(this.button1);
@@ -238,10 +199,9 @@
             // mainScreen
             // 
             this.mainScreen.Controls.Add(this.flowLayoutPanel1);
-            this.mainScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainScreen.Location = new System.Drawing.Point(200, 0);
+            this.mainScreen.Location = new System.Drawing.Point(200, 65);
             this.mainScreen.Name = "mainScreen";
-            this.mainScreen.Size = new System.Drawing.Size(984, 631);
+            this.mainScreen.Size = new System.Drawing.Size(984, 566);
             this.mainScreen.TabIndex = 3;
             // 
             // flowLayoutPanel1
@@ -251,11 +211,19 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(8, 8);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(200, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(984, 65);
+            this.panel1.TabIndex = 1;
+            // 
             // studentDash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 631);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.mainScreen);
             this.Controls.Add(this.panelMenu);
             this.Name = "studentDash";
@@ -272,8 +240,6 @@
 
         private System.Windows.Forms.Label seperator;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
@@ -284,5 +250,6 @@
         private System.Windows.Forms.Button logoutBtn;
         private System.Windows.Forms.Panel mainScreen;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
