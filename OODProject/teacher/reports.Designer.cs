@@ -1,6 +1,6 @@
-﻿namespace OODProject
+﻿namespace OODProject.teacher
 {
-    partial class branches
+    partial class reports
     {
         /// <summary>
         /// Required designer variable.
@@ -28,25 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.branchesLbl = new System.Windows.Forms.Label();
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(182)))), ((int)(((byte)(255)))));
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.branchesLbl);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(984, 65);
-            this.panel1.TabIndex = 0;
             // 
             // button1
             // 
@@ -62,6 +48,17 @@
             this.button1.Text = "+";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(182)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.branchesLbl);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(984, 65);
+            this.panel1.TabIndex = 1;
+            // 
             // branchesLbl
             // 
             this.branchesLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -72,47 +69,29 @@
             this.branchesLbl.ForeColor = System.Drawing.Color.White;
             this.branchesLbl.Location = new System.Drawing.Point(399, 19);
             this.branchesLbl.Name = "branchesLbl";
-            this.branchesLbl.Size = new System.Drawing.Size(138, 33);
+            this.branchesLbl.Size = new System.Drawing.Size(117, 33);
             this.branchesLbl.TabIndex = 0;
-            this.branchesLbl.Text = "Branches";
+            this.branchesLbl.Text = "Reports";
             // 
-            // fileSystemWatcher1
-            // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 65);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(984, 566);
-            this.flowLayoutPanel1.TabIndex = 1;
-            // 
-            // branches
+            // reports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 631);
-            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "branches";
-            this.Text = "Form1";
+            this.Name = "reports";
+            this.Text = "reports";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label branchesLbl;
-        private System.Windows.Forms.Button button1;
-        private System.IO.FileSystemWatcher fileSystemWatcher1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

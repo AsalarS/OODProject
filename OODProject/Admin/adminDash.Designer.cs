@@ -31,11 +31,11 @@
             this.panelMenu = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.logoutBtn = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.feedbackBtn = new System.Windows.Forms.Button();
+            this.downloadBtn = new System.Windows.Forms.Button();
+            this.uploadBtn = new System.Windows.Forms.Button();
+            this.staffBtn = new System.Windows.Forms.Button();
+            this.coursesBtn = new System.Windows.Forms.Button();
             this.branchesBtn = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.seperator = new System.Windows.Forms.Label();
@@ -50,11 +50,11 @@
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(201)))), ((int)(((byte)(255)))));
             this.panelMenu.Controls.Add(this.button6);
             this.panelMenu.Controls.Add(this.logoutBtn);
-            this.panelMenu.Controls.Add(this.button5);
-            this.panelMenu.Controls.Add(this.button4);
-            this.panelMenu.Controls.Add(this.button3);
-            this.panelMenu.Controls.Add(this.button2);
-            this.panelMenu.Controls.Add(this.button1);
+            this.panelMenu.Controls.Add(this.feedbackBtn);
+            this.panelMenu.Controls.Add(this.downloadBtn);
+            this.panelMenu.Controls.Add(this.uploadBtn);
+            this.panelMenu.Controls.Add(this.staffBtn);
+            this.panelMenu.Controls.Add(this.coursesBtn);
             this.panelMenu.Controls.Add(this.branchesBtn);
             this.panelMenu.Controls.Add(this.panelLogo);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -94,96 +94,100 @@
             this.logoutBtn.UseVisualStyleBackColor = true;
             this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
             // 
-            // button5
+            // feedbackBtn
             // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.button5.Image = global::OODProject.Properties.Resources.feedback;
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(0, 365);
-            this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.button5.Size = new System.Drawing.Size(200, 60);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Feedback";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = true;
+            this.feedbackBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.feedbackBtn.FlatAppearance.BorderSize = 0;
+            this.feedbackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.feedbackBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.feedbackBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.feedbackBtn.Image = global::OODProject.Properties.Resources.feedback;
+            this.feedbackBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.feedbackBtn.Location = new System.Drawing.Point(0, 365);
+            this.feedbackBtn.Name = "feedbackBtn";
+            this.feedbackBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.feedbackBtn.Size = new System.Drawing.Size(200, 60);
+            this.feedbackBtn.TabIndex = 5;
+            this.feedbackBtn.Text = "Feedback";
+            this.feedbackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.feedbackBtn.UseVisualStyleBackColor = true;
+            this.feedbackBtn.Click += new System.EventHandler(this.feedbackBtn_Click);
             // 
-            // button4
+            // downloadBtn
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.button4.Image = global::OODProject.Properties.Resources.download;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(0, 305);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.button4.Size = new System.Drawing.Size(200, 60);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Download";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = true;
+            this.downloadBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.downloadBtn.FlatAppearance.BorderSize = 0;
+            this.downloadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.downloadBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.downloadBtn.Image = global::OODProject.Properties.Resources.download;
+            this.downloadBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.downloadBtn.Location = new System.Drawing.Point(0, 305);
+            this.downloadBtn.Name = "downloadBtn";
+            this.downloadBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.downloadBtn.Size = new System.Drawing.Size(200, 60);
+            this.downloadBtn.TabIndex = 4;
+            this.downloadBtn.Text = "Download";
+            this.downloadBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.downloadBtn.UseVisualStyleBackColor = true;
+            this.downloadBtn.Click += new System.EventHandler(this.downloadBtn_Click);
             // 
-            // button3
+            // uploadBtn
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.button3.Image = global::OODProject.Properties.Resources.upload;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 245);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(200, 60);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Upload";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
+            this.uploadBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uploadBtn.FlatAppearance.BorderSize = 0;
+            this.uploadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uploadBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.uploadBtn.Image = global::OODProject.Properties.Resources.upload;
+            this.uploadBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uploadBtn.Location = new System.Drawing.Point(0, 245);
+            this.uploadBtn.Name = "uploadBtn";
+            this.uploadBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.uploadBtn.Size = new System.Drawing.Size(200, 60);
+            this.uploadBtn.TabIndex = 3;
+            this.uploadBtn.Text = "Upload";
+            this.uploadBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.uploadBtn.UseVisualStyleBackColor = true;
+            this.uploadBtn.Click += new System.EventHandler(this.uploadBtn_Click);
             // 
-            // button2
+            // staffBtn
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.button2.Image = global::OODProject.Properties.Resources.staff;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(0, 185);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(200, 60);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Staff";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
+            this.staffBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.staffBtn.FlatAppearance.BorderSize = 0;
+            this.staffBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.staffBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.staffBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.staffBtn.Image = global::OODProject.Properties.Resources.staff;
+            this.staffBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.staffBtn.Location = new System.Drawing.Point(0, 185);
+            this.staffBtn.Name = "staffBtn";
+            this.staffBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.staffBtn.Size = new System.Drawing.Size(200, 60);
+            this.staffBtn.TabIndex = 2;
+            this.staffBtn.Text = "Staff";
+            this.staffBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.staffBtn.UseVisualStyleBackColor = true;
+            this.staffBtn.Click += new System.EventHandler(this.staffBtn_Click);
             // 
-            // button1
+            // coursesBtn
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.button1.Image = global::OODProject.Properties.Resources.courses;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(0, 125);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(200, 60);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Courses";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.coursesBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.coursesBtn.FlatAppearance.BorderSize = 0;
+            this.coursesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.coursesBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.coursesBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.coursesBtn.Image = global::OODProject.Properties.Resources.courses;
+            this.coursesBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.coursesBtn.Location = new System.Drawing.Point(0, 125);
+            this.coursesBtn.Name = "coursesBtn";
+            this.coursesBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.coursesBtn.Size = new System.Drawing.Size(200, 60);
+            this.coursesBtn.TabIndex = 1;
+            this.coursesBtn.Text = "Courses";
+            this.coursesBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.coursesBtn.UseVisualStyleBackColor = true;
+            this.coursesBtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // branchesBtn
             // 
@@ -260,7 +264,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "adminDash";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
@@ -274,11 +278,11 @@
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Button branchesBtn;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button feedbackBtn;
+        private System.Windows.Forms.Button downloadBtn;
+        private System.Windows.Forms.Button uploadBtn;
+        private System.Windows.Forms.Button staffBtn;
+        private System.Windows.Forms.Button coursesBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label seperator;
         private System.Windows.Forms.Button logoutBtn;

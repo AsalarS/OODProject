@@ -35,8 +35,13 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.registerBtn = new System.Windows.Forms.Button();
             this.loginBtn = new System.Windows.Forms.Button();
+            this.loginOption = new System.Windows.Forms.GroupBox();
+            this.adminLogin = new System.Windows.Forms.RadioButton();
+            this.teacherLogin = new System.Windows.Forms.RadioButton();
+            this.studentLogin = new System.Windows.Forms.RadioButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            this.loginOption.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +50,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(201)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.loginOption);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBox2);
@@ -55,6 +61,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(494, 631);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button3
             // 
@@ -74,6 +81,7 @@
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(60)))), ((int)(((byte)(72)))));
             this.label1.Location = new System.Drawing.Point(178, 86);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 42);
@@ -109,6 +117,7 @@
             this.registerBtn.TabIndex = 1;
             this.registerBtn.Text = "Register";
             this.registerBtn.UseVisualStyleBackColor = false;
+            this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
             // 
             // loginBtn
             // 
@@ -123,6 +132,49 @@
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = false;
             this.loginBtn.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // loginOption
+            // 
+            this.loginOption.Controls.Add(this.studentLogin);
+            this.loginOption.Controls.Add(this.teacherLogin);
+            this.loginOption.Controls.Add(this.adminLogin);
+            this.loginOption.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.loginOption.Location = new System.Drawing.Point(0, 531);
+            this.loginOption.Name = "loginOption";
+            this.loginOption.Size = new System.Drawing.Size(494, 100);
+            this.loginOption.TabIndex = 6;
+            this.loginOption.TabStop = false;
+            this.loginOption.Text = "Login Option";
+            // 
+            // adminLogin
+            // 
+            this.adminLogin.AutoSize = true;
+            this.adminLogin.Location = new System.Drawing.Point(62, 40);
+            this.adminLogin.Name = "adminLogin";
+            this.adminLogin.Size = new System.Drawing.Size(54, 17);
+            this.adminLogin.TabIndex = 0;
+            this.adminLogin.Text = "Admin";
+            this.adminLogin.UseVisualStyleBackColor = true;
+            // 
+            // teacherLogin
+            // 
+            this.teacherLogin.AutoSize = true;
+            this.teacherLogin.Location = new System.Drawing.Point(197, 40);
+            this.teacherLogin.Name = "teacherLogin";
+            this.teacherLogin.Size = new System.Drawing.Size(65, 17);
+            this.teacherLogin.TabIndex = 1;
+            this.teacherLogin.Text = "Teacher";
+            this.teacherLogin.UseVisualStyleBackColor = true;
+            // 
+            // studentLogin
+            // 
+            this.studentLogin.AutoSize = true;
+            this.studentLogin.Location = new System.Drawing.Point(330, 40);
+            this.studentLogin.Name = "studentLogin";
+            this.studentLogin.Size = new System.Drawing.Size(62, 17);
+            this.studentLogin.TabIndex = 2;
+            this.studentLogin.Text = "Student";
+            this.studentLogin.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -146,10 +198,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form2";
+            this.Text = "Login";
             this.Load += new System.EventHandler(this.login_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.loginOption.ResumeLayout(false);
+            this.loginOption.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -165,5 +219,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox loginOption;
+        private System.Windows.Forms.RadioButton studentLogin;
+        private System.Windows.Forms.RadioButton teacherLogin;
+        private System.Windows.Forms.RadioButton adminLogin;
     }
 }

@@ -47,7 +47,7 @@ namespace OODProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            showScreen(new courses());
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -62,12 +62,35 @@ namespace OODProject
 
         private void logoutBtn_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            login loginPage = new login();
+            loginPage.ShowDialog();
+            this.Close();
         }
 
         private void branchesBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new branchDetails());
+            showScreen(new branches());
+        }
+
+        private void staffBtn_Click(object sender, EventArgs e)
+        {
+            showScreen(new staff());
+        }
+
+        private void uploadBtn_Click(object sender, EventArgs e)
+        {
+            showScreen(new upload());
+        }
+
+        private void downloadBtn_Click(object sender, EventArgs e)
+        {
+            showScreen(new download());
+        }
+
+        private void feedbackBtn_Click(object sender, EventArgs e)
+        {
+            showScreen(new feedback());
         }
     }
 }

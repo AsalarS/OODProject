@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OODProject.teacher;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,7 +37,25 @@ namespace OODProject
 
         private void branchesBtn_Click(object sender, EventArgs e)
         {
+            showScreen(new files());
+        }
 
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            login loginPage = new login();
+            loginPage.ShowDialog();
+            this.Close();
+        }
+
+        private void reportsBtn_Click(object sender, EventArgs e)
+        {
+            showScreen(new reports());
+        }
+
+        private void mailBtn_Click(object sender, EventArgs e)
+        {
+            showScreen(new mail());
         }
     }
 }

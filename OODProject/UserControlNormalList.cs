@@ -16,5 +16,18 @@ namespace OODProject
         {
             InitializeComponent();
         }
+
+        #region Properties
+
+        private String _itemName;
+
+        [Category("Custom Props")]
+        public String ItemName
+        {
+            get { return _itemName; }
+            set { _itemName  = value; itemNameLabel.Text = value; }
+        }
+
+        #endregion
     }
 }

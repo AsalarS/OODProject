@@ -16,5 +16,23 @@ namespace OODProject
         {
             InitializeComponent();
         }
+
+        private void branches_Load(object sender, EventArgs e)
+        {
+            UserControlNormalList[] lists = new UserControlNormalList[20];
+            for (int i = 0; i < lists.Length; i++)
+            {
+                lists[i] = new UserControlNormalList();
+                lists[i].ItemName = ("Item " + i);
+                if(flowLayoutPanel1.Controls.Count > 0)
+                {
+                    flowLayoutPanel1.Controls.Clear();
+                } else
+                {
+                    flowLayoutPanel1.Controls.Add(lists[i]);
+                }
+            }
+        }
     }
 }
+
