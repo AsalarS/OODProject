@@ -46,34 +46,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\branches\addBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\branches\addBranch.Designer.cs">
+      <DependentUpon>addBranch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\courses\addCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\courses\addCourse.Designer.cs">
+      <DependentUpon>addCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\staff\addStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\staff\addStaff.Designer.cs">
+      <DependentUpon>addStaff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\adminDash.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Admin\adminDash.Designer.cs">
       <DependentUpon>adminDash.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\branches.cs">
+    <Compile Include="Admin\staff\approveUsers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Admin\branches.Designer.cs">
+    <Compile Include="Admin\staff\approveUsers.Designer.cs">
+      <DependentUpon>approveUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\branches\branches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\branches\branches.Designer.cs">
       <DependentUpon>branches.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\branchDetails.cs">
+    <Compile Include="Admin\branches\branchDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Admin\branchDetails.Designer.cs">
+    <Compile Include="Admin\branches\branchDetails.Designer.cs">
       <DependentUpon>branchDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\courseDetails.cs">
+    <Compile Include="Admin\courses\courseDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Admin\courseDetails.Designer.cs">
+    <Compile Include="Admin\courses\courseDetails.Designer.cs">
       <DependentUpon>courseDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\courses.cs">
+    <Compile Include="Admin\courses\courses.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Admin\courses.Designer.cs">
+    <Compile Include="Admin\courses\courses.Designer.cs">
       <DependentUpon>courses.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\download.cs">
@@ -88,16 +112,16 @@
     <Compile Include="Admin\feedback.Designer.cs">
       <DependentUpon>feedback.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\staff.cs">
+    <Compile Include="Admin\staff\staff.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Admin\staff.Designer.cs">
+    <Compile Include="Admin\staff\staff.Designer.cs">
       <DependentUpon>staff.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\staffDetails.cs">
+    <Compile Include="Admin\staff\staffDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Admin\staffDetails.Designer.cs">
+    <Compile Include="Admin\staff\staffDetails.Designer.cs">
       <DependentUpon>staffDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\upload.cs">
@@ -189,16 +213,22 @@
     <EmbeddedResource Include="Admin\adminDash.resx">
       <DependentUpon>adminDash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\branchDetails.resx">
+    <EmbeddedResource Include="Admin\branches\addBranch.resx">
+      <DependentUpon>addBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\branches\branchDetails.resx">
       <DependentUpon>branchDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\branches.resx">
+    <EmbeddedResource Include="Admin\branches\branches.resx">
       <DependentUpon>branches.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\courseDetails.resx">
+    <EmbeddedResource Include="Admin\courses\addCourse.resx">
+      <DependentUpon>addCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\courses\courseDetails.resx">
       <DependentUpon>courseDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\courses.resx">
+    <EmbeddedResource Include="Admin\courses\courses.resx">
       <DependentUpon>courses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\download.resx">
@@ -207,10 +237,16 @@
     <EmbeddedResource Include="Admin\feedback.resx">
       <DependentUpon>feedback.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\staff.resx">
+    <EmbeddedResource Include="Admin\staff\addStaff.resx">
+      <DependentUpon>addStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\staff\approveUsers.resx">
+      <DependentUpon>approveUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\staff\staff.resx">
       <DependentUpon>staff.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\staffDetails.resx">
+    <EmbeddedResource Include="Admin\staff\staffDetails.resx">
       <DependentUpon>staffDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\upload.resx">
@@ -323,6 +359,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\right-gray-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\active-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\feedbackWithPen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new-document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

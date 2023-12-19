@@ -47,7 +47,7 @@ namespace OODProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            showScreen(new courses());
+            showScreen(new courses(this));
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -70,12 +70,12 @@ namespace OODProject
 
         private void branchesBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new branches());
+            showScreen(new branches(this));
         }
 
         private void staffBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new staff());
+            showScreen(new staff(this));
         }
 
         private void uploadBtn_Click(object sender, EventArgs e)

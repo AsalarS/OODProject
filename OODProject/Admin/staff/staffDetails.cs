@@ -12,9 +12,19 @@ namespace OODProject.Admin
 {
     public partial class staffDetails : Form
     {
+        public adminDash Dash { get; set; }
+        private staff staffForm { get; set; }
+
         public staffDetails()
         {
             InitializeComponent();
+        }
+
+        public staffDetails(adminDash dash,staff staffForm)
+        {
+            InitializeComponent();
+            this.Dash = dash;
+            this.staffForm = staffForm;
         }
 
         private void branchesLbl_Click(object sender, EventArgs e)
@@ -30,6 +40,11 @@ namespace OODProject.Admin
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Dash.showScreen(staffForm);
         }
     }
 }

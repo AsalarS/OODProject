@@ -137,7 +137,7 @@
             this.feedbackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.feedbackBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.feedbackBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.feedbackBtn.Image = global::OODProject.Properties.Resources.upload;
+            this.feedbackBtn.Image = global::OODProject.Properties.Resources.feedbackWithPen;
             this.feedbackBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.feedbackBtn.Location = new System.Drawing.Point(0, 245);
             this.feedbackBtn.Name = "feedbackBtn";
@@ -156,7 +156,7 @@
             this.mailBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mailBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mailBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.mailBtn.Image = global::OODProject.Properties.Resources.staff;
+            this.mailBtn.Image = global::OODProject.Properties.Resources.mail;
             this.mailBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.mailBtn.Location = new System.Drawing.Point(0, 185);
             this.mailBtn.Name = "mailBtn";
@@ -175,7 +175,7 @@
             this.learningBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.learningBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.learningBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.learningBtn.Image = global::OODProject.Properties.Resources.courses;
+            this.learningBtn.Image = global::OODProject.Properties.Resources.folder;
             this.learningBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.learningBtn.Location = new System.Drawing.Point(0, 125);
             this.learningBtn.Name = "learningBtn";

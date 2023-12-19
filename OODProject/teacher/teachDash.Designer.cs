@@ -30,14 +30,14 @@
         {
             this.seperator = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.mailBtn = new System.Windows.Forms.Button();
-            this.reportsBtn = new System.Windows.Forms.Button();
-            this.filesBtn = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.logoutBtn = new System.Windows.Forms.Button();
             this.mainScreen = new System.Windows.Forms.Panel();
+            this.mailBtn = new System.Windows.Forms.Button();
+            this.reportsBtn = new System.Windows.Forms.Button();
+            this.filesBtn = new System.Windows.Forms.Button();
             this.panelLogo.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
@@ -66,63 +66,6 @@
             this.label1.Text = "Teacher";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // mailBtn
-            // 
-            this.mailBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.mailBtn.FlatAppearance.BorderSize = 0;
-            this.mailBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mailBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mailBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.mailBtn.Image = global::OODProject.Properties.Resources.staff;
-            this.mailBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mailBtn.Location = new System.Drawing.Point(0, 185);
-            this.mailBtn.Name = "mailBtn";
-            this.mailBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.mailBtn.Size = new System.Drawing.Size(200, 60);
-            this.mailBtn.TabIndex = 2;
-            this.mailBtn.Text = "Mail";
-            this.mailBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.mailBtn.UseVisualStyleBackColor = true;
-            this.mailBtn.Click += new System.EventHandler(this.mailBtn_Click);
-            // 
-            // reportsBtn
-            // 
-            this.reportsBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.reportsBtn.FlatAppearance.BorderSize = 0;
-            this.reportsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.reportsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reportsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.reportsBtn.Image = global::OODProject.Properties.Resources.courses;
-            this.reportsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.reportsBtn.Location = new System.Drawing.Point(0, 125);
-            this.reportsBtn.Name = "reportsBtn";
-            this.reportsBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.reportsBtn.Size = new System.Drawing.Size(200, 60);
-            this.reportsBtn.TabIndex = 1;
-            this.reportsBtn.Text = "Reports";
-            this.reportsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.reportsBtn.UseVisualStyleBackColor = true;
-            this.reportsBtn.Click += new System.EventHandler(this.reportsBtn_Click);
-            // 
-            // filesBtn
-            // 
-            this.filesBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.filesBtn.FlatAppearance.BorderSize = 0;
-            this.filesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.filesBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filesBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.filesBtn.Image = global::OODProject.Properties.Resources.branches;
-            this.filesBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.filesBtn.Location = new System.Drawing.Point(0, 65);
-            this.filesBtn.Name = "filesBtn";
-            this.filesBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.filesBtn.Size = new System.Drawing.Size(200, 60);
-            this.filesBtn.TabIndex = 0;
-            this.filesBtn.Text = "Files";
-            this.filesBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.filesBtn.UseVisualStyleBackColor = true;
-            this.filesBtn.Click += new System.EventHandler(this.branchesBtn_Click);
             // 
             // panelLogo
             // 
@@ -185,6 +128,63 @@
             this.mainScreen.Name = "mainScreen";
             this.mainScreen.Size = new System.Drawing.Size(984, 631);
             this.mainScreen.TabIndex = 4;
+            // 
+            // mailBtn
+            // 
+            this.mailBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.mailBtn.FlatAppearance.BorderSize = 0;
+            this.mailBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mailBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mailBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.mailBtn.Image = global::OODProject.Properties.Resources.mail;
+            this.mailBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mailBtn.Location = new System.Drawing.Point(0, 185);
+            this.mailBtn.Name = "mailBtn";
+            this.mailBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.mailBtn.Size = new System.Drawing.Size(200, 60);
+            this.mailBtn.TabIndex = 2;
+            this.mailBtn.Text = "Mail";
+            this.mailBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mailBtn.UseVisualStyleBackColor = true;
+            this.mailBtn.Click += new System.EventHandler(this.mailBtn_Click);
+            // 
+            // reportsBtn
+            // 
+            this.reportsBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.reportsBtn.FlatAppearance.BorderSize = 0;
+            this.reportsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reportsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.reportsBtn.Image = global::OODProject.Properties.Resources.report;
+            this.reportsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.reportsBtn.Location = new System.Drawing.Point(0, 125);
+            this.reportsBtn.Name = "reportsBtn";
+            this.reportsBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.reportsBtn.Size = new System.Drawing.Size(200, 60);
+            this.reportsBtn.TabIndex = 1;
+            this.reportsBtn.Text = "Reports";
+            this.reportsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.reportsBtn.UseVisualStyleBackColor = true;
+            this.reportsBtn.Click += new System.EventHandler(this.reportsBtn_Click);
+            // 
+            // filesBtn
+            // 
+            this.filesBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.filesBtn.FlatAppearance.BorderSize = 0;
+            this.filesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.filesBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filesBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.filesBtn.Image = global::OODProject.Properties.Resources.new_document;
+            this.filesBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.filesBtn.Location = new System.Drawing.Point(0, 65);
+            this.filesBtn.Name = "filesBtn";
+            this.filesBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.filesBtn.Size = new System.Drawing.Size(200, 60);
+            this.filesBtn.TabIndex = 0;
+            this.filesBtn.Text = "Files";
+            this.filesBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.filesBtn.UseVisualStyleBackColor = true;
+            this.filesBtn.Click += new System.EventHandler(this.branchesBtn_Click);
             // 
             // teachDash
             // 

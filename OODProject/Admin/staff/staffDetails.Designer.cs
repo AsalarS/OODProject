@@ -30,10 +30,10 @@
         {
             this.branchesLbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -46,6 +46,8 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.IDNumber = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +57,7 @@
             this.branchesLbl.AutoSize = true;
             this.branchesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.branchesLbl.ForeColor = System.Drawing.Color.White;
-            this.branchesLbl.Location = new System.Drawing.Point(390, 19);
+            this.branchesLbl.Location = new System.Drawing.Point(390, 20);
             this.branchesLbl.Name = "branchesLbl";
             this.branchesLbl.Size = new System.Drawing.Size(160, 33);
             this.branchesLbl.TabIndex = 0;
@@ -73,6 +75,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(984, 65);
             this.panel1.TabIndex = 5;
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Image = global::OODProject.Properties.Resources.left_arrow_24px;
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(112, 65);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Back";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -115,22 +134,6 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Image = global::OODProject.Properties.Resources.left_arrow_24px;
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 65);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Back";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
@@ -237,11 +240,35 @@
             this.comboBox1.Size = new System.Drawing.Size(201, 21);
             this.comboBox1.TabIndex = 20;
             // 
+            // IDNumber
+            // 
+            this.IDNumber.AutoSize = true;
+            this.IDNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IDNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.IDNumber.Location = new System.Drawing.Point(77, 576);
+            this.IDNumber.Name = "IDNumber";
+            this.IDNumber.Size = new System.Drawing.Size(54, 20);
+            this.IDNumber.TabIndex = 22;
+            this.IDNumber.Text = "12345";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.label7.Location = new System.Drawing.Point(51, 576);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 20);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "ID: ";
+            // 
             // staffDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 631);
+            this.Controls.Add(this.IDNumber);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label6);
@@ -287,5 +314,7 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label IDNumber;
+        private System.Windows.Forms.Label label7;
     }
 }

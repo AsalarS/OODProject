@@ -12,16 +12,27 @@ namespace OODProject
 {
     public partial class UserControlNormalList : UserControl
     {
+        public event EventHandler Clicked;
+
+        private void OnClick(object sender, EventArgs e)
+        {
+            Clicked?.Invoke(this, e);
+        }
+
         public UserControlNormalList()
         {
             InitializeComponent();
+            this.MouseClick += OnClick;
+            this.itemNameLabel.Click += OnClick;
+            this.pictureBox1.Click += OnClick;
         }
+
 
         #region Properties
 
         private String _itemName;
 
-        [Category("Custom Props")]
+        [Category("Custom Property")]
         public String ItemName
         {
             get { return _itemName; }
@@ -29,5 +40,15 @@ namespace OODProject
         }
 
         #endregion
+
+        private void itemNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

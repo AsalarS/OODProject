@@ -12,6 +12,15 @@ namespace OODProject.Admin
 {
     public partial class branchDetails : Form
     {
+        public adminDash Dash { get; set; }
+        private branches branchesForm { get; set; }
+        public branchDetails(adminDash dash, branches bran)
+        {
+            InitializeComponent();
+            Dash = dash;
+            branchesForm = bran;
+        }
+
         public branchDetails()
         {
             InitializeComponent();
@@ -41,6 +50,16 @@ namespace OODProject.Admin
         private void branchDetails_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Dash.showScreen(branchesForm);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
