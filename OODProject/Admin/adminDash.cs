@@ -16,6 +16,8 @@ namespace OODProject
         public adminDash()
         {
             InitializeComponent();
+            this.Icon = new Icon("D:\\vs projects\\OODProject\\OODProject\\Resources\\icon.ico");
+            showScreen(new branches());
         }
 
         public void showScreen(object Form)
@@ -57,7 +59,8 @@ namespace OODProject
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            var form = new changePassword();
+            form.ShowDialog();
         }
 
         private void logoutBtn_Click(object sender, EventArgs e)
@@ -90,7 +93,7 @@ namespace OODProject
 
         private void feedbackBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new feedback());
+            showScreen(new feedback(this));
         }
     }
 }

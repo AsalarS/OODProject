@@ -34,11 +34,11 @@
             this.panelMenu = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.logoutBtn = new System.Windows.Forms.Button();
-            this.mainScreen = new System.Windows.Forms.Panel();
             this.feedbackBtn = new System.Windows.Forms.Button();
             this.mailBtn = new System.Windows.Forms.Button();
             this.learningBtn = new System.Windows.Forms.Button();
             this.coursesBtn = new System.Windows.Forms.Button();
+            this.mainScreen = new System.Windows.Forms.Panel();
             this.panelLogo.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
@@ -106,6 +106,7 @@
             this.button6.TabIndex = 7;
             this.button6.Text = "Change Password";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // logoutBtn
             // 
@@ -121,14 +122,6 @@
             this.logoutBtn.Text = "Logout";
             this.logoutBtn.UseVisualStyleBackColor = true;
             this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
-            // 
-            // mainScreen
-            // 
-            this.mainScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainScreen.Location = new System.Drawing.Point(200, 0);
-            this.mainScreen.Name = "mainScreen";
-            this.mainScreen.Size = new System.Drawing.Size(984, 631);
-            this.mainScreen.TabIndex = 3;
             // 
             // feedbackBtn
             // 
@@ -205,6 +198,14 @@
             this.coursesBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.coursesBtn.UseVisualStyleBackColor = true;
             this.coursesBtn.Click += new System.EventHandler(this.coursesBtn_Click);
+            // 
+            // mainScreen
+            // 
+            this.mainScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainScreen.Location = new System.Drawing.Point(200, 0);
+            this.mainScreen.Name = "mainScreen";
+            this.mainScreen.Size = new System.Drawing.Size(984, 631);
+            this.mainScreen.TabIndex = 3;
             // 
             // studentDash
             // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OODProject.Admin.Feedback;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,41 +11,46 @@ using System.Windows.Forms;
 
 namespace OODProject.Admin
 {
-    public partial class approveUsers : Form
+    public partial class feedback : Form
     {
         public adminDash Dash { get; set; }
-        private staff staffForm { get; set; }
-        public approveUsers(adminDash dash, staff Staff)
+
+        public feedback()
         {
             InitializeComponent();
-            Dash = dash;
-            staffForm = Staff;
             rows();
         }
 
-        public approveUsers()
+        public feedback(adminDash dash)
         {
             InitializeComponent();
             rows();
+            this.Dash = dash;
         }
 
         private void rows()
         {
             flowLayoutPanel1.Padding = new Padding(10);
-            UserControlListWithTwoButton[] lists = new UserControlListWithTwoButton[20];
+            UserControlNormalList[] lists = new UserControlNormalList[20];
             for (int i = 0; i < lists.Length; i++)
             {
-                lists[i] = new UserControlListWithTwoButton(i);
+                lists[i] = new UserControlNormalList();
                 lists[i].ItemName = ("Item " + i);
                 flowLayoutPanel1.Controls.Add(lists[i]);
                 lists[i].Margin = new Padding(10);
+
+                lists[i].Clicked += UserControl_Click;
             }
         }
 
-
-        private void button2_Click(object sender, EventArgs e)
+        private void UserControl_Click(object sender, EventArgs e)
         {
-            Dash.showScreen(staffForm);
+            if (Dash != null)
+            {
+                Dash.showScreen(new feedbackDetails(Dash, this));
+                Console.WriteLine("clicked!");
+            }
+
         }
     }
 }

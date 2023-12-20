@@ -58,6 +58,12 @@
     <Compile Include="Admin\courses\addCourse.Designer.cs">
       <DependentUpon>addCourse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Feedback\feedbackDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Feedback\feedbackDetails.Designer.cs">
+      <DependentUpon>feedbackDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\staff\addStaff.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,10 +112,10 @@
     <Compile Include="Admin\download.Designer.cs">
       <DependentUpon>download.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\feedback.cs">
+    <Compile Include="Admin\Feedback\feedback.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Admin\feedback.Designer.cs">
+    <Compile Include="Admin\Feedback\feedback.Designer.cs">
       <DependentUpon>feedback.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\staff\staff.cs">
@@ -129,6 +135,12 @@
     </Compile>
     <Compile Include="Admin\upload.Designer.cs">
       <DependentUpon>upload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="changePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="changePassword.Designer.cs">
+      <DependentUpon>changePassword.cs</DependentUpon>
     </Compile>
     <Compile Include="register.cs">
       <SubType>Form</SubType>
@@ -198,6 +210,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControlDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlDetail.Designer.cs">
+      <DependentUpon>UserControlDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControlListWithTwoButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -234,8 +252,11 @@
     <EmbeddedResource Include="Admin\download.resx">
       <DependentUpon>download.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\feedback.resx">
+    <EmbeddedResource Include="Admin\Feedback\feedback.resx">
       <DependentUpon>feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Feedback\feedbackDetails.resx">
+      <DependentUpon>feedbackDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\staff\addStaff.resx">
       <DependentUpon>addStaff.cs</DependentUpon>
@@ -251,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\upload.resx">
       <DependentUpon>upload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="changePassword.resx">
+      <DependentUpon>changePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="register.resx">
       <DependentUpon>register.cs</DependentUpon>
@@ -289,6 +313,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlDetail.resx">
+      <DependentUpon>UserControlDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlListWithTwoButton.resx">
       <DependentUpon>UserControlListWithTwoButton.cs</DependentUpon>

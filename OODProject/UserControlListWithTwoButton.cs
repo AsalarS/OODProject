@@ -19,10 +19,20 @@ namespace OODProject
             Clicked?.Invoke(this, e);
         }
 
+        private int itemIndex;
+
         public UserControlListWithTwoButton()
         {
             InitializeComponent();
             this.MouseClick += OnClick;
+            
+        }
+
+        public UserControlListWithTwoButton(int index)
+        {
+            InitializeComponent();
+            this.MouseClick += OnClick;
+            itemIndex = index;
         }
 
         #region Properties
@@ -50,5 +60,14 @@ namespace OODProject
 
         #endregion
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine($"Item {itemIndex} Button 2 clicked");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine($"Item {itemIndex} Button 1 clicked");
+        }
     }
 }
