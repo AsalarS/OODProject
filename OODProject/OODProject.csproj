@@ -406,6 +406,7 @@
     <None Include="Resources\report.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\delete.png" />
     <Content Include="Resources\icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
