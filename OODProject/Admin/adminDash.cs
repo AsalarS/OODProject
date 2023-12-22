@@ -17,7 +17,7 @@ namespace OODProject
         {
             InitializeComponent();
             this.Icon = new Icon("D:\\vs projects\\OODProject\\OODProject\\Resources\\icon.ico");
-            showScreen(new branches());
+            //showScreen(new branches());
         }
 
         public void showScreen(object Form)
