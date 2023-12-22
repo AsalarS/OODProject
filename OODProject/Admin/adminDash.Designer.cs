@@ -41,7 +41,6 @@
             this.seperator = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.mainScreen = new System.Windows.Forms.Panel();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             this.SuspendLayout();
@@ -255,10 +254,6 @@
             this.mainScreen.Size = new System.Drawing.Size(984, 631);
             this.mainScreen.TabIndex = 4;
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // adminDash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,7 +288,6 @@
         private System.Windows.Forms.Button logoutBtn;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Panel mainScreen;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
