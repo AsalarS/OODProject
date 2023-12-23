@@ -71,20 +71,22 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(107)))), ((int)(((byte)(120)))));
-            this.label3.Location = new System.Drawing.Point(122, 239);
+            this.label3.Location = new System.Drawing.Point(70, 272);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.Size = new System.Drawing.Size(78, 20);
             this.label3.TabIndex = 9;
             this.label3.Text = "Password";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(107)))), ((int)(((byte)(120)))));
-            this.label2.Location = new System.Drawing.Point(122, 187);
+            this.label2.Location = new System.Drawing.Point(70, 204);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(53, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "E-mail";
             // 
@@ -137,7 +139,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(102)))), ((int)(((byte)(158)))));
-            this.button3.Location = new System.Drawing.Point(166, 366);
+            this.button3.Location = new System.Drawing.Point(166, 346);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(143, 23);
             this.button3.TabIndex = 5;
@@ -148,27 +150,29 @@
             // 
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(60)))), ((int)(((byte)(72)))));
-            this.label1.Location = new System.Drawing.Point(178, 86);
+            this.label1.Location = new System.Drawing.Point(153, 64);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 42);
+            this.label1.Size = new System.Drawing.Size(195, 73);
             this.label1.TabIndex = 4;
             this.label1.Text = "Login";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // passwordLogin
             // 
-            this.passwordLogin.Location = new System.Drawing.Point(118, 255);
+            this.passwordLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordLogin.Location = new System.Drawing.Point(68, 295);
             this.passwordLogin.Name = "passwordLogin";
-            this.passwordLogin.Size = new System.Drawing.Size(240, 20);
+            this.passwordLogin.Size = new System.Drawing.Size(364, 31);
             this.passwordLogin.TabIndex = 3;
             // 
             // emailLogin
             // 
-            this.emailLogin.Location = new System.Drawing.Point(118, 203);
+            this.emailLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailLogin.Location = new System.Drawing.Point(68, 227);
             this.emailLogin.Name = "emailLogin";
-            this.emailLogin.Size = new System.Drawing.Size(240, 20);
+            this.emailLogin.Size = new System.Drawing.Size(364, 31);
             this.emailLogin.TabIndex = 2;
             // 
             // registerBtn
