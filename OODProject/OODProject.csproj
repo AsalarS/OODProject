@@ -58,11 +58,29 @@
     <Compile Include="Admin\courses\addCourse.Designer.cs">
       <DependentUpon>addCourse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\download\downloadDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\download\downloadDetail.Designer.cs">
+      <DependentUpon>downloadDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Feedback\feedbackDetails.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Admin\Feedback\feedbackDetails.Designer.cs">
       <DependentUpon>feedbackDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\download\information.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\download\information.Designer.cs">
+      <DependentUpon>information.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\download\reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\download\reports.Designer.cs">
+      <DependentUpon>reports.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\staff\addStaff.cs">
       <SubType>Form</SubType>
@@ -105,12 +123,6 @@
     </Compile>
     <Compile Include="Admin\courses\courses.Designer.cs">
       <DependentUpon>courses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\download.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Admin\download.Designer.cs">
-      <DependentUpon>download.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Feedback\feedback.cs">
       <SubType>Form</SubType>
@@ -279,14 +291,20 @@
     <EmbeddedResource Include="Admin\courses\courses.resx">
       <DependentUpon>courses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\download.resx">
-      <DependentUpon>download.cs</DependentUpon>
+    <EmbeddedResource Include="Admin\download\downloadDetail.resx">
+      <DependentUpon>downloadDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Feedback\feedback.resx">
       <DependentUpon>feedback.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Feedback\feedbackDetails.resx">
       <DependentUpon>feedbackDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\download\information.resx">
+      <DependentUpon>information.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\download\reports.resx">
+      <DependentUpon>reports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\staff\addStaff.resx">
       <DependentUpon>addStaff.cs</DependentUpon>
@@ -454,9 +472,13 @@
     <None Include="Resources\delete.png" />
     <None Include="Resources\down-arrow.png" />
     <None Include="Resources\attach-file.png" />
+    <None Include="Resources\buttonBkgOpen.png" />
+    <None Include="Resources\buttonBkgClosed.png" />
+    <None Include="Resources\bullet.png" />
     <Content Include="Resources\icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

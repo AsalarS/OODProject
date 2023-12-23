@@ -13,13 +13,14 @@ namespace OODProject
 {
     public partial class adminDash : Form
     {
+        private bool menuExpand = false;
         public adminDash()
         {
             InitializeComponent();
             this.Icon = new Icon("Resources\\icon.ico");
             showScreen(new branches());
         }
-
+        
         public void showScreen(object Form)
         {
             if (this.mainScreen.Controls.Count > 0)
@@ -31,7 +32,7 @@ namespace OODProject
             this.mainScreen.Tag = f;
             f.Show();
         }
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -86,14 +87,63 @@ namespace OODProject
             showScreen(new upload());
         }
 
-        private void downloadBtn_Click(object sender, EventArgs e)
-        {
-            showScreen(new download());
-        }
-
         private void feedbackBtn_Click(object sender, EventArgs e)
         {
             showScreen(new feedback(this));
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (menuExpand == false)
+            {
+                uploadPanel.Height += 10;
+                if (uploadPanel.Height > 138)
+                {
+                    timer1.Stop();
+                    menuExpand = true;
+                }
+            } else
+            {
+                uploadPanel.Height -= 10;
+                if (uploadPanel.Height <= 60)
+                {
+                    timer1.Stop();
+                    menuExpand= false;
+                }
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            timer1.Start();
+            if (menuExpand == false)
+            {
+                button1.BackgroundImage = Properties.Resources.buttonBkgOpen1;
+            } else
+            {
+                button1.BackgroundImage = Properties.Resources.buttonBkgClosed1;
+            }
+            
+        }
+
+        private void reportsBtn_Click(object sender, EventArgs e)
+        {
+            showScreen(new reports());
+        }
+
+        private void infoBtn_Click(object sender, EventArgs e)
+        {
+            showScreen(new information());
+        }
+
+        private void feedbackBtn_Click_1(object sender, EventArgs e)
+        {
+            showScreen(new feedback(this));
+        }
+
+        private void downloadBtn_Click_1(object sender, EventArgs e)
+        {
+            //showScreen(new Upload());
         }
     }
 }
