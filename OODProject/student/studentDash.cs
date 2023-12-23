@@ -52,7 +52,7 @@ namespace OODProject
 
         private void mailBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new mailS());
+            showScreen(new mailS(this));
         }
 
         private void feedbackBtn_Click(object sender, EventArgs e)

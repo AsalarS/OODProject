@@ -166,10 +166,22 @@
     <Compile Include="student\learning.Designer.cs">
       <DependentUpon>learning.cs</DependentUpon>
     </Compile>
-    <Compile Include="student\mailS.cs">
+    <Compile Include="student\mail\mailComposeS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="student\mailS.Designer.cs">
+    <Compile Include="student\mail\mailComposeS.Designer.cs">
+      <DependentUpon>mailComposeS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="student\mail\mailDetailS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="student\mail\mailDetailS.Designer.cs">
+      <DependentUpon>mailDetailS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="student\mail\mailS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="student\mail\mailS.Designer.cs">
       <DependentUpon>mailS.cs</DependentUpon>
     </Compile>
     <Compile Include="student\studentDash.cs">
@@ -184,11 +196,23 @@
     <Compile Include="teacher\files.Designer.cs">
       <DependentUpon>files.cs</DependentUpon>
     </Compile>
-    <Compile Include="teacher\mail.cs">
+    <Compile Include="teacher\mail\mail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="teacher\mail.Designer.cs">
+    <Compile Include="teacher\mail\mail.Designer.cs">
       <DependentUpon>mail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="teacher\mail\mailCompose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="teacher\mail\mailCompose.Designer.cs">
+      <DependentUpon>mailCompose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="teacher\mail\mailDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="teacher\mail\mailDetail.Designer.cs">
+      <DependentUpon>mailDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="teacher\reports.cs">
       <SubType>Form</SubType>
@@ -221,6 +245,12 @@
     </Compile>
     <Compile Include="UserControlListWithTwoButton.Designer.cs">
       <DependentUpon>UserControlListWithTwoButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlMail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlMail.Designer.cs">
+      <DependentUpon>UserControlMail.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControlNormalList.cs">
       <SubType>UserControl</SubType>
@@ -288,7 +318,13 @@
     <EmbeddedResource Include="student\learning.resx">
       <DependentUpon>learning.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="student\mailS.resx">
+    <EmbeddedResource Include="student\mail\mailComposeS.resx">
+      <DependentUpon>mailComposeS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="student\mail\mailDetailS.resx">
+      <DependentUpon>mailDetailS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="student\mail\mailS.resx">
       <DependentUpon>mailS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="student\studentDash.resx">
@@ -297,8 +333,14 @@
     <EmbeddedResource Include="teacher\files.resx">
       <DependentUpon>files.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="teacher\mail.resx">
+    <EmbeddedResource Include="teacher\mail\mail.resx">
       <DependentUpon>mail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="teacher\mail\mailCompose.resx">
+      <DependentUpon>mailCompose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="teacher\mail\mailDetail.resx">
+      <DependentUpon>mailDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="teacher\reports.resx">
       <DependentUpon>reports.cs</DependentUpon>
@@ -319,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlListWithTwoButton.resx">
       <DependentUpon>UserControlListWithTwoButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlMail.resx">
+      <DependentUpon>UserControlMail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlNormalList.resx">
       <DependentUpon>UserControlNormalList.cs</DependentUpon>
@@ -407,6 +452,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delete.png" />
+    <None Include="Resources\down-arrow.png" />
+    <None Include="Resources\attach-file.png" />
     <Content Include="Resources\icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
