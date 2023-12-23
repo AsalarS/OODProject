@@ -15,7 +15,7 @@ namespace OODProject
     {
         public studentDash()
         {
-            this.Icon = new Icon("D:\\vs projects\\OODProject\\OODProject\\Resources\\icon.ico");
+            this.Icon = new Icon("Resources\\icon.ico");
             InitializeComponent();
             showScreen(new coursesS());
         }

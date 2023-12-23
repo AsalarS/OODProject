@@ -16,7 +16,7 @@ namespace OODProject
         public teachDash()
         {
             InitializeComponent();
-            this.Icon = new Icon("D:\\vs projects\\OODProject\\OODProject\\Resources\\icon.ico");
+            this.Icon = new Icon("Resources\\icon.ico");
             showScreen(new files());
             this.AllowDrop = true;
         }

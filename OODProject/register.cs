@@ -15,7 +15,7 @@ namespace OODProject
         public register()
         {
             InitializeComponent();
-            this.Icon = new Icon("D:\\vs projects\\OODProject\\OODProject\\Resources\\icon.ico");
+            this.Icon = new Icon("Resources\\icon.ico");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace OODProject
 
         private void registerBtn_Click(object sender, EventArgs e)
         {
-            DialogResult ok = MessageBox.Show("Your account has been registered and must be approve by an Admin", "Registered", MessageBoxButtons.OK);
+            DialogResult ok = MessageBox.Show("Your account has been registered and must be approved by an Admin", "Registered", MessageBoxButtons.OK);
             if (ok == DialogResult.OK) {
                 this.Hide();
                 login loginPage = new login();

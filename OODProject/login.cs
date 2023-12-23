@@ -15,7 +15,7 @@ namespace OODProject
         public login()
         {
             InitializeComponent();
-            this.Icon = new Icon("D:\\vs projects\\OODProject\\OODProject\\Resources\\icon.ico");
+            //this.Icon = new Icon("Resources\\icon.ico");
         }
 
         private void button1_Click(object sender, EventArgs e)
