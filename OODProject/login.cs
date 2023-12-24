@@ -23,6 +23,8 @@ namespace OODProject
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+
             if (adminLogin.Checked)
             {
                 this.Hide();

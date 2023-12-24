@@ -14,11 +14,12 @@ namespace OODProject.Admin
 {
     public partial class addCourse : Form
     {
-
         static String path = RemoveLastTwoDirectories(Directory.GetCurrentDirectory());
         static String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "\"" + path + "\"" + ";Integrated Security=True";
         static int sessionID;
         SqlConnection con = new SqlConnection(connectionString);
+
+
         static string RemoveLastTwoDirectories(string path)
         {
             for (int i = 0; i < 2; i++)
@@ -43,6 +44,20 @@ namespace OODProject.Admin
             InitializeComponent();
             Dash = dash;
             coursesForm = Courses;
+
+            con.Open();
+            string sql = "SELECT name FROM Teacher";
+            using (var command = new SqlCommand(sql, con))
+            {
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        comboBox1.Items.Add(reader["name"].ToString());
+                    }
+                }
+            }
+            con.Close();
         }
         public addCourse()
         {
@@ -56,9 +71,27 @@ namespace OODProject.Admin
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-          
+            string name = textBox1.Text;
+            string description = textBox2.Text;
+            string credits = textBox3.Text;
 
 
+            con.Open();
+            string sql = "INSERT INTO Course ( CourseName, CourseDescription, CourseCredit) VALUES ( @CourseName, @CourseDescription, @CourseCredit)";
+            using (var command = new SqlCommand(sql, con))
+            {
+
+
+                command.Parameters.AddWithValue("@CourseName", name);
+                command.Parameters.AddWithValue("@CourseDescription", description);
+                command.Parameters.AddWithValue("@CourseCredit", credits);
+                command.ExecuteNonQuery();
+            }
+            con.Close();
+
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
         }
     }
 }
