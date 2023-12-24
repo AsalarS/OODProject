@@ -39,7 +39,7 @@ namespace OODProject.teacher.mail
             Dash.showScreen(mailForm);
         }
 
-        private string filePath = "C:\\Users\\Ali\\Downloads\\files";
+        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "files");
         private List<string> filePaths = new List<string>();
         private HashSet<string> uniqueFiles = new HashSet<string>();
         private int count = 0;

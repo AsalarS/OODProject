@@ -71,7 +71,7 @@ namespace OODProject.teacher
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-        private string filePath = "C:\\Users\\Ali\\Downloads\\files";
+        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "files");
 
         private void button1_Click_1(object sender, EventArgs e)
         {
