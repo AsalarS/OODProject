@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace OODProject
 {
     public partial class login : Form
     {
+
+        SqlConnection Connection = new SqlConnection(Properties.Settings.Default.con);
         public login()
         {
             InitializeComponent();

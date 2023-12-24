@@ -128,12 +128,12 @@ namespace OODProject
 
         private void reportsBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new reports());
+            showScreen(new reports(this));
         }
 
         private void infoBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new information());
+            showScreen(new information(this));
         }
 
         private void feedbackBtn_Click_1(object sender, EventArgs e)
