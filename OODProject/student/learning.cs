@@ -20,7 +20,7 @@ namespace OODProject.student
             this.listView1.Padding = new Padding(10);
         }
 
-        private string filePath = "C:\\Users\\Ali\\Downloads\\files";
+        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "files");
 
         public void load_file()
         {
