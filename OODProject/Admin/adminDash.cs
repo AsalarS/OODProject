@@ -18,9 +18,9 @@ namespace OODProject
         {
             InitializeComponent();
             this.Icon = new Icon("Resources\\icon.ico");
-            showScreen(new branches());
+            showScreen(new branches(this));
         }
-        
+
         public void showScreen(object Form)
         {
             if (this.mainScreen.Controls.Count > 0)
@@ -32,7 +32,7 @@ namespace OODProject
             this.mainScreen.Tag = f;
             f.Show();
         }
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -118,17 +118,25 @@ namespace OODProject
             timer1.Start();
             if (menuExpand == false)
             {
-                button1.BackgroundImage = Properties.Resources.buttonBkgOpen1;
+                button1.BackgroundImage = Properties.Resources.buttonBkgOpen;
             } else
             {
-                button1.BackgroundImage = Properties.Resources.buttonBkgClosed1;
+                button1.BackgroundImage = Properties.Resources.buttonBkgClosed;
             }
             
         }
 
         private void reportsBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new reports(this));
+            Form form = new reports(this);
+            if (form != null)
+            {
+                showScreen(form);
+            }
+            else
+            {
+                throw new ArgumentNullException("form", "Failed to create a new instance of SomeFormClass.");
+            }
         }
 
         private void infoBtn_Click(object sender, EventArgs e)

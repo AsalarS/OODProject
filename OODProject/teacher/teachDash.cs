@@ -1,4 +1,5 @@
-﻿using OODProject.teacher;
+﻿using OODProject.student;
+using OODProject.teacher;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace OODProject
         {
             InitializeComponent();
             this.Icon = new Icon("Resources\\icon.ico");
-            showScreen(new files());
+            showScreen(new announcementsS());
             this.AllowDrop = true;
         }
 
@@ -38,7 +39,7 @@ namespace OODProject
             
         }
 
-        private void branchesBtn_Click(object sender, EventArgs e)
+        private void filesBtn_Click(object sender, EventArgs e)
         {
             showScreen(new files());
         }
@@ -61,10 +62,15 @@ namespace OODProject
             showScreen(new Mail(this));
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void changePwd_Click(object sender, EventArgs e)
         {
             var form = new changePassword();
             form.ShowDialog();
+        }
+
+        private void announcements_Click(object sender, EventArgs e)
+        {
+            showScreen(new announcementsT());
         }
     }
 }

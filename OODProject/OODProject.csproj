@@ -169,11 +169,22 @@
     <Compile Include="changePassword.Designer.cs">
       <DependentUpon>changePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="register.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="register.Designer.cs">
       <DependentUpon>register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="student\announcementsS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="student\announcementsS.Designer.cs">
+      <DependentUpon>announcementsS.cs</DependentUpon>
     </Compile>
     <Compile Include="student\coursesS.cs">
       <SubType>Form</SubType>
@@ -216,6 +227,12 @@
     </Compile>
     <Compile Include="student\studentDash.Designer.cs">
       <DependentUpon>studentDash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="teacher\announcementsT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="teacher\announcementsT.Designer.cs">
+      <DependentUpon>announcementsT.cs</DependentUpon>
     </Compile>
     <Compile Include="teacher\files.cs">
       <SubType>Form</SubType>
@@ -261,28 +278,34 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControlDetail.cs">
+    <Compile Include="UserControls\UserControlAnnouncement.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlDetail.Designer.cs">
+    <Compile Include="UserControls\UserControlAnnouncement.Designer.cs">
+      <DependentUpon>UserControlAnnouncement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlDetail.Designer.cs">
       <DependentUpon>UserControlDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlListWithTwoButton.cs">
+    <Compile Include="UserControls\UserControlListWithTwoButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlListWithTwoButton.Designer.cs">
+    <Compile Include="UserControls\UserControlListWithTwoButton.Designer.cs">
       <DependentUpon>UserControlListWithTwoButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlMail.cs">
+    <Compile Include="UserControls\UserControlMail.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlMail.Designer.cs">
+    <Compile Include="UserControls\UserControlMail.Designer.cs">
       <DependentUpon>UserControlMail.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlNormalList.cs">
+    <Compile Include="UserControls\UserControlNormalList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlNormalList.Designer.cs">
+    <Compile Include="UserControls\UserControlNormalList.Designer.cs">
       <DependentUpon>UserControlNormalList.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Admin\adminDash.resx">
@@ -342,6 +365,9 @@
     <EmbeddedResource Include="register.resx">
       <DependentUpon>register.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="student\announcementsS.resx">
+      <DependentUpon>announcementsS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="student\coursesS.resx">
       <DependentUpon>coursesS.cs</DependentUpon>
     </EmbeddedResource>
@@ -362,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="student\studentDash.resx">
       <DependentUpon>studentDash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="teacher\announcementsT.resx">
+      <DependentUpon>announcementsT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="teacher\files.resx">
       <DependentUpon>files.cs</DependentUpon>
@@ -389,18 +418,32 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlDetail.resx">
+    <EmbeddedResource Include="UserControls\UserControlAnnouncement.resx">
+      <DependentUpon>UserControlAnnouncement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserControlDetail.resx">
       <DependentUpon>UserControlDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlListWithTwoButton.resx">
+    <EmbeddedResource Include="UserControls\UserControlListWithTwoButton.resx">
       <DependentUpon>UserControlListWithTwoButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlMail.resx">
+    <EmbeddedResource Include="UserControls\UserControlMail.resx">
       <DependentUpon>UserControlMail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlNormalList.resx">
+    <EmbeddedResource Include="UserControls\UserControlNormalList.resx">
       <DependentUpon>UserControlNormalList.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="DatabaseDataSet.xsc">
+      <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DatabaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatabaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DatabaseDataSet.xss">
+      <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -497,6 +540,8 @@
       <DependentUpon>Database.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\announcements.png" />
+    <Content Include="Resources\announcementsRED.png" />
     <Content Include="Resources\icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

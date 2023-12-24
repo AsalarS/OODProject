@@ -16,6 +16,7 @@ namespace OODProject.Admin.download
         public adminDash Dash { get; set; }
         public information info { get; set; }
         public reports repo { get; set; }
+        public bool infoUsed = false;
 
         public downloadDetail()
         {
@@ -27,13 +28,26 @@ namespace OODProject.Admin.download
             InitializeComponent();
             this.Dash = Dash;
             this.info = info;
+            infoUsed = true;
         }
 
         public downloadDetail(adminDash Dash, reports repo)
         {
             InitializeComponent();
             this.Dash = Dash; 
-            this.info = info;
+            this.repo = repo;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (infoUsed)
+            {
+                Dash.showScreen(info);
+            } else
+            {
+                Dash.showScreen(repo);
+            }
+            
         }
     }
 }

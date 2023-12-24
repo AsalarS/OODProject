@@ -32,11 +32,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.mailBtn = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.logoutBtn = new System.Windows.Forms.Button();
-            this.mailBtn = new System.Windows.Forms.Button();
             this.reportsBtn = new System.Windows.Forms.Button();
             this.filesBtn = new System.Windows.Forms.Button();
+            this.announcementsBtn = new System.Windows.Forms.Button();
             this.mainScreen = new System.Windows.Forms.Panel();
             this.panelLogo.SuspendLayout();
             this.panelMenu.SuspendLayout();
@@ -80,17 +81,37 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(201)))), ((int)(((byte)(255)))));
+            this.panelMenu.Controls.Add(this.mailBtn);
             this.panelMenu.Controls.Add(this.button6);
             this.panelMenu.Controls.Add(this.logoutBtn);
-            this.panelMenu.Controls.Add(this.mailBtn);
             this.panelMenu.Controls.Add(this.reportsBtn);
             this.panelMenu.Controls.Add(this.filesBtn);
+            this.panelMenu.Controls.Add(this.announcementsBtn);
             this.panelMenu.Controls.Add(this.panelLogo);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(200, 631);
             this.panelMenu.TabIndex = 1;
+            // 
+            // mailBtn
+            // 
+            this.mailBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.mailBtn.FlatAppearance.BorderSize = 0;
+            this.mailBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mailBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mailBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.mailBtn.Image = global::OODProject.Properties.Resources.mail;
+            this.mailBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mailBtn.Location = new System.Drawing.Point(0, 245);
+            this.mailBtn.Name = "mailBtn";
+            this.mailBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.mailBtn.Size = new System.Drawing.Size(200, 60);
+            this.mailBtn.TabIndex = 8;
+            this.mailBtn.Text = "Mail";
+            this.mailBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.mailBtn.UseVisualStyleBackColor = true;
+            this.mailBtn.Click += new System.EventHandler(this.mailBtn_Click);
             // 
             // button6
             // 
@@ -105,7 +126,7 @@
             this.button6.TabIndex = 7;
             this.button6.Text = "Change Password";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Click += new System.EventHandler(this.changePwd_Click);
             // 
             // logoutBtn
             // 
@@ -122,25 +143,6 @@
             this.logoutBtn.UseVisualStyleBackColor = true;
             this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
             // 
-            // mailBtn
-            // 
-            this.mailBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.mailBtn.FlatAppearance.BorderSize = 0;
-            this.mailBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mailBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mailBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.mailBtn.Image = global::OODProject.Properties.Resources.mail;
-            this.mailBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mailBtn.Location = new System.Drawing.Point(0, 185);
-            this.mailBtn.Name = "mailBtn";
-            this.mailBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.mailBtn.Size = new System.Drawing.Size(200, 60);
-            this.mailBtn.TabIndex = 2;
-            this.mailBtn.Text = "Mail";
-            this.mailBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.mailBtn.UseVisualStyleBackColor = true;
-            this.mailBtn.Click += new System.EventHandler(this.mailBtn_Click);
-            // 
             // reportsBtn
             // 
             this.reportsBtn.Dock = System.Windows.Forms.DockStyle.Top;
@@ -150,11 +152,11 @@
             this.reportsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
             this.reportsBtn.Image = global::OODProject.Properties.Resources.report;
             this.reportsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.reportsBtn.Location = new System.Drawing.Point(0, 125);
+            this.reportsBtn.Location = new System.Drawing.Point(0, 185);
             this.reportsBtn.Name = "reportsBtn";
             this.reportsBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.reportsBtn.Size = new System.Drawing.Size(200, 60);
-            this.reportsBtn.TabIndex = 1;
+            this.reportsBtn.TabIndex = 2;
             this.reportsBtn.Text = "Reports";
             this.reportsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.reportsBtn.UseVisualStyleBackColor = true;
@@ -169,15 +171,34 @@
             this.filesBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
             this.filesBtn.Image = global::OODProject.Properties.Resources.new_document;
             this.filesBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.filesBtn.Location = new System.Drawing.Point(0, 65);
+            this.filesBtn.Location = new System.Drawing.Point(0, 125);
             this.filesBtn.Name = "filesBtn";
             this.filesBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.filesBtn.Size = new System.Drawing.Size(200, 60);
-            this.filesBtn.TabIndex = 0;
+            this.filesBtn.TabIndex = 1;
             this.filesBtn.Text = "Files";
             this.filesBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.filesBtn.UseVisualStyleBackColor = true;
-            this.filesBtn.Click += new System.EventHandler(this.branchesBtn_Click);
+            this.filesBtn.Click += new System.EventHandler(this.filesBtn_Click);
+            // 
+            // announcementsBtn
+            // 
+            this.announcementsBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.announcementsBtn.FlatAppearance.BorderSize = 0;
+            this.announcementsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.announcementsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.announcementsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.announcementsBtn.Image = global::OODProject.Properties.Resources.announcements;
+            this.announcementsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.announcementsBtn.Location = new System.Drawing.Point(0, 65);
+            this.announcementsBtn.Name = "announcementsBtn";
+            this.announcementsBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.announcementsBtn.Size = new System.Drawing.Size(200, 60);
+            this.announcementsBtn.TabIndex = 0;
+            this.announcementsBtn.Text = "Announcements";
+            this.announcementsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.announcementsBtn.UseVisualStyleBackColor = true;
+            this.announcementsBtn.Click += new System.EventHandler(this.announcements_Click);
             // 
             // mainScreen
             // 
@@ -208,13 +229,14 @@
 
         private System.Windows.Forms.Label seperator;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button mailBtn;
         private System.Windows.Forms.Button reportsBtn;
         private System.Windows.Forms.Button filesBtn;
+        private System.Windows.Forms.Button announcementsBtn;
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button logoutBtn;
         private System.Windows.Forms.Panel mainScreen;
+        private System.Windows.Forms.Button mailBtn;
     }
 }

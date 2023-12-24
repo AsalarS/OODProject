@@ -34,8 +34,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.listView1 = new System.Windows.Forms.ListView();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -84,6 +85,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = global::OODProject.Properties.Resources.down_arrow;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
+            this.toolStripMenuItem1.Text = "Download";
+            // 
             // listView1
             // 
             this.listView1.BackColor = System.Drawing.SystemColors.Control;
@@ -92,26 +100,29 @@
             this.listView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
             this.listView1.HideSelection = false;
             this.listView1.LargeImageList = this.iconList;
-            this.listView1.Location = new System.Drawing.Point(0, 71);
+            this.listView1.Location = new System.Drawing.Point(0, 103);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(984, 560);
+            this.listView1.Size = new System.Drawing.Size(984, 528);
             this.listView1.SmallImageList = this.iconList;
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
             // 
-            // toolStripMenuItem1
+            // comboBox1
             // 
-            this.toolStripMenuItem1.Image = global::OODProject.Properties.Resources.down_arrow;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
-            this.toolStripMenuItem1.Text = "Download";
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(290, 71);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(393, 26);
+            this.comboBox1.TabIndex = 7;
             // 
             // learning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 631);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -132,5 +143,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

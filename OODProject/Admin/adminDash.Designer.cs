@@ -30,22 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.feedbackBtn = new System.Windows.Forms.Button();
             this.uploadPanel = new System.Windows.Forms.Panel();
             this.infoBtn = new System.Windows.Forms.Button();
+            this.reportsBtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.logoutBtn = new System.Windows.Forms.Button();
+            this.staffBtn = new System.Windows.Forms.Button();
+            this.coursesBtn = new System.Windows.Forms.Button();
+            this.branchesBtn = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.seperator = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.mainScreen = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.reportsBtn = new System.Windows.Forms.Button();
-            this.feedbackBtn = new System.Windows.Forms.Button();
-            this.downloadBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.staffBtn = new System.Windows.Forms.Button();
-            this.coursesBtn = new System.Windows.Forms.Button();
-            this.branchesBtn = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.uploadPanel.SuspendLayout();
             this.panelLogo.SuspendLayout();
@@ -55,7 +54,6 @@
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(201)))), ((int)(((byte)(255)))));
             this.panelMenu.Controls.Add(this.feedbackBtn);
-            this.panelMenu.Controls.Add(this.downloadBtn);
             this.panelMenu.Controls.Add(this.uploadPanel);
             this.panelMenu.Controls.Add(this.button6);
             this.panelMenu.Controls.Add(this.logoutBtn);
@@ -69,6 +67,25 @@
             this.panelMenu.Size = new System.Drawing.Size(200, 631);
             this.panelMenu.TabIndex = 0;
             this.panelMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMenu_Paint);
+            // 
+            // feedbackBtn
+            // 
+            this.feedbackBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.feedbackBtn.FlatAppearance.BorderSize = 0;
+            this.feedbackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.feedbackBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.feedbackBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.feedbackBtn.Image = global::OODProject.Properties.Resources.feedback;
+            this.feedbackBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.feedbackBtn.Location = new System.Drawing.Point(0, 305);
+            this.feedbackBtn.Name = "feedbackBtn";
+            this.feedbackBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.feedbackBtn.Size = new System.Drawing.Size(200, 60);
+            this.feedbackBtn.TabIndex = 9;
+            this.feedbackBtn.Text = "Feedback";
+            this.feedbackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.feedbackBtn.UseVisualStyleBackColor = true;
+            this.feedbackBtn.Click += new System.EventHandler(this.feedbackBtn_Click_1);
             // 
             // uploadPanel
             // 
@@ -101,6 +118,46 @@
             this.infoBtn.UseVisualStyleBackColor = false;
             this.infoBtn.Click += new System.EventHandler(this.infoBtn_Click);
             // 
+            // reportsBtn
+            // 
+            this.reportsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(191)))), ((int)(((byte)(241)))));
+            this.reportsBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.reportsBtn.FlatAppearance.BorderSize = 0;
+            this.reportsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reportsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.reportsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.reportsBtn.Location = new System.Drawing.Point(0, 60);
+            this.reportsBtn.Name = "reportsBtn";
+            this.reportsBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.reportsBtn.Size = new System.Drawing.Size(200, 40);
+            this.reportsBtn.TabIndex = 5;
+            this.reportsBtn.Text = "Reports";
+            this.reportsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.reportsBtn.UseVisualStyleBackColor = false;
+            this.reportsBtn.Click += new System.EventHandler(this.reportsBtn_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::OODProject.Properties.Resources.buttonBkgClosed1;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.button1.Image = global::OODProject.Properties.Resources.announcements;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(200, 60);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Announce";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // button6
             // 
             this.button6.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -130,135 +187,6 @@
             this.logoutBtn.Text = "Logout";
             this.logoutBtn.UseVisualStyleBackColor = true;
             this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
-            // 
-            // panelLogo
-            // 
-            this.panelLogo.Controls.Add(this.seperator);
-            this.panelLogo.Controls.Add(this.label1);
-            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(200, 65);
-            this.panelLogo.TabIndex = 0;
-            this.panelLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // seperator
-            // 
-            this.seperator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.seperator.AutoSize = true;
-            this.seperator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(184)))), ((int)(((byte)(239)))));
-            this.seperator.Location = new System.Drawing.Point(22, 49);
-            this.seperator.Name = "seperator";
-            this.seperator.Size = new System.Drawing.Size(157, 13);
-            this.seperator.TabIndex = 1;
-            this.seperator.Text = "_________________________";
-            this.seperator.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.label1.Location = new System.Drawing.Point(33, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 42);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Admin";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // mainScreen
-            // 
-            this.mainScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainScreen.Location = new System.Drawing.Point(200, 0);
-            this.mainScreen.Name = "mainScreen";
-            this.mainScreen.Size = new System.Drawing.Size(984, 631);
-            this.mainScreen.TabIndex = 4;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // reportsBtn
-            // 
-            this.reportsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(191)))), ((int)(((byte)(241)))));
-            this.reportsBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.reportsBtn.FlatAppearance.BorderSize = 0;
-            this.reportsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.reportsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reportsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.reportsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.reportsBtn.Location = new System.Drawing.Point(0, 60);
-            this.reportsBtn.Name = "reportsBtn";
-            this.reportsBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.reportsBtn.Size = new System.Drawing.Size(200, 40);
-            this.reportsBtn.TabIndex = 5;
-            this.reportsBtn.Text = "Reports";
-            this.reportsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.reportsBtn.UseVisualStyleBackColor = false;
-            this.reportsBtn.Click += new System.EventHandler(this.reportsBtn_Click);
-            // 
-            // feedbackBtn
-            // 
-            this.feedbackBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.feedbackBtn.FlatAppearance.BorderSize = 0;
-            this.feedbackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.feedbackBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.feedbackBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.feedbackBtn.Image = global::OODProject.Properties.Resources.feedback;
-            this.feedbackBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.feedbackBtn.Location = new System.Drawing.Point(0, 365);
-            this.feedbackBtn.Name = "feedbackBtn";
-            this.feedbackBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.feedbackBtn.Size = new System.Drawing.Size(200, 60);
-            this.feedbackBtn.TabIndex = 9;
-            this.feedbackBtn.Text = "Feedback";
-            this.feedbackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.feedbackBtn.UseVisualStyleBackColor = true;
-            this.feedbackBtn.Click += new System.EventHandler(this.feedbackBtn_Click_1);
-            // 
-            // downloadBtn
-            // 
-            this.downloadBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.downloadBtn.FlatAppearance.BorderSize = 0;
-            this.downloadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.downloadBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.downloadBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.downloadBtn.Image = global::OODProject.Properties.Resources.download;
-            this.downloadBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.downloadBtn.Location = new System.Drawing.Point(0, 305);
-            this.downloadBtn.Name = "downloadBtn";
-            this.downloadBtn.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.downloadBtn.Size = new System.Drawing.Size(200, 60);
-            this.downloadBtn.TabIndex = 8;
-            this.downloadBtn.Text = "Download";
-            this.downloadBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.downloadBtn.UseVisualStyleBackColor = true;
-            this.downloadBtn.Click += new System.EventHandler(this.downloadBtn_Click_1);
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImage = global::OODProject.Properties.Resources.buttonBkgClosed1;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.button1.Image = global::OODProject.Properties.Resources.upload;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(200, 60);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Upload";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // staffBtn
             // 
@@ -317,6 +245,57 @@
             this.branchesBtn.UseVisualStyleBackColor = true;
             this.branchesBtn.Click += new System.EventHandler(this.branchesBtn_Click);
             // 
+            // panelLogo
+            // 
+            this.panelLogo.Controls.Add(this.seperator);
+            this.panelLogo.Controls.Add(this.label1);
+            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Name = "panelLogo";
+            this.panelLogo.Size = new System.Drawing.Size(200, 65);
+            this.panelLogo.TabIndex = 0;
+            this.panelLogo.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // seperator
+            // 
+            this.seperator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.seperator.AutoSize = true;
+            this.seperator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(184)))), ((int)(((byte)(239)))));
+            this.seperator.Location = new System.Drawing.Point(22, 49);
+            this.seperator.Name = "seperator";
+            this.seperator.Size = new System.Drawing.Size(157, 13);
+            this.seperator.TabIndex = 1;
+            this.seperator.Text = "_________________________";
+            this.seperator.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.label1.Location = new System.Drawing.Point(33, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 42);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Admin";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // mainScreen
+            // 
+            this.mainScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainScreen.Location = new System.Drawing.Point(200, 0);
+            this.mainScreen.Name = "mainScreen";
+            this.mainScreen.Size = new System.Drawing.Size(984, 631);
+            this.mainScreen.TabIndex = 4;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // adminDash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,7 +333,6 @@
         private System.Windows.Forms.Button reportsBtn;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button feedbackBtn;
-        private System.Windows.Forms.Button downloadBtn;
         private System.Windows.Forms.Timer timer1;
     }
 }
