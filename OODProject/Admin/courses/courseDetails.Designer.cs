@@ -41,6 +41,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.IDNumber = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -149,7 +151,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(487, 226);
+            this.textBox3.Location = new System.Drawing.Point(259, 233);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(201, 20);
             this.textBox3.TabIndex = 15;
@@ -158,7 +160,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(292, 221);
+            this.label3.Location = new System.Drawing.Point(64, 228);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(174, 29);
             this.label3.TabIndex = 14;
@@ -186,11 +188,31 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "ID: ";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(690, 235);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(201, 21);
+            this.comboBox1.TabIndex = 27;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(495, 228);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(174, 29);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Course Credits";
+            // 
             // courseDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 631);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.IDNumber);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox3);
@@ -227,5 +249,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label IDNumber;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label5;
     }
 }
