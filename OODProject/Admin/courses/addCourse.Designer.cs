@@ -99,7 +99,6 @@
             this.addBtn.TabIndex = 12;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = false;
-           
             // 
             // cancelBtn
             // 
@@ -134,7 +133,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(690, 146);
+            this.textBox2.Location = new System.Drawing.Point(690, 150);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(201, 20);
             this.textBox2.TabIndex = 19;

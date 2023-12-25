@@ -89,9 +89,10 @@ namespace OODProject.Admin
             string phone = textBox4.Text;
             string branchName = comboBox1.Text;
 
-            string sql = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Role) VALUES (@FirstName, @LastName, @Email, @PhoneNumber, @Role); SELECT SCOPE_IDENTITY();";
+            string sql = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Role, Approved) VALUES (@FirstName, @LastName, @Email, @PhoneNumber, @Role, @Approved); SELECT SCOPE_IDENTITY();";
             using (var command = new SqlCommand(sql, con))
             {
+                command.Parameters.AddWithValue("@Approved", 0);
                 command.Parameters.AddWithValue("@FirstName", fname);
                 command.Parameters.AddWithValue("@LastName", lname);
                 command.Parameters.AddWithValue("@Email", email);
