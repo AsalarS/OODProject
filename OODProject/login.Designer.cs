@@ -162,14 +162,17 @@
             // passwordLogin
             // 
             this.passwordLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
             this.passwordLogin.Location = new System.Drawing.Point(68, 295);
             this.passwordLogin.Name = "passwordLogin";
+            this.passwordLogin.PasswordChar = '●';
             this.passwordLogin.Size = new System.Drawing.Size(364, 31);
             this.passwordLogin.TabIndex = 3;
             // 
             // emailLogin
             // 
             this.emailLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
             this.emailLogin.Location = new System.Drawing.Point(68, 227);
             this.emailLogin.Name = "emailLogin";
             this.emailLogin.Size = new System.Drawing.Size(364, 31);

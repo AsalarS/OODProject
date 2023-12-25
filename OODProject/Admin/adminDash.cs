@@ -13,12 +13,21 @@ namespace OODProject
 {
     public partial class adminDash : Form
     {
+        private int ID;
         private bool menuExpand = false;
         public adminDash()
         {
             InitializeComponent();
             this.Icon = new Icon("Resources\\icon.ico");
             showScreen(new branches(this));
+        }
+
+        public adminDash(int ID)
+        {
+            InitializeComponent();
+            this.Icon = new Icon("Resources\\icon.ico");
+            showScreen(new branches(this));
+            this.ID = ID;
         }
 
         public void showScreen(object Form)
@@ -60,7 +69,7 @@ namespace OODProject
 
         private void button6_Click(object sender, EventArgs e)
         {
-            var form = new changePassword();
+            var form = new changePassword(ID);
             form.ShowDialog();
         }
 

@@ -32,8 +32,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.backBtn = new System.Windows.Forms.Button();
             this.roleGroup = new System.Windows.Forms.GroupBox();
-            this.teachRadioBtn = new System.Windows.Forms.RadioButton();
-            this.stdntRadioBtn = new System.Windows.Forms.RadioButton();
+            this.Teacher = new System.Windows.Forms.RadioButton();
+            this.Student = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.pass2Reg = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -109,8 +109,8 @@
             // 
             // roleGroup
             // 
-            this.roleGroup.Controls.Add(this.teachRadioBtn);
-            this.roleGroup.Controls.Add(this.stdntRadioBtn);
+            this.roleGroup.Controls.Add(this.Teacher);
+            this.roleGroup.Controls.Add(this.Student);
             this.roleGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(60)))), ((int)(((byte)(72)))));
             this.roleGroup.Location = new System.Drawing.Point(119, 328);
             this.roleGroup.Name = "roleGroup";
@@ -119,29 +119,29 @@
             this.roleGroup.TabStop = false;
             this.roleGroup.Text = "Role";
             // 
-            // teachRadioBtn
+            // Teacher
             // 
-            this.teachRadioBtn.AutoSize = true;
-            this.teachRadioBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(60)))), ((int)(((byte)(72)))));
-            this.teachRadioBtn.Location = new System.Drawing.Point(153, 19);
-            this.teachRadioBtn.Name = "teachRadioBtn";
-            this.teachRadioBtn.Size = new System.Drawing.Size(65, 17);
-            this.teachRadioBtn.TabIndex = 1;
-            this.teachRadioBtn.TabStop = true;
-            this.teachRadioBtn.Text = "Teacher";
-            this.teachRadioBtn.UseVisualStyleBackColor = true;
+            this.Teacher.AutoSize = true;
+            this.Teacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(60)))), ((int)(((byte)(72)))));
+            this.Teacher.Location = new System.Drawing.Point(153, 19);
+            this.Teacher.Name = "Teacher";
+            this.Teacher.Size = new System.Drawing.Size(65, 17);
+            this.Teacher.TabIndex = 1;
+            this.Teacher.TabStop = true;
+            this.Teacher.Text = "Teacher";
+            this.Teacher.UseVisualStyleBackColor = true;
             // 
-            // stdntRadioBtn
+            // Student
             // 
-            this.stdntRadioBtn.AutoSize = true;
-            this.stdntRadioBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(60)))), ((int)(((byte)(72)))));
-            this.stdntRadioBtn.Location = new System.Drawing.Point(40, 19);
-            this.stdntRadioBtn.Name = "stdntRadioBtn";
-            this.stdntRadioBtn.Size = new System.Drawing.Size(62, 17);
-            this.stdntRadioBtn.TabIndex = 0;
-            this.stdntRadioBtn.TabStop = true;
-            this.stdntRadioBtn.Text = "Student";
-            this.stdntRadioBtn.UseVisualStyleBackColor = true;
+            this.Student.AutoSize = true;
+            this.Student.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(60)))), ((int)(((byte)(72)))));
+            this.Student.Location = new System.Drawing.Point(40, 19);
+            this.Student.Name = "Student";
+            this.Student.Size = new System.Drawing.Size(62, 17);
+            this.Student.TabIndex = 0;
+            this.Student.TabStop = true;
+            this.Student.Text = "Student";
+            this.Student.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -337,8 +337,8 @@
         private System.Windows.Forms.TextBox lastNameReg;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox roleGroup;
-        private System.Windows.Forms.RadioButton teachRadioBtn;
-        private System.Windows.Forms.RadioButton stdntRadioBtn;
+        private System.Windows.Forms.RadioButton Teacher;
+        private System.Windows.Forms.RadioButton Student;
         private System.Windows.Forms.Button backBtn;
     }
 }
