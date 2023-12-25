@@ -50,28 +50,71 @@ namespace OODProject.Admin
             coursesForm = course;
             this.id = id;
 
-            string sql = "SELECT BranchName, BranchManager, BranchId FROM Branch WHERE BranchId = @BranchId";
+            string sql = @"SELECT 
+               c.CourseID, 
+               c.CourseName, 
+               c.CourseCredit, 
+               c.CourseDescription, 
+               b.BranchName, 
+               u.FirstName + ' ' + u.LastName as TeacherName
+               FROM Course c
+               INNER JOIN Branch b ON c.BranchID = b.BranchID
+               INNER JOIN [User] u ON c.TeacherID = u.UserID
+               WHERE c.CourseID = @CourseId";
+
             using (var command = new SqlCommand(sql, con))
             {
-                command.Parameters.AddWithValue("@BranchId", id);
+                command.Parameters.AddWithValue("@CourseId", id);
                 con.Open();
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        textBox1.Text = reader["BranchName"].ToString();
-                        branchesLbl.Text = reader["BranchName"].ToString();
-                        textBox2.Text = reader["BranchManager"].ToString();
-                        IDNumber.Text = reader["BranchId"].ToString();
+                        textBox1.Text = reader["CourseName"].ToString();
+                        textBox2.Text = reader["CourseDescription"].ToString();
+                        textBox3.Text = reader["CourseCredit"].ToString();
+                        IDNumber.Text = reader["CourseID"].ToString();
+
+                        // Set the selected branch name in ComboBox1
+                        comboBox1.Text = reader["BranchName"].ToString();
+
+                        // Set the selected teacher name in ComboBox2
+                        comboBox2.Text = reader["TeacherName"].ToString();
                     }
                 }
                 con.Close();
             }
+
+            string sql1 = @"SELECT 
+              sc.StudentID, 
+              u.FirstName + ' ' + u.LastName as StudentName
+              FROM StudentCourse sc
+              INNER JOIN Students s ON sc.StudentID = s.StudentID
+              INNER JOIN [User] u ON s.UserID = u.UserID
+              WHERE sc.CourseID = @CourseId";
+
+            using (var command = new SqlCommand(sql1, con))
+            {
+                command.Parameters.AddWithValue("@CourseId", id);
+                con.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        listBox2.Items.Add(reader["StudentName"].ToString());
+                    }
+                }
+                con.Close();
+            }
+
+
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Dash.showScreen(new branches(Dash));
+            Dash.showScreen(new course(Dash));
         }
 
         private void button1_Click(object sender, EventArgs e)

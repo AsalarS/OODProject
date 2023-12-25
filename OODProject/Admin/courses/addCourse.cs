@@ -120,7 +120,7 @@ namespace OODProject.Admin
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            string selectedStudents = string.Join(",", listBox2.SelectedItems.Cast<string>().Select(s => $"'{s}'"));
+            string selectedStudents = string.Join(",", listBox2.SelectedItems.Cast<string>().Select(s => $"'{s.Split(':')[1].Trim()}'"));
             // Get values from TextBoxes and ComboBoxes
             string courseName = textBox1.Text;
                 string courseDescription = textBox2.Text;
@@ -151,10 +151,11 @@ namespace OODProject.Admin
 
                     // Insert into StudentCourse table
                     string sql1 = $@"INSERT INTO StudentCourse (StudentID, CourseID) 
-                     SELECT StudentID, {courseId} 
-                     FROM Students 
-                     WHERE StudentName IN ({selectedStudents})";
-                    using (var command1 = new SqlCommand(sql1, con))
+             SELECT s.StudentID, {courseId} 
+             FROM Students s 
+             INNER JOIN [User] u ON s.UserID = u.UserID 
+             WHERE CONCAT(u.FirstName, ' ', u.LastName) IN ({selectedStudents})";
+                using (var command1 = new SqlCommand(sql1, con))
                     {
                         command1.ExecuteNonQuery();
                     }
