@@ -74,8 +74,8 @@ namespace OODProject.Admin
         private void addBtn_Click(object sender, EventArgs e)
         {
 
-            string name = textBox2.Text;
-            string manager = textBox1.Text;
+            string name = textBox1.Text;
+            string manager = textBox2.Text;
 
 
             con.Open();
