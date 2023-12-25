@@ -44,20 +44,6 @@ namespace OODProject.Admin
             InitializeComponent();
             Dash = dash;
             coursesForm = Courses;
-
-            con.Open();
-            string sql = "SELECT name FROM Teacher";
-            using (var command = new SqlCommand(sql, con))
-            {
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        comboBox1.Items.Add(reader["name"].ToString());
-                    }
-                }
-            }
-            con.Close();
         }
         public addCourse()
         {

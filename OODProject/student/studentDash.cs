@@ -65,7 +65,7 @@ namespace OODProject
 
         private void feedbackBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new feedbackS());
+            showScreen(new feedbackS(ID));
         }
 
         private void button6_Click(object sender, EventArgs e)

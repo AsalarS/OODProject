@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(feedbackS));
             this.branchesLbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.courseCombo = new System.Windows.Forms.ComboBox();
+            this.feedbackContent = new System.Windows.Forms.RichTextBox();
             this.submitBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -61,25 +61,25 @@
             this.panel1.Size = new System.Drawing.Size(984, 65);
             this.panel1.TabIndex = 1;
             // 
-            // comboBox1
+            // courseCombo
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(296, 81);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(393, 26);
-            this.comboBox1.TabIndex = 6;
+            this.courseCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.courseCombo.FormattingEnabled = true;
+            this.courseCombo.Location = new System.Drawing.Point(296, 81);
+            this.courseCombo.Name = "courseCombo";
+            this.courseCombo.Size = new System.Drawing.Size(393, 26);
+            this.courseCombo.TabIndex = 6;
             // 
-            // richTextBox1
+            // feedbackContent
             // 
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.richTextBox1.Location = new System.Drawing.Point(112, 139);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(783, 402);
-            this.richTextBox1.TabIndex = 20;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            this.feedbackContent.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.feedbackContent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.feedbackContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.feedbackContent.Location = new System.Drawing.Point(112, 139);
+            this.feedbackContent.Name = "feedbackContent";
+            this.feedbackContent.Size = new System.Drawing.Size(783, 402);
+            this.feedbackContent.TabIndex = 20;
+            this.feedbackContent.Text = resources.GetString("feedbackContent.Text");
             // 
             // submitBtn
             // 
@@ -94,6 +94,7 @@
             this.submitBtn.TabIndex = 21;
             this.submitBtn.Text = "Submit";
             this.submitBtn.UseVisualStyleBackColor = false;
+            this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // feedbackS
             // 
@@ -101,8 +102,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 631);
             this.Controls.Add(this.submitBtn);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.feedbackContent);
+            this.Controls.Add(this.courseCombo);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "feedbackS";
@@ -117,8 +118,8 @@
 
         private System.Windows.Forms.Label branchesLbl;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ComboBox courseCombo;
+        private System.Windows.Forms.RichTextBox feedbackContent;
         private System.Windows.Forms.Button submitBtn;
     }
 }
