@@ -53,7 +53,19 @@ namespace OODProject.Admin
                 {
                     while (reader.Read())
                     {
-                        comboBox1.Items.Add(reader["name"].ToString());
+                        comboBox2.Items.Add(reader["name"].ToString());
+                    }
+                }
+            }
+
+            string sql1 = "SELECT BranchName FROM Branch";
+            using (var command = new SqlCommand(sql, con))
+            {
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        comboBox2.Items.Add(reader["name"].ToString());
                     }
                 }
             }
