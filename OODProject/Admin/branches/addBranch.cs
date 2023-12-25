@@ -53,7 +53,7 @@ namespace OODProject.Admin
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Dash.showScreen(branchesForm);
+            Dash.showScreen(new branches(Dash));
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -74,8 +74,8 @@ namespace OODProject.Admin
         private void addBtn_Click(object sender, EventArgs e)
         {
 
-            string name = textBox2.Text;
-            string manager = textBox1.Text;
+            string name = textBox1.Text;
+            string manager = textBox2.Text;
 
 
             con.Open();
@@ -94,6 +94,11 @@ namespace OODProject.Admin
             textBox2.Text = "";
            
             
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            Dash.showScreen(new branches(Dash));
         }
     }
 }

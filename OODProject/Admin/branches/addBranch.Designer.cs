@@ -91,7 +91,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(494, 136);
+            this.label2.Location = new System.Drawing.Point(74, 132);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(159, 29);
             this.label2.TabIndex = 13;
@@ -110,7 +110,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(50, 136);
+            this.label1.Location = new System.Drawing.Point(514, 132);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(189, 29);
             this.label1.TabIndex = 11;
@@ -144,6 +144,7 @@
             this.cancelBtn.TabIndex = 9;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = false;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // addBranch
             // 
