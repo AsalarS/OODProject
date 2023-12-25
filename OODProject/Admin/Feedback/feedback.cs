@@ -61,7 +61,7 @@ namespace OODProject.Admin
             flowLayoutPanel1.Padding = new Padding(10);
             flowLayoutPanel1.Refresh();
             con.Open();
-            string sql = "SELECT Feedback.feedbackId, Student.name AS studentName, Feedback.feedbackContent FROM Feedback INNER JOIN Student ON Feedback.senderID = Student.studentID";
+            string sql = "SELECT Feedback.feedbackId, Students.name AS studentName, Feedback.feedbackContent FROM Feedback INNER JOIN Students ON Feedback.senderID = Students.studentID";
             using (var command = new SqlCommand(sql, con))
             {
                 using (var reader = command.ExecuteReader())
