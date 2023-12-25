@@ -77,7 +77,7 @@ namespace OODProject.Admin
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Dash.showScreen(staffForm);
+            Dash.showScreen(new staff(Dash));
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -123,6 +123,11 @@ namespace OODProject.Admin
 
 
 
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            Dash.showScreen(new staff(Dash));
         }
     }
 }
