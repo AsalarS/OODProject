@@ -13,7 +13,15 @@ namespace OODProject
 {
     public partial class studentDash : Form
     {
+        private int ID;
         public studentDash()
+        {
+            this.Icon = new Icon("Resources\\icon.ico");
+            InitializeComponent();
+            showScreen(new announcementsS());
+        }
+
+        public studentDash(int ID)
         {
             this.Icon = new Icon("Resources\\icon.ico");
             InitializeComponent();
@@ -62,11 +70,16 @@ namespace OODProject
 
         private void button6_Click(object sender, EventArgs e)
         {
-            var form = new changePassword();
+            var form = new changePassword(ID);
             form.ShowDialog();
         }
 
         private void announcements_Click(object sender, EventArgs e)
+        {
+            showScreen(new announcementsS());
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
             showScreen(new announcementsS());
         }

@@ -32,10 +32,10 @@ namespace OODProject
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(changePassword));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.password1 = new System.Windows.Forms.TextBox();
             this.registerBtn = new System.Windows.Forms.Button();
-            this.loginBtn = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.changeBtn = new System.Windows.Forms.Button();
+            this.password2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -51,14 +51,15 @@ namespace OODProject
             this.label1.TabIndex = 0;
             this.label1.Text = "Reset Password";
             // 
-            // textBox1
+            // password1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.textBox1.Location = new System.Drawing.Point(70, 100);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(342, 31);
-            this.textBox1.TabIndex = 1;
+            this.password1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.password1.Location = new System.Drawing.Point(70, 100);
+            this.password1.Name = "password1";
+            this.password1.PasswordChar = '●';
+            this.password1.Size = new System.Drawing.Size(342, 31);
+            this.password1.TabIndex = 1;
             // 
             // registerBtn
             // 
@@ -74,27 +75,29 @@ namespace OODProject
             this.registerBtn.UseVisualStyleBackColor = false;
             this.registerBtn.Click += new System.EventHandler(this.registerBtn_Click);
             // 
-            // loginBtn
+            // changeBtn
             // 
-            this.loginBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(201)))), ((int)(((byte)(255)))));
-            this.loginBtn.FlatAppearance.BorderSize = 0;
-            this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(60)))), ((int)(((byte)(72)))));
-            this.loginBtn.Location = new System.Drawing.Point(249, 258);
-            this.loginBtn.Name = "loginBtn";
-            this.loginBtn.Size = new System.Drawing.Size(100, 30);
-            this.loginBtn.TabIndex = 2;
-            this.loginBtn.Text = "Change";
-            this.loginBtn.UseVisualStyleBackColor = false;
+            this.changeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(201)))), ((int)(((byte)(255)))));
+            this.changeBtn.FlatAppearance.BorderSize = 0;
+            this.changeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.changeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(60)))), ((int)(((byte)(72)))));
+            this.changeBtn.Location = new System.Drawing.Point(249, 258);
+            this.changeBtn.Name = "changeBtn";
+            this.changeBtn.Size = new System.Drawing.Size(100, 30);
+            this.changeBtn.TabIndex = 2;
+            this.changeBtn.Text = "Change";
+            this.changeBtn.UseVisualStyleBackColor = false;
+            this.changeBtn.Click += new System.EventHandler(this.changeBtn_Click);
             // 
-            // textBox2
+            // password2
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.textBox2.Location = new System.Drawing.Point(70, 172);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(342, 31);
-            this.textBox2.TabIndex = 4;
+            this.password2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
+            this.password2.Location = new System.Drawing.Point(70, 172);
+            this.password2.Name = "password2";
+            this.password2.PasswordChar = '●';
+            this.password2.Size = new System.Drawing.Size(342, 31);
+            this.password2.TabIndex = 4;
             // 
             // label2
             // 
@@ -118,7 +121,7 @@ namespace OODProject
             this.label3.TabIndex = 6;
             this.label3.Text = "Confirm Password";
             // 
-            // Form1
+            // changePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -126,14 +129,14 @@ namespace OODProject
             this.ClientSize = new System.Drawing.Size(500, 300);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.password2);
             this.Controls.Add(this.registerBtn);
-            this.Controls.Add(this.loginBtn);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.changeBtn);
+            this.Controls.Add(this.password1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "changePassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -144,10 +147,10 @@ namespace OODProject
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox password1;
         private Button registerBtn;
-        private Button loginBtn;
-        private TextBox textBox2;
+        private Button changeBtn;
+        private TextBox password2;
         private Label label2;
         private Label label3;
     }

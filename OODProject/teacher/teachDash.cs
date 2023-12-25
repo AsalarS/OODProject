@@ -12,14 +12,25 @@ using System.Windows.Forms;
 
 namespace OODProject
 {
+
     public partial class teachDash : Form
     {
+        private int ID;
         public teachDash()
         {
             InitializeComponent();
             this.Icon = new Icon("Resources\\icon.ico");
             showScreen(new announcementsS());
             this.AllowDrop = true;
+        }
+
+        public teachDash(int ID)
+        {
+            InitializeComponent();
+            this.Icon = new Icon("Resources\\icon.ico");
+            showScreen(new announcementsS());
+            this.AllowDrop = true;
+            this.ID = ID;
         }
 
         public void showScreen(object Form)
@@ -36,7 +47,7 @@ namespace OODProject
 
         private void label1_Click(object sender, EventArgs e)
         {
-            
+            showScreen(new announcementsS());
         }
 
         private void filesBtn_Click(object sender, EventArgs e)
@@ -64,7 +75,7 @@ namespace OODProject
 
         private void changePwd_Click(object sender, EventArgs e)
         {
-            var form = new changePassword();
+            var form = new changePassword(ID);
             form.ShowDialog();
         }
 
