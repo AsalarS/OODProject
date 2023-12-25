@@ -1,6 +1,6 @@
 ﻿namespace OODProject.Admin
 {
-    partial class courses
+    partial class course
     {
         /// <summary>
         /// Required designer variable.

@@ -54,7 +54,7 @@ namespace OODProject
             InitializeComponent();
             rows();
         }
-        private void rows()
+        public void rows()
         {
             flowLayoutPanel1.Padding = new Padding(10);
             UserControlNormalList[] lists = new UserControlNormalList[20];

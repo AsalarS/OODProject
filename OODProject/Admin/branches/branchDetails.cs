@@ -77,12 +77,54 @@ namespace OODProject.Admin
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Delete Item?", "Confirm", MessageBoxButtons.YesNo);
+            DialogResult confirmDelete = MessageBox.Show("Are you sure you want to delete this branch?", "Confirm", MessageBoxButtons.YesNo);
+
+            if (confirmDelete == DialogResult.Yes)
+            {
+                con.Open();
+
+                // Set BranchId of all teachers associated with the branch to NULL
+                string sql = "UPDATE Teacher SET BranchId = NULL WHERE BranchId = @BranchId";
+                using (var command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("@BranchId", id);
+                    command.ExecuteNonQuery();
+                }
+
+                // Now delete the branch
+                sql = "DELETE FROM Branch WHERE BranchId = @BranchId";
+                using (var command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("@BranchId", id);
+                    command.ExecuteNonQuery();
+                }
+
+                con.Close();
+
+                MessageBox.Show("Branch deleted successfully.", "Success", MessageBoxButtons.OK);
+                Dash.showScreen(new branches(Dash));
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Submit Changes?", "Confirm", MessageBoxButtons.YesNo);
+            string branchName = textBox1.Text;
+            string branchManager = textBox2.Text;
+
+            con.Open();
+            string sql = "UPDATE Branch SET BranchName = @BranchName, BranchManager = @BranchManager WHERE BranchId = @BranchId";
+            using (var command = new SqlCommand(sql, con))
+            {
+                command.Parameters.AddWithValue("@BranchName", branchName);
+                command.Parameters.AddWithValue("@BranchManager", branchManager);
+                command.Parameters.AddWithValue("@BranchId", id);
+                command.ExecuteNonQuery();
+            }
+            con.Close();
+
+            MessageBox.Show("Changes submitted successfully.", "Success", MessageBoxButtons.OK);
+
+            Dash.showScreen(new branches(Dash));
 
         }
 
@@ -103,7 +145,7 @@ namespace OODProject.Admin
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Dash.showScreen(branchesForm);
+            Dash.showScreen(new branches(Dash));
         }
 
         private void button1_Click(object sender, EventArgs e)

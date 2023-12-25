@@ -38,8 +38,8 @@ namespace OODProject.Admin
         }
 
         public adminDash Dash { get; set; }
-        private courses coursesForm { get; set; }
-        public addCourse(adminDash dash, courses Courses)
+        private course coursesForm { get; set; }
+        public addCourse(adminDash dash, course Courses)
         {
             InitializeComponent();
             Dash = dash;
@@ -66,7 +66,12 @@ namespace OODProject.Admin
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Dash.showScreen(coursesForm);
+            Dash.showScreen(new branches(Dash));
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            Dash.showScreen(new course(Dash));
         }
     }
 }

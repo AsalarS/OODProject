@@ -15,7 +15,7 @@ using System.Windows.Forms;
 namespace OODProject.Admin
 {
 
-    public partial class courses : Form
+    public partial class course : Form
     {
         static String path = RemoveLastTwoDirectories(Directory.GetCurrentDirectory());
         static String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "\"" + path + "\"" + ";Integrated Security=True";
@@ -39,13 +39,13 @@ namespace OODProject.Admin
         }
         public adminDash Dash { get; set; }
 
-        public courses()
+        public course()
         {
             InitializeComponent();
             rows();
         }
 
-        public courses(adminDash Dash)
+        public course(adminDash Dash)
         {
             InitializeComponent();
             rows();
