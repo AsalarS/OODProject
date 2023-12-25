@@ -95,29 +95,6 @@ namespace OODProject
                 }
             }
             con.Close();
-
-            if (adminLogin.Checked)
-            {
-                this.Hide();
-                adminDash adminDashboard = new adminDash();
-                adminDashboard.ShowDialog();
-                this.Close();
-            } else if (teacherLogin.Checked)
-            {
-                this.Hide();
-                teachDash teachDashboard = new teachDash();
-                teachDashboard.ShowDialog();
-                this.Close();
-            } else if (studentLogin.Checked)
-            {
-                this.Hide();
-                studentDash studentDashboard = new studentDash();
-                studentDashboard.ShowDialog();
-                this.Close();
-            } else
-            {
-                MessageBox.Show("Select login user", "Select", MessageBoxButtons.OK);
-            }
             
         }
 
@@ -141,6 +118,30 @@ namespace OODProject
             this.Hide();
             register reg = new register();
             reg.ShowDialog();
+            this.Close();
+        }
+
+        private void adminLogin_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Hide();
+            adminDash adminDashboard = new adminDash();
+            adminDashboard.ShowDialog();
+            this.Close();
+        }
+
+        private void teacherLogin_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Hide();
+            teachDash teachDashboard = new teachDash();
+            teachDashboard.ShowDialog();
+            this.Close();
+        }
+
+        private void studentLogin_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Hide();
+            studentDash studentDashboard = new studentDash();
+            studentDashboard.ShowDialog();
             this.Close();
         }
     }

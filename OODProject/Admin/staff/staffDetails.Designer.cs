@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.branchesLbl = new System.Windows.Forms.Label();
+            this.staffLbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -49,25 +48,24 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // branchesLbl
+            // staffLbl
             // 
-            this.branchesLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.branchesLbl.AutoSize = true;
-            this.branchesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.branchesLbl.ForeColor = System.Drawing.Color.White;
-            this.branchesLbl.Location = new System.Drawing.Point(390, 20);
-            this.branchesLbl.Name = "branchesLbl";
-            this.branchesLbl.Size = new System.Drawing.Size(160, 33);
-            this.branchesLbl.TabIndex = 0;
-            this.branchesLbl.Text = "Staff Name";
-            this.branchesLbl.Click += new System.EventHandler(this.branchesLbl_Click);
+            this.staffLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.staffLbl.AutoSize = true;
+            this.staffLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.staffLbl.ForeColor = System.Drawing.Color.White;
+            this.staffLbl.Location = new System.Drawing.Point(390, 20);
+            this.staffLbl.Name = "staffLbl";
+            this.staffLbl.Size = new System.Drawing.Size(160, 33);
+            this.staffLbl.TabIndex = 0;
+            this.staffLbl.Text = "Staff Name";
+            this.staffLbl.Click += new System.EventHandler(this.branchesLbl_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(182)))), ((int)(((byte)(255)))));
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.branchesLbl);
+            this.panel1.Controls.Add(this.staffLbl);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -90,20 +88,6 @@
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(909, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 65);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -132,6 +116,7 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // textBox1
             // 
@@ -273,10 +258,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label branchesLbl;
+        private System.Windows.Forms.Label staffLbl;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox1;

@@ -112,6 +112,7 @@
             this.studentLogin.TabIndex = 2;
             this.studentLogin.Text = "Student";
             this.studentLogin.UseVisualStyleBackColor = true;
+            this.studentLogin.CheckedChanged += new System.EventHandler(this.studentLogin_CheckedChanged);
             // 
             // teacherLogin
             // 
@@ -122,6 +123,7 @@
             this.teacherLogin.TabIndex = 1;
             this.teacherLogin.Text = "Teacher";
             this.teacherLogin.UseVisualStyleBackColor = true;
+            this.teacherLogin.CheckedChanged += new System.EventHandler(this.teacherLogin_CheckedChanged);
             // 
             // adminLogin
             // 
@@ -132,6 +134,7 @@
             this.adminLogin.TabIndex = 0;
             this.adminLogin.Text = "Admin";
             this.adminLogin.UseVisualStyleBackColor = true;
+            this.adminLogin.CheckedChanged += new System.EventHandler(this.adminLogin_CheckedChanged);
             // 
             // button3
             // 

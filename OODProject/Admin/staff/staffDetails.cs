@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -50,7 +51,7 @@ namespace OODProject.Admin
             this.Dash = dash;
             this.staffForm = staffForm;
             this.id = id;
-
+            
             string sql = "SELECT T.TeacherId, U.FirstName, U.LastName, U.Email, U.PhoneNumber, B.BranchName FROM [User] U INNER JOIN Teacher T ON U.UserID = T.UserID INNER JOIN Branch B ON T.BranchId = B.BranchId WHERE T.TeacherID = @TeacherId";
             using (var command = new SqlCommand(sql, con))
             {
@@ -60,12 +61,14 @@ namespace OODProject.Admin
                 {
                     if (reader.Read())
                     {
+                        string fullName = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
                         textBox1.Text = reader["FirstName"].ToString();
                         textBox2.Text = reader["LastName"].ToString();
                         textBox3.Text = reader["Email"].ToString();
                         textBox4.Text = reader["PhoneNumber"].ToString();
                         comboBox1.Text = reader["BranchName"].ToString();
                         IDNumber.Text = reader["TeacherId"].ToString();
+                        staffLbl.Text = fullName;
                     }
                 }
                 con.Close();
@@ -91,6 +94,32 @@ namespace OODProject.Admin
         private void button2_Click(object sender, EventArgs e)
         {
             Dash.showScreen(staffForm);
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult confirmDelete = MessageBox.Show("Are you sure you want to delete this staff member?", "Confirm", MessageBoxButtons.YesNo);
+
+            if (confirmDelete == DialogResult.Yes)
+            {
+                con.Open();
+                string sql = "DELETE FROM Teacher WHERE TeacherId = @TeacherId";
+                using (var command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("@TeacherId", id);
+                    command.ExecuteNonQuery();
+                }
+                con.Close();
+
+                MessageBox.Show("Staff member deleted successfully.", "Success", MessageBoxButtons.OK);
+            }
+
+            Dash.showScreen(new staff(Dash));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
