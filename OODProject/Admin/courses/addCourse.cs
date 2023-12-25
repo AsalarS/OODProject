@@ -68,30 +68,5 @@ namespace OODProject.Admin
         {
             Dash.showScreen(coursesForm);
         }
-
-        private void addBtn_Click(object sender, EventArgs e)
-        {
-            string name = textBox1.Text;
-            string description = textBox2.Text;
-            string credits = textBox3.Text;
-
-
-            con.Open();
-            string sql = "INSERT INTO Course ( CourseName, CourseDescription, CourseCredit) VALUES ( @CourseName, @CourseDescription, @CourseCredit)";
-            using (var command = new SqlCommand(sql, con))
-            {
-
-
-                command.Parameters.AddWithValue("@CourseName", name);
-                command.Parameters.AddWithValue("@CourseDescription", description);
-                command.Parameters.AddWithValue("@CourseCredit", credits);
-                command.ExecuteNonQuery();
-            }
-            con.Close();
-
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-        }
     }
 }
