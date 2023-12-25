@@ -43,8 +43,6 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.IDNumber = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -213,25 +211,6 @@
             this.label5.TabIndex = 16;
             this.label5.Text = "Branch";
             // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(674, 312);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(201, 20);
-            this.textBox6.TabIndex = 19;
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(479, 307);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 29);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Courses";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -270,8 +249,6 @@
             this.Controls.Add(this.IDNumber);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label4);
@@ -311,8 +288,6 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label IDNumber;
         private System.Windows.Forms.Label label7;

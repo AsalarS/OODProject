@@ -87,7 +87,7 @@ namespace OODProject.Admin
             string lname = textBox2.Text;
             string email = textBox3.Text;
             string phone = textBox4.Text;
-            string branch = comboBox1.Text;
+            string branchName = comboBox1.Text;
 
             string sql = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Role) VALUES (@FirstName, @LastName, @Email, @PhoneNumber, @Role); SELECT SCOPE_IDENTITY();";
             using (var command = new SqlCommand(sql, con))
@@ -102,10 +102,11 @@ namespace OODProject.Admin
                 int userId = Convert.ToInt32(command.ExecuteScalar());
                 con.Close();
 
-                sql = "INSERT INTO Teacher (UserID) VALUES (@UserID)";
+                sql = "INSERT INTO Teacher (UserID, BranchID) VALUES (@UserID, (SELECT BranchID FROM Branch WHERE BranchName = @BranchName))";
                 using (var command2 = new SqlCommand(sql, con))
                 {
                     command2.Parameters.AddWithValue("@UserID", userId);
+                    command2.Parameters.AddWithValue("@BranchName", branchName);
 
                     con.Open();
                     command2.ExecuteNonQuery();

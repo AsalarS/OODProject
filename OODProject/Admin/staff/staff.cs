@@ -10,6 +10,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace OODProject.Admin
 {
@@ -56,7 +57,7 @@ namespace OODProject.Admin
             flowLayoutPanel1.Padding = new Padding(10);
             UserControlNormalList[] lists = new UserControlNormalList[20];
             con.Open();
-            string sql = "SELECT FirstName, LastName FROM [User] INNER JOIN Teacher ON [User].UserID = Teacher.UserID";
+            string sql = "SELECT TeacherID, FirstName, LastName FROM [User] INNER JOIN Teacher ON [User].UserID = Teacher.UserID";
             using (var command = new SqlCommand(sql, con))
             {
                 using (var reader = command.ExecuteReader())
@@ -68,7 +69,8 @@ namespace OODProject.Admin
                         lists[i].ItemName = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
                         flowLayoutPanel1.Controls.Add(lists[i]);
                         lists[i].Margin = new Padding(10);
-                        lists[i].Clicked += UserControl_Click;
+                        int staffId = reader.GetInt32(0);
+                        lists[i].Clicked += (sender, e) => UserControl_Click(sender, e, staffId);
                         i++;
                     }
                 }
@@ -79,12 +81,12 @@ namespace OODProject.Admin
 
 
 
-        private void UserControl_Click(object sender, EventArgs e)
+        private void UserControl_Click(object sender, EventArgs e, int staffId)
         {
 
             if (Dash != null)
             {
-                Dash.showScreen(new staffDetails(Dash, this));
+                Dash.showScreen(new staffDetails(Dash, this, staffId));
             }
 
         }
