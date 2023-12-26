@@ -87,7 +87,7 @@
             this.studentName.AutoSize = true;
             this.studentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.studentName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.studentName.Location = new System.Drawing.Point(98, 581);
+            this.studentName.Location = new System.Drawing.Point(165, 542);
             this.studentName.Name = "studentName";
             this.studentName.Size = new System.Drawing.Size(78, 20);
             this.studentName.TabIndex = 12;
@@ -98,7 +98,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.label3.Location = new System.Drawing.Point(32, 581);
+            this.label3.Location = new System.Drawing.Point(98, 542);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 20);
             this.label3.TabIndex = 11;
@@ -109,7 +109,7 @@
             this.IDNumber.AutoSize = true;
             this.IDNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IDNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.IDNumber.Location = new System.Drawing.Point(284, 581);
+            this.IDNumber.Location = new System.Drawing.Point(369, 542);
             this.IDNumber.Name = "IDNumber";
             this.IDNumber.Size = new System.Drawing.Size(54, 20);
             this.IDNumber.TabIndex = 14;
@@ -120,7 +120,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.label2.Location = new System.Drawing.Point(196, 581);
+            this.label2.Location = new System.Drawing.Point(279, 542);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 20);
             this.label2.TabIndex = 13;
@@ -131,7 +131,7 @@
             this.Course.AutoSize = true;
             this.Course.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Course.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.Course.Location = new System.Drawing.Point(467, 581);
+            this.Course.Location = new System.Drawing.Point(592, 542);
             this.Course.Name = "Course";
             this.Course.Size = new System.Drawing.Size(174, 20);
             this.Course.TabIndex = 16;
@@ -142,7 +142,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.label5.Location = new System.Drawing.Point(359, 581);
+            this.label5.Location = new System.Drawing.Point(472, 542);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(114, 20);
             this.label5.TabIndex = 15;
@@ -176,7 +176,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(102, 97);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(783, 440);
+            this.richTextBox1.Size = new System.Drawing.Size(783, 415);
             this.richTextBox1.TabIndex = 19;
             this.richTextBox1.Text = "";
             // 
