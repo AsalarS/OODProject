@@ -46,6 +46,7 @@ namespace OODProject.Admin
         {
             InitializeComponent();
             rows();
+            PopulateCourses();
         }
 
         public feedback(adminDash dash)
@@ -53,6 +54,24 @@ namespace OODProject.Admin
             InitializeComponent();
             rows();
             this.Dash = dash;
+            PopulateCourses();
+        }
+
+        private void PopulateCourses()
+        {
+            con.Open();
+            string sql = "SELECT DISTINCT courseID FROM Feedback";
+            using (var command = new SqlCommand(sql, con))
+            {
+                using (var reader = command.ExecuteReader())
+                {
+                    var dt = new DataTable();
+                    dt.Load(reader);
+                    comboBox1.DataSource = dt;
+                    comboBox1.DisplayMember = "courseID";
+                }
+            }
+            con.Close();
         }
 
 
@@ -61,7 +80,8 @@ namespace OODProject.Admin
             flowLayoutPanel1.Padding = new Padding(10);
             flowLayoutPanel1.Refresh();
             con.Open();
-            string sql = "SELECT Feedback.feedbackId, Students.name AS studentName, Feedback.feedbackContent FROM Feedback INNER JOIN Students ON Feedback.senderID = Students.studentID";
+            string sql = "SELECT Feedback.feedbackId, ([User].firstName + ' ' + [User].lastName) AS fullName, Feedback.feedbackContent, Feedback.courseID, Feedback.studentID FROM Feedback INNER JOIN Students ON Feedback.studentID = Students.studentID INNER JOIN [User] ON Students.UserID = [User].UserID";
+
             using (var command = new SqlCommand(sql, con))
             {
                 using (var reader = command.ExecuteReader())
@@ -70,13 +90,23 @@ namespace OODProject.Admin
                     while (reader.Read() && i < 20)
                     {
                         UserControlNormalList list = new UserControlNormalList();
-                        list.ItemName = reader["studentName"].ToString(); // Use the student's name as the item name
+                        string fullName = reader["fullName"].ToString();
+                        list.ItemName = fullName; // Use the full name directly
                         flowLayoutPanel1.Controls.Add(list);
                         list.Margin = new Padding(10);
                         int feedbackId = reader.GetInt32(0); // Assuming feedbackId is an integer
+                        int courseId = reader.GetInt32(3); // Assuming courseID is an integer
+                        int studentId = reader.GetInt32(4); // Assuming studentID is an integer
                         list.Clicked += (sender, e) => UserControl_Click(sender, e, feedbackId);
                         i++;
                     }
+
+
+
+
+
+
+
                 }
             }
             flowLayoutPanel1.Refresh();

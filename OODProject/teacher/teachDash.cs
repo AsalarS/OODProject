@@ -52,7 +52,7 @@ namespace OODProject
 
         private void filesBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new files());
+            showScreen(new files(ID));
         }
 
         private void logoutBtn_Click(object sender, EventArgs e)
