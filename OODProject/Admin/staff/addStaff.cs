@@ -92,7 +92,7 @@ namespace OODProject.Admin
             string sql = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Role, Approved) VALUES (@FirstName, @LastName, @Email, @PhoneNumber, @Role, @Approved); SELECT SCOPE_IDENTITY();";
             using (var command = new SqlCommand(sql, con))
             {
-                command.Parameters.AddWithValue("@Approved", 0);
+                command.Parameters.AddWithValue("@Approved", 1);
                 command.Parameters.AddWithValue("@FirstName", fname);
                 command.Parameters.AddWithValue("@LastName", lname);
                 command.Parameters.AddWithValue("@Email", email);

@@ -46,7 +46,7 @@ namespace OODProject.Admin
         {
             InitializeComponent();
             rows();
-            PopulateCourses();
+            
         }
 
         public feedback(adminDash dash)
@@ -55,33 +55,18 @@ namespace OODProject.Admin
             rows();
             this.Dash = dash;
             PopulateCourses();
+         
         }
-
-        private void PopulateCourses()
-        {
-            con.Open();
-            string sql = "SELECT DISTINCT courseID FROM Feedback";
-            using (var command = new SqlCommand(sql, con))
-            {
-                using (var reader = command.ExecuteReader())
-                {
-                    var dt = new DataTable();
-                    dt.Load(reader);
-                    comboBox1.DataSource = dt;
-                    comboBox1.DisplayMember = "courseID";
-                }
-            }
-            con.Close();
-        }
-
-
         private void rows()
         {
             flowLayoutPanel1.Padding = new Padding(10);
             flowLayoutPanel1.Refresh();
-            con.Open();
-            string sql = "SELECT Feedback.feedbackId, ([User].firstName + ' ' + [User].lastName) AS fullName, Feedback.feedbackContent, Feedback.courseID, Feedback.studentID FROM Feedback INNER JOIN Students ON Feedback.studentID = Students.studentID INNER JOIN [User] ON Students.UserID = [User].UserID";
 
+            con.Open();
+            string sql = @"SELECT Feedback.FeedbackID, CONCAT(u.FirstName, ' ', u.LastName) AS studentName, Feedback.feedbackContent 
+FROM Feedback 
+INNER JOIN Students s ON Feedback.StudentID = s.StudentID
+INNER JOIN [User] u ON s.UserID = u.UserID";
             using (var command = new SqlCommand(sql, con))
             {
                 using (var reader = command.ExecuteReader())
@@ -90,29 +75,86 @@ namespace OODProject.Admin
                     while (reader.Read() && i < 20)
                     {
                         UserControlNormalList list = new UserControlNormalList();
-                        string fullName = reader["fullName"].ToString();
-                        list.ItemName = fullName; // Use the full name directly
+                        list.ItemName = reader["studentName"].ToString(); // Use the student's name as the item name
                         flowLayoutPanel1.Controls.Add(list);
                         list.Margin = new Padding(10);
                         int feedbackId = reader.GetInt32(0); // Assuming feedbackId is an integer
-                        int courseId = reader.GetInt32(3); // Assuming courseID is an integer
-                        int studentId = reader.GetInt32(4); // Assuming studentID is an integer
                         list.Clicked += (sender, e) => UserControl_Click(sender, e, feedbackId);
                         i++;
                     }
-
-
-
-
-
-
-
                 }
             }
             flowLayoutPanel1.Refresh();
             con.Close();
-
         }
+
+        // Populate the combobox with all courses
+        // Populate the combobox with all courses
+        private void PopulateCourses()
+        {
+            con.Open();
+            string sql = "SELECT CourseName FROM Course";
+            using (var command = new SqlCommand(sql, con))
+            {
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        comboBox1.Items.Add(reader["CourseName"]);
+                    }
+                }
+            }
+            con.Close();
+        }
+
+        // Event handler for the SelectedIndexChanged event of the combobox
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Clear the list
+            flowLayoutPanel1.Controls.Clear();
+
+            // Get the selected course
+            string selectedCourse = comboBox1.SelectedItem.ToString();
+
+            // Retrieve all feedbacks for the selected course
+            rows(selectedCourse);
+        }
+
+        private void rows(string courseName)
+        {
+            flowLayoutPanel1.Padding = new Padding(10);
+            flowLayoutPanel1.Refresh();
+
+            con.Open();
+            string sql = @"SELECT Feedback.FeedbackID, CONCAT(u.FirstName, ' ', u.LastName) AS studentName, Feedback.feedbackContent 
+FROM Feedback 
+INNER JOIN Students s ON Feedback.StudentID = s.StudentID
+INNER JOIN [User] u ON s.UserID = u.UserID
+INNER JOIN Course c ON Feedback.CourseID = c.CourseID
+WHERE c.CourseName = @courseName";
+            using (var command = new SqlCommand(sql, con))
+            {
+                command.Parameters.AddWithValue("@courseName", courseName);
+                using (var reader = command.ExecuteReader())
+                {
+                    int i = 0;
+                    while (reader.Read() && i < 20)
+                    {
+                        UserControlNormalList list = new UserControlNormalList();
+                        list.ItemName = reader["studentName"].ToString(); // Use the student's name as the item name
+                        flowLayoutPanel1.Controls.Add(list);
+                        list.Margin = new Padding(10);
+                        int feedbackId = reader.GetInt32(0); // Assuming feedbackId is an integer
+                        list.Clicked += (sender, e) => UserControl_Click(sender, e, feedbackId);
+                        i++;
+                    }
+                }
+            }
+            flowLayoutPanel1.Refresh();
+            con.Close();
+        }
+
+
 
         private void UserControl_Click(object sender, EventArgs e, int feedbackId)
         {

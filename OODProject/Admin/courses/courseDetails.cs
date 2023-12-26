@@ -106,7 +106,21 @@ namespace OODProject.Admin
                 }
                 con.Close();
             }
+            con.Open();
+            string sql3 = "SELECT BranchId, BranchName FROM Branch";
 
+            using (var command = new SqlCommand(sql3, con))
+            {
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        comboBox1.Items.Add($"{reader["BranchID"]}: {reader["BranchName"]}");
+                    }
+                }
+            }
+
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
 
 
 
@@ -115,6 +129,36 @@ namespace OODProject.Admin
         private void button2_Click(object sender, EventArgs e)
         {
             Dash.showScreen(new course(Dash));
+        }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1)
+            {
+                string sql = @"SELECT u.UserId, u.FirstName, u.LastName 
+   FROM [User] u 
+   INNER JOIN Teacher t ON u.UserID = t.UserID 
+   WHERE u.Role = 'Teacher' AND t.BranchID = @branchId;";
+
+                using (var command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("@branchId", ((string)comboBox1.SelectedItem).Split(':')[0].Trim());
+                    using (var reader = command.ExecuteReader())
+                    {
+                        comboBox2.Text = "";
+                        comboBox2.Items.Clear(); // Clear the existing items in comboBox2
+                        while (reader.Read())
+                        {
+                            comboBox2.Items.Add($"{reader["UserID"]}: {reader["FirstName"]} {reader["LastName"]}");
+                        }
+                    }
+                }
+                // Remove the line that closes the connection here
+                // con.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please select a branch.");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
