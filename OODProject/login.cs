@@ -59,6 +59,7 @@ namespace OODProject
                         reader.Read();
                         string role = reader["Role"].ToString();
                         int id = Convert.ToInt32(reader["UserID"]);
+                        Console.WriteLine(id);
 
                         switch (role)
                         {
@@ -79,6 +80,7 @@ namespace OODProject
                             case "Student":
                                 this.Hide();
                                 studentDash studentDashboard = new studentDash(id);
+                                Console.WriteLine(id);
                                 studentDashboard.ShowDialog();
                                 this.Close();
                                 break;

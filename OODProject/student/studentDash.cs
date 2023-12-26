@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,28 @@ namespace OODProject
 {
     public partial class studentDash : Form
     {
+        static String path = RemoveLastTwoDirectories(Directory.GetCurrentDirectory());
+        static String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "\"" + path + "\"" + ";Integrated Security=True";
+        static int sessionID;
+        SqlConnection con = new SqlConnection(connectionString);
+
+
+        static string RemoveLastTwoDirectories(string path)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                path = Path.GetDirectoryName(path);
+
+                // Check if the path is null, meaning there are not enough directories to remove
+                if (path == null)
+                {
+                    // Handle the case where there are not enough directories in the path
+                    return "Invalid Path";
+                }
+            }
+
+            return path + "\\Database.mdf";
+        }
         private int ID;
         public studentDash()
         {
@@ -26,6 +50,8 @@ namespace OODProject
             this.Icon = new Icon("Resources\\icon.ico");
             InitializeComponent();
             showScreen(new announcementsS());
+            this.ID = ID;
+            
         }
 
         public void showScreen(object Form)
@@ -50,7 +76,7 @@ namespace OODProject
 
         private void coursesBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new coursesS());
+            showScreen(new coursesS(ID));
         }
 
         private void learningBtn_Click(object sender, EventArgs e)

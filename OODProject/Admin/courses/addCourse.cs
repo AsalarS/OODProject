@@ -46,50 +46,27 @@ namespace OODProject.Admin
             Dash = dash;
             coursesForm = Courses;
 
-            con.Open();
-            string sql = @"SELECT u.UserId, u.FirstName, u.LastName 
-              FROM [User] u 
-              INNER JOIN Teacher t ON u.UserID = t.UserID 
-              WHERE u.Role = 'Teacher';";
-            using (var command = new SqlCommand(sql, con))
-            {
-                using (var reader = command.ExecuteReader())
-                {
-                    
-                    while (reader.Read())
-                    {
-                        comboBox2.Items.Add($"{reader["UserID"]}: {reader["FirstName"]} {reader["LastName"]}");
-                    }
-                }
-            }
-            con.Close();
-            con.Open();
-        
 
+            con.Open();
 
             string sql1 = "SELECT BranchId, BranchName FROM Branch";
 
             using (var command = new SqlCommand(sql1, con))
             {
-              
                 using (var reader = command.ExecuteReader())
                 {
-                    
                     while (reader.Read())
                     {
                         comboBox1.Items.Add($"{reader["BranchID"]}: {reader["BranchName"]}");
                     }
-
-                    // Bind data to the ComboBox
-                
                 }
-                con.Close();
             }
-            con.Open();
+
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
 
             string sql2 = @"SELECT s.StudentID, u.FirstName, u.LastName 
-             FROM Students s 
-             INNER JOIN [User] u ON s.UserID = u.UserID";
+   FROM Students s 
+   INNER JOIN [User] u ON s.UserID = u.UserID";
             using (var command = new SqlCommand(sql2, con))
             {
                 using (var reader = command.ExecuteReader())
@@ -100,18 +77,54 @@ namespace OODProject.Admin
                     }
                 }
             }
-            con.Close() ;   
+
+
+
+
 
         }
         public addCourse()
         {
             InitializeComponent();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Dash.showScreen(new branches(Dash));
         }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1)
+            {
+                string sql = @"SELECT u.UserId, u.FirstName, u.LastName 
+   FROM [User] u 
+   INNER JOIN Teacher t ON u.UserID = t.UserID 
+   WHERE u.Role = 'Teacher' AND t.BranchID = @branchId;";
+
+                using (var command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("@branchId", ((string)comboBox1.SelectedItem).Split(':')[0].Trim());
+                    using (var reader = command.ExecuteReader())
+                    {
+                        comboBox2.Text = "";
+                        comboBox2.Items.Clear(); // Clear the existing items in comboBox2
+                        while (reader.Read())
+                        {
+                            comboBox2.Items.Add($"{reader["UserID"]}: {reader["FirstName"]} {reader["LastName"]}");
+                        }
+                    }
+                }
+                // Remove the line that closes the connection here
+                // con.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please select a branch.");
+            }
+        }
+
+   
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
@@ -163,6 +176,11 @@ namespace OODProject.Admin
 
                 // Close connection
                 con.Close();
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            comboBox1.Text = "";
+            comboBox2.Text = "";
             }
 
         }
