@@ -56,13 +56,15 @@ namespace OODProject.Admin.Feedback
 
         public feedbackDetails(adminDash dash, feedback feedbackPage, int feedbackID)
         {
-           
-           
+            InitializeComponent();
+            Dash = dash;
+            feedbackForm = feedbackPage;
+            this.feedbackID = feedbackID;
             string sql = "SELECT Feedback.FeedbackContent, CONCAT([User].FirstName, ' ', [User].LastName) AS studentName, Students.studentID," +
                 " Course.courseName FROM Feedback INNER JOIN Students ON Feedback.StudentID = Students.studentID INNER JOIN [User] " +
                 "ON Students.UserID = [User].UserID INNER JOIN Course ON Feedback.courseID = Course.courseID WHERE " +
                 "Feedback.feedbackId = @feedbackId";
-            this.feedbackID = feedbackID;
+           
             
             con.Open();
             using (var command = new SqlCommand(sql, con))

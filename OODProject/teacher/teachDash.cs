@@ -70,7 +70,7 @@ namespace OODProject
 
         private void mailBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new Mail(this));
+            showScreen(new Mail(this, ID));
         }
 
         private void changePwd_Click(object sender, EventArgs e)
