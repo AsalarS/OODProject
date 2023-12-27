@@ -85,25 +85,38 @@ namespace OODProject
                 return;
             }
 
-            string role = selectedRoleRadioButton.Name; // Assuming the radio button's Name property contains the role
+            string role = selectedRoleRadioButton.Name; 
 
             con.Open();
-            string sql = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Password, Role, Approved) VALUES (@FirstName, @LastName, @Email, @PhoneNumber, @Password, @Role, @Approved)";
-            using (var command = new SqlCommand(sql, con))
+            string sqlCheckEmail = "SELECT COUNT(*) FROM [User] WHERE Email = @Email";
+            using (var commandCheckEmail = new SqlCommand(sqlCheckEmail, con))
             {
-                command.Parameters.AddWithValue("@FirstName", firstName);
-                command.Parameters.AddWithValue("@LastName", lastName);
-                command.Parameters.AddWithValue("@Email", email);
-                command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
-                command.Parameters.AddWithValue("@Password", password1);
-                command.Parameters.AddWithValue("@Role", role);
-                command.Parameters.AddWithValue("@Approved", 0);
-                command.ExecuteNonQuery();
+                commandCheckEmail.Parameters.AddWithValue("@Email", email);
+                int existingEmails = (int)commandCheckEmail.ExecuteScalar();
+                if (existingEmails > 0)
+                {
+                    MessageBox.Show("This email is already registered.", "Error", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+            string sqlInsertUser = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Password, Role, Approved) VALUES (@FirstName, @LastName, @Email, @PhoneNumber, @Password, @Role, @Approved)";
+            using (var commandInsertUser = new SqlCommand(sqlInsertUser, con))
+            {
+                commandInsertUser.Parameters.AddWithValue("@FirstName", firstName);
+                commandInsertUser.Parameters.AddWithValue("@LastName", lastName);
+                commandInsertUser.Parameters.AddWithValue("@Email", email);
+                commandInsertUser.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+                commandInsertUser.Parameters.AddWithValue("@Password", password1);
+                commandInsertUser.Parameters.AddWithValue("@Role", role);
+                commandInsertUser.Parameters.AddWithValue("@Approved", 0);
+                commandInsertUser.ExecuteNonQuery();
             }
             con.Close();
 
             DialogResult ok = MessageBox.Show("Your account has been registered and must be approved by an Admin", "Registered", MessageBoxButtons.OK);
-            if (ok == DialogResult.OK) {
+            if (ok == DialogResult.OK)
+            {
                 this.Hide();
                 login loginPage = new login();
                 loginPage.ShowDialog();

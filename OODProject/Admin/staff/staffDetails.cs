@@ -44,18 +44,18 @@ namespace OODProject.Admin
             InitializeComponent();
         }
 
-        private int id;
+        private int teacherID;
         public staffDetails(adminDash dash, staff staffForm, int id)
         {
             InitializeComponent();
             this.Dash = dash;
             this.staffForm = staffForm;
-            this.id = id;
-            
-            string sql = "SELECT T.TeacherId, U.FirstName, U.LastName, U.Email, U.Password, U.PhoneNumber, B.BranchName FROM [User] U INNER JOIN Teacher T ON U.UserID = T.UserID INNER JOIN Branch B ON T.BranchId = B.BranchId WHERE T.TeacherID = @TeacherId";
+            this.teacherID = id;
+
+            string sql = "SELECT T.TeacherId, U.FirstName, U.LastName, U.Email, U.PhoneNumber, B.BranchName FROM [User] U INNER JOIN Teacher T ON U.UserID = T.UserID INNER JOIN Branch B ON T.BranchId = B.BranchId WHERE T.TeacherID = @TeacherId";
             using (var command = new SqlCommand(sql, con))
             {
-                command.Parameters.AddWithValue("@TeacherId", id);
+                command.Parameters.AddWithValue("@TeacherId", teacherID);
                 con.Open();
                 using (var reader = command.ExecuteReader())
                 {
@@ -66,7 +66,6 @@ namespace OODProject.Admin
                         textBox2.Text = reader["LastName"].ToString();
                         textBox3.Text = reader["Email"].ToString();
                         textBox4.Text = reader["PhoneNumber"].ToString();
-                        textBox5.Text = reader["Password"].ToString();
                         comboBox1.Text = reader["BranchName"].ToString();
                         IDNumber.Text = reader["TeacherId"].ToString();
                         staffLbl.Text = fullName;
@@ -107,7 +106,7 @@ namespace OODProject.Admin
                 string sql = "DELETE FROM Teacher WHERE TeacherId = @TeacherId";
                 using (var command = new SqlCommand(sql, con))
                 {
-                    command.Parameters.AddWithValue("@TeacherId", id);
+                    command.Parameters.AddWithValue("@TeacherId", teacherID);
                     command.ExecuteNonQuery();
                 }
                 con.Close();
@@ -118,9 +117,67 @@ namespace OODProject.Admin
             Dash.showScreen(new staff(Dash));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
+            string fname = textBox1.Text;
+            string lname = textBox2.Text;
+            string email = textBox3.Text;
+            string phone = textBox4.Text;
+            string branchName = comboBox1.Text;
 
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                // Retrieve the UserID associated with the TeacherID
+                string sqlGetUserID = "SELECT UserID FROM Teacher WHERE TeacherID = @TeacherID";
+                using (var commandGetUserID = new SqlCommand(sqlGetUserID, con))
+                {
+                    commandGetUserID.Parameters.AddWithValue("@TeacherID", teacherID);
+                    int userID = (int)commandGetUserID.ExecuteScalar();
+
+                    string sqlCheckEmail = "SELECT COUNT(*) FROM [User] WHERE Email = @Email AND UserID != @UserID";
+                    using (var commandCheckEmail = new SqlCommand(sqlCheckEmail, con))
+                    {
+                        commandCheckEmail.Parameters.AddWithValue("@Email", email);
+                        commandCheckEmail.Parameters.AddWithValue("@UserID", userID);
+                        int existingEmails = (int)commandCheckEmail.ExecuteScalar();
+                        if (existingEmails > 0)
+                        {
+                            MessageBox.Show("This email is already registered.", "Error", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                    con.Close();
+                    string sqlUpdateUser = "UPDATE [User] SET FirstName = @FirstName, LastName = @LastName, Email = @Email, PhoneNumber = @PhoneNumber WHERE UserID = @UserID";
+                    using (var commandUpdateUser = new SqlCommand(sqlUpdateUser, con))
+                    {
+                        commandUpdateUser.Parameters.AddWithValue("@FirstName", fname);
+                        commandUpdateUser.Parameters.AddWithValue("@LastName", lname);
+                        commandUpdateUser.Parameters.AddWithValue("@Email", email);
+                        commandUpdateUser.Parameters.AddWithValue("@PhoneNumber", phone);
+                        commandUpdateUser.Parameters.AddWithValue("@UserID", userID);
+
+                        con.Open();
+                        commandUpdateUser.ExecuteNonQuery();
+                        con.Close();
+                    }
+
+                    string sqlUpdateTeacher = "UPDATE Teacher SET BranchID = (SELECT BranchID FROM Branch WHERE BranchName = @BranchName) WHERE UserID = @UserID";
+                    using (var commandUpdateTeacher = new SqlCommand(sqlUpdateTeacher, con))
+                    {
+                        commandUpdateTeacher.Parameters.AddWithValue("@BranchName", branchName);
+                        commandUpdateTeacher.Parameters.AddWithValue("@UserID", userID);
+
+                        con.Open();
+                        commandUpdateTeacher.ExecuteNonQuery();
+                        con.Close();
+                    }
+
+                    MessageBox.Show("Staff member updated successfully.", "Success", MessageBoxButtons.OK);
+                }
+            }
+            Dash.showScreen(new staff(Dash));
         }
     }
 }
