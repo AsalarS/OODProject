@@ -89,6 +89,20 @@ namespace OODProject.Admin
             string phone = textBox4.Text;
             string branchName = comboBox1.Text;
 
+            con.Open();
+            string sqlCheckEmail = "SELECT COUNT(*) FROM [User] WHERE Email = @Email";
+            using (var commandCheckEmail = new SqlCommand(sqlCheckEmail, con))
+            {
+                commandCheckEmail.Parameters.AddWithValue("@Email", email);
+                int existingEmails = (int)commandCheckEmail.ExecuteScalar();
+                if (existingEmails > 0)
+                {
+                    MessageBox.Show("This email is already registered.", "Error", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            con.Close();
+
             string sql = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Role, Approved) VALUES (@FirstName, @LastName, @Email, @PhoneNumber, @Role, @Approved); SELECT SCOPE_IDENTITY();";
             using (var command = new SqlCommand(sql, con))
             {
@@ -120,7 +134,6 @@ namespace OODProject.Admin
                 textBox4.Text = "";
                 comboBox1.Text = "";
             }
-
 
 
         }
