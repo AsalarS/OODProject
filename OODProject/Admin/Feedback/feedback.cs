@@ -60,6 +60,7 @@ namespace OODProject.Admin
         private void rows()
         {
             flowLayoutPanel1.Padding = new Padding(10);
+            UserControlNormalList list = new UserControlNormalList();
             flowLayoutPanel1.Refresh();
 
             con.Open();
@@ -74,7 +75,7 @@ INNER JOIN [User] u ON s.UserID = u.UserID";
                     int i = 0;
                     while (reader.Read() && i < 20)
                     {
-                        UserControlNormalList list = new UserControlNormalList();
+                       
                         list.ItemName = reader["studentName"].ToString(); // Use the student's name as the item name
                         flowLayoutPanel1.Controls.Add(list);
                         list.Margin = new Padding(10);
@@ -160,6 +161,7 @@ WHERE c.CourseName = @courseName";
         {
             if (Dash != null)
             {
+               
                 Dash.showScreen(new feedbackDetails(Dash, this, feedbackId));
             }
 

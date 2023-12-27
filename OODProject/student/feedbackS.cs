@@ -37,19 +37,21 @@ namespace OODProject.student
             return path + "\\Database.mdf";
         }
 
-        private int studentID;
+        private int ID;
 
         public feedbackS()
         {
-            InitializeComponent();  
+            InitializeComponent();
             PopulateComboBox();
         }
 
-        public feedbackS(int studentID)
+        public feedbackS(int ID)
         {
             InitializeComponent();
+            this.ID = ID;
             PopulateComboBox();
-            this.studentID = studentID;
+
+
         }
 
         private void PopulateComboBox()
@@ -57,13 +59,26 @@ namespace OODProject.student
             try
             {
                 con.Open();
-                string query = "SELECT * FROM Course";
+
+                // Get the StudentID associated with the UserID
+                string sqlFindStudentID = $"SELECT StudentID FROM Students WHERE UserID = {ID}";
+                int studentID = 0;
+                using (var command = new SqlCommand(sqlFindStudentID, con))
+                {
+                    studentID = Convert.ToInt32(command.ExecuteScalar());
+                }
+
+                // Now get the courses the student is registered for
+                string query = "SELECT c.CourseID, c.CourseName FROM Course c INNER JOIN StudentCourse sc ON c.CourseID = sc.CourseID WHERE sc.StudentID = @studentID";
                 SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@studentID", studentID);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    courseCombo.Items.Add(reader["courseID"].ToString());
+                    // Concatenate CourseID and CourseName
+                    string courseInfo = reader["CourseID"].ToString() + ": " + reader["CourseName"].ToString();
+                    courseCombo.Items.Add(courseInfo);
                 }
 
                 con.Close();
@@ -74,17 +89,31 @@ namespace OODProject.student
             }
         }
 
+
+
         private void submitBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 con.Open();
-                string query = "INSERT INTO Feedback (courseID, feedbackContent, studentID) VALUES (@courseID, @feedbackContent, @studentID)";
+                string query = "INSERT INTO Feedback (feedbackContent, courseID, studentID) VALUES ( @feedbackContent, @courseID, @studentID)";
                 SqlCommand cmd = new SqlCommand(query, con);
 
-                cmd.Parameters.AddWithValue("@courseID", courseCombo.SelectedItem);
+                // Extract the CourseID from the selected item string
+                string selectedItem = courseCombo.SelectedItem.ToString();
+                string[] parts = selectedItem.Split(':');
+                string courseIDStr = parts[0].Trim(); // Trim to remove leading and trailing spaces
+
+                cmd.Parameters.AddWithValue("@courseID", courseIDStr);
                 cmd.Parameters.AddWithValue("@feedbackContent", feedbackContent.Text);
-                cmd.Parameters.AddWithValue("@studentID", studentID);
+
+                // Find the StudentID based on the UserID
+                string sqlFindStudentID = $"SELECT StudentID FROM Students WHERE UserID = {ID}";
+                using (var command = new SqlCommand(sqlFindStudentID, con))
+                {
+                    int studentID = Convert.ToInt32(command.ExecuteScalar());
+                    cmd.Parameters.AddWithValue("@studentID", studentID);
+                }
 
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -96,5 +125,6 @@ namespace OODProject.student
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
     }
 }

@@ -56,8 +56,15 @@ namespace OODProject.Admin.Feedback
 
         public feedbackDetails(adminDash dash, feedback feedbackPage, int feedbackID)
         {
+           
+           
+            string sql = "SELECT Feedback.FeedbackContent, CONCAT([User].FirstName, ' ', [User].LastName) AS studentName, Students.studentID," +
+                " Course.courseName FROM Feedback INNER JOIN Students ON Feedback.StudentID = Students.studentID INNER JOIN [User] " +
+                "ON Students.UserID = [User].UserID INNER JOIN Course ON Feedback.courseID = Course.courseID WHERE " +
+                "Feedback.feedbackId = @feedbackId";
+            this.feedbackID = feedbackID;
+            
             con.Open();
-            string sql = "SELECT Feedback.feedbackContent, Student.name AS studentName, Student.studentID, Course.courseName FROM Feedback INNER JOIN Student ON Feedback.senderID = Student.studentID INNER JOIN Course ON Feedback.courseID = Course.courseID WHERE Feedback.feedbackId = @feedbackId";
             using (var command = new SqlCommand(sql, con))
             {
                 command.Parameters.AddWithValue("@feedbackId", feedbackID);
@@ -65,12 +72,16 @@ namespace OODProject.Admin.Feedback
                 {
                     if (reader.Read())
                     {
+
                         // Display the feedback content in the RichTextBox
-                        richTextBox1.Text = reader["feedbackContent"].ToString();
+
+                       
+                           richTextBox1.Text = reader["feedbackContent"].ToString();
+                        
 
                         // Display the student's name in the Label
-                        string fullName = $"{reader["firstName"]} {reader["lastName"]}";
-                        studentName.Text = fullName;
+                        
+                        studentName.Text = reader["studentName"].ToString();
 
                         // Display the student ID in the Label
                         IDNumber.Text = reader["studentID"].ToString();
@@ -82,6 +93,7 @@ namespace OODProject.Admin.Feedback
             }
             con.Close();
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
