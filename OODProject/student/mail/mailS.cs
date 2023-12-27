@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,28 @@ namespace OODProject.student
 {
     public partial class mailS : Form
     {
+        static String path = RemoveLastTwoDirectories(Directory.GetCurrentDirectory());
+        static String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "\"" + path + "\"" + ";Integrated Security=True";
+        static int sessionID;
+        SqlConnection con = new SqlConnection(connectionString);
+
+        static string RemoveLastTwoDirectories(string path)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                path = Path.GetDirectoryName(path);
+
+                // Check if the path is null, meaning there are not enough directories to remove
+                if (path == null)
+                {
+                    // Handle the case where there are not enough directories in the path
+                    return "Invalid Path";
+                }
+            }
+
+            return path + "\\Database.mdf";
+        }
+        private int id;
         public studentDash dash;
         public mailS()
         {
@@ -26,36 +50,60 @@ namespace OODProject.student
             this.dash = dash;
             rows();
         }
-
+        public mailS(studentDash dash , int id)
+        {
+            InitializeComponent();
+            this.dash = dash;
+            this.id = id;
+            rows();
+          
+        }
         private void rows()
         {
             flowLayoutPanel1.Padding = new Padding(10);
-            UserControlMail[] lists = new UserControlMail[20];
-            for (int i = 0; i < lists.Length; i++)
-            {
-                lists[i] = new UserControlMail();
-                lists[i].ItemName = ("Item " + i);
-                lists[i].mailContent = ("Loream Ipsum something something");
-                lists[i].date = ("1/1/2023");
-                flowLayoutPanel1.Controls.Add(lists[i]);
-                lists[i].Margin = new Padding(10);
+            con.Open();
+            string sql = "SELECT E.Subject, E.Content, E.EmailDate, E.EmailID FROM Email E WHERE E.RecipientID = @studentId ORDER BY E.EmailDate DESC";
 
-                lists[i].Clicked += UserControl_Click;
+            using (var command = new SqlCommand(sql, con))
+            {
+                command.Parameters.AddWithValue("@studentId", id);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    int i = 0;
+                    int emailID = 0; // Declare the emailID variable
+                    while (reader.Read() && i < 20)
+                    {
+                        UserControlMail list = new UserControlMail();
+                        list.ItemName = reader.GetString(0);
+                        list.mailContent = reader.GetString(1);
+                        list.date = reader.GetDateTime(2).ToString("MM/dd/yyyy");
+                        emailID = reader.GetInt32(3); // Update the emailID variable
+                        flowLayoutPanel1.Controls.Add(list);
+                        list.Margin = new Padding(10);
+
+                        list.Clicked += (sender, e) => UserControl_Click(sender, e, emailID);
+                        i++;
+                    }
+                }
             }
+            con.Close();
         }
-        private void UserControl_Click(object sender, EventArgs e)
+
+
+        private void UserControl_Click(object sender, EventArgs e, int emailID)
         {
 
             if (dash != null)
             {
-                dash.showScreen(new mailDetailS(dash, this));
+                dash.showScreen(new mailDetailS(dash, this, emailID));
             }
 
         }
 
         private void attachBtn_Click(object sender, EventArgs e)
         {
-            dash.showScreen(new mailComposeS(dash, this));
+            dash.showScreen(new mailComposeS(dash, this, id));
         }
     }
 }

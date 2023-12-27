@@ -87,15 +87,17 @@ namespace OODProject.Admin
             string lname = textBox2.Text;
             string email = textBox3.Text;
             string phone = textBox4.Text;
+            string pass = textBox5.Text;    
             string branchName = comboBox1.Text;
 
-            string sql = "INSERT INTO [User] (FirstName, LastName, Email, PhoneNumber, Role, Approved) VALUES (@FirstName, @LastName, @Email, @PhoneNumber, @Role, @Approved); SELECT SCOPE_IDENTITY();";
+            string sql = "INSERT INTO [User] (FirstName, LastName, Password, Email, PhoneNumber, Role, Approved) VALUES (@FirstName, @LastName, @Password, @Email, @PhoneNumber, @Role, @Approved); SELECT SCOPE_IDENTITY();";
             using (var command = new SqlCommand(sql, con))
             {
                 command.Parameters.AddWithValue("@Approved", 1);
                 command.Parameters.AddWithValue("@FirstName", fname);
                 command.Parameters.AddWithValue("@LastName", lname);
                 command.Parameters.AddWithValue("@Email", email);
+                command.Parameters.AddWithValue("@Password", pass);
                 command.Parameters.AddWithValue("@PhoneNumber", phone);
                 command.Parameters.AddWithValue("@Role", "Teacher");
 
@@ -118,6 +120,7 @@ namespace OODProject.Admin
                 textBox2.Text = "";
                 textBox3.Text = "";
                 textBox4.Text = "";
+                textBox5.Text = "";
                 comboBox1.Text = "";
             }
 

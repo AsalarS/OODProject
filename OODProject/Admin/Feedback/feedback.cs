@@ -55,12 +55,12 @@ namespace OODProject.Admin
             rows();
             this.Dash = dash;
             PopulateCourses();
-         
+           
+
         }
         private void rows()
         {
             flowLayoutPanel1.Padding = new Padding(10);
-            UserControlNormalList list = new UserControlNormalList();
             flowLayoutPanel1.Refresh();
 
             con.Open();
@@ -72,22 +72,21 @@ INNER JOIN [User] u ON s.UserID = u.UserID";
             {
                 using (var reader = command.ExecuteReader())
                 {
-                    int i = 0;
-                    while (reader.Read() && i < 20)
+                    while (reader.Read())
                     {
-                       
+                        UserControlNormalList list = new UserControlNormalList();
                         list.ItemName = reader["studentName"].ToString(); // Use the student's name as the item name
                         flowLayoutPanel1.Controls.Add(list);
                         list.Margin = new Padding(10);
                         int feedbackId = reader.GetInt32(0); // Assuming feedbackId is an integer
                         list.Clicked += (sender, e) => UserControl_Click(sender, e, feedbackId);
-                        i++;
                     }
                 }
             }
             flowLayoutPanel1.Refresh();
             con.Close();
         }
+
 
         // Populate the combobox with all courses
         // Populate the combobox with all courses
