@@ -59,11 +59,12 @@ namespace OODProject.teacher.mail
                     }
 
                     string targetPath = Path.Combine(filePath, Path.GetFileName(fileName));
-                    filePaths.Add(targetPath);
-                    uniqueFiles.Add(fileName);
+                    byte[] fileData = File.ReadAllBytes(targetPath);
+                    ListViewItem item = new ListViewItem(Path.GetFileName(fileName));
+                    item.Tag = fileData;
+                    listView1.Items.Add(item);
                     count++;
                 }
-                load_file();
             }
         }
 
@@ -123,8 +124,7 @@ namespace OODProject.teacher.mail
             if (listView1.SelectedItems.Count > 0)
             {
                 ListViewItem selectedItem = listView1.SelectedItems[0];
-                filePaths.Remove(selectedItem.Tag as string);
-                uniqueFiles.Remove(selectedItem.Tag as string);
+                selectedItem.Tag = null;
                 count--;
                 listView1.Items.Remove(selectedItem);
             }
