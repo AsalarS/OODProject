@@ -41,21 +41,33 @@ namespace OODProject.teacher
         private void PopulateCourses()
         {
             con.Open();
-            string sql = $"SELECT courseName, courseID FROM Course WHERE TeacherID = {ID}";
+            string sql = $@"
+     SELECT c.courseName, c.courseID 
+     FROM Course c
+     INNER JOIN Teacher t ON c.TeacherID = t.TeacherID
+     WHERE t.UserID = {ID}
+ ";
             using (var command = new SqlCommand(sql, con))
             {
                 using (var reader = command.ExecuteReader())
                 {
-                    var dt = new DataTable();
-                    dt.Load(reader);
-
-                    comboBox1.DataSource = dt;
-                    comboBox1.DisplayMember = "courseName";
-                    comboBox1.ValueMember = "courseID";
+                    while (reader.Read())
+                    {
+                        string courseName = reader["courseName"].ToString();
+                        int courseID = (int)reader["courseID"];
+                        comboBox1.Items.Add($"{courseID} - {courseName}");
+                    }
                 }
+                con.Close();
             }
-            con.Close();
+            /*comboBox1.DisplayMember = "";
+            comboBox1.ValueMember = "";*/
         }
+
+
+
+
+
 
 
         public files()
@@ -63,13 +75,15 @@ namespace OODProject.teacher
             InitializeComponent();
             this.listView1.Padding = new Padding(10);
             PopulateCourses();
+            load_file(null);
         }
 
         public files(int ID)
         {
+            this.ID = ID;
             InitializeComponent();
             this.listView1.Padding = new Padding(10);
-            this.ID = ID;
+            Console.WriteLine(ID + "files consturcter");
             PopulateCourses();
         }
 
@@ -79,14 +93,20 @@ namespace OODProject.teacher
 
 
 
-        public void load_file(int teacherId)
+        public void load_file(int? teacherId)
         {
-            string sql = $@"
-      SELECT cf.filePath 
-      FROM CourseFiles cf
-      JOIN Course c ON cf.courseID = c.courseID
-      WHERE c.TeacherID = {teacherId}
-  ";
+            string sql = teacherId.HasValue
+                ? $@"
+           SELECT cf.FileData, cf.OriginalFileName 
+           FROM CourseFiles cf
+           JOIN Course c ON cf.CourseID = c.CourseID
+           WHERE c.TeacherID = {teacherId} OR cf.CourseID = {selectedCourseId}
+       "
+                : $@"
+           SELECT cf.FileData, cf.OriginalFileName 
+           FROM CourseFiles cf
+       ";
+
             using (var con = new SqlConnection(connectionString))
             {
                 con.Open();
@@ -97,10 +117,10 @@ namespace OODProject.teacher
                         listView1.Items.Clear();
                         while (reader.Read())
                         {
-                            string filePath = reader["filePath"].ToString();
-                            filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "files", filePath);
-                            FileInfo fileInfo = new FileInfo(filePath);
-                            string fileExtension = fileInfo.Extension.ToUpper();
+                            byte[] fileData = (byte[])reader["FileData"];
+                            string originalFileName = reader["OriginalFileName"].ToString();
+                            string fileExtension = Path.GetExtension(originalFileName).ToUpper();
+                            Console.WriteLine(fileExtension);
                             int imageIndex;
                             switch (fileExtension)
                             {
@@ -133,13 +153,13 @@ namespace OODProject.teacher
                                     imageIndex = 6;
                                     break;
                             }
-                            listView1.Items.Add(fileInfo.Name, imageIndex);
-                            PopulateCourses();
+                            listView1.Items.Add(originalFileName, imageIndex);
                         }
                     }
                 }
             }
         }
+
 
 
 
@@ -153,16 +173,36 @@ namespace OODProject.teacher
             {
                 foreach (string fileName in openFileDialog1.FileNames)
                 {
-                    string targetPath = Path.Combine(filePath, Path.GetFileName(fileName));
-                    File.Copy(fileName, targetPath, true);
+                    byte[] fileData = File.ReadAllBytes(fileName);
+
+                    // Append a timestamp to the filename
+                    string uniqueFileName = Path.GetFileNameWithoutExtension(fileName) + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(fileName);
+
+                    // Check if the course exists
+                    string checkSql = $"SELECT COUNT(*) FROM Course WHERE CourseID = {selectedCourseId}";
+                    using (var con = new SqlConnection(connectionString))
+                    {
+                        con.Open();
+                        using (var command = new SqlCommand(checkSql, con))
+                        {
+                            int count = (int)command.ExecuteScalar();
+                            if (count == 0)
+                            {
+                                MessageBox.Show($"No course found with ID {selectedCourseId}.");
+                                continue;
+                            }
+                        }
+                    }
 
                     // Insert a record into the CourseFiles table
-                    string insertSql = $"INSERT INTO CourseFiles (courseID, filePath) VALUES ({selectedCourseId}, '{targetPath}')";
+                    string insertSql = $"INSERT INTO CourseFiles (CourseID, FileData, OriginalFileName) VALUES ({selectedCourseId}, @FileData, @OriginalFileName)";
                     using (var con = new SqlConnection(connectionString))
                     {
                         con.Open();
                         using (var command = new SqlCommand(insertSql, con))
                         {
+                            command.Parameters.AddWithValue("@FileData", fileData);
+                            command.Parameters.AddWithValue("@OriginalFileName", uniqueFileName);
                             command.ExecuteNonQuery();
                         }
                     }
@@ -201,28 +241,46 @@ namespace OODProject.teacher
             if (listView1.SelectedItems.Count > 0)
             {
                 string selectedFile = listView1.SelectedItems[0].Text;
-                string fullPath = Path.Combine(filePath, selectedFile);
-                try
+
+                // Delete the record from the database
+                string deleteSql = $"DELETE FROM CourseFiles WHERE OriginalFileName = '{selectedFile}' AND CourseID = {selectedCourseId}";
+                using (var con = new SqlConnection(connectionString))
                 {
-                    File.Delete(fullPath);
-                    load_file(selectedCourseId);
+                    con.Open();
+                    using (var command = new SqlCommand(deleteSql, con))
+                    {
+                        try
+                        {
+                            command.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            // Log the exception message
+                            Console.WriteLine("Error: " + ex.Message);
+                        }
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+
+                load_file(selectedCourseId);
             }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var drv = comboBox1.SelectedItem as DataRowView;
-            if (drv != null)
+            if (comboBox1.SelectedItem != null)
             {
-                selectedCourseId = Convert.ToInt32(drv.Row["courseID"]);
-                load_file(selectedCourseId);
+                string selectedItem = comboBox1.SelectedItem.ToString();
+                string[] parts = selectedItem.Split(' ');
+                if (parts.Length >= 2)
+                {
+                    string courseIdStr = parts[0];
+                    if (int.TryParse(courseIdStr, out int courseId))
+                    {
+                        selectedCourseId = courseId;
+                        load_file(selectedCourseId);
+                    }
+                }
             }
-
         }
     }
 }

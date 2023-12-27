@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(feedbackS));
             this.branchesLbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.courseCombo = new System.Windows.Forms.ComboBox();
@@ -79,7 +78,7 @@
             this.feedbackContent.Name = "feedbackContent";
             this.feedbackContent.Size = new System.Drawing.Size(783, 402);
             this.feedbackContent.TabIndex = 20;
-            this.feedbackContent.Text = resources.GetString("feedbackContent.Text");
+            this.feedbackContent.Text = "";
             // 
             // submitBtn
             // 

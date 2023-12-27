@@ -40,62 +40,125 @@ namespace OODProject.student
         public learning()
         {
             InitializeComponent();
-            load_file();
+            load_file(null);
             this.listView1.Padding = new Padding(10);
         }
 
+        private int userId;
+
+        public learning(int userId)
+        {
+            InitializeComponent();
+            this.listView1.Padding = new Padding(10);
+            this.userId = userId;
+            PopulateCourses();
+        }
+
+
         private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "files");
 
-        public void load_file()
+        public void load_file(int? courseId)
         {
-            DirectoryInfo fileList;
-            try
+            string sql = courseId.HasValue
+                ? $@"
+         SELECT cf.FileData, cf.OriginalFileName 
+         FROM CourseFiles cf
+         WHERE cf.CourseID = {courseId}
+     "
+                : $@"
+         SELECT cf.FileData, cf.OriginalFileName 
+         FROM CourseFiles cf
+     ";
+            using (var con = new SqlConnection(connectionString))
             {
-                listView1.Items.Clear();
-                fileList = new DirectoryInfo(filePath);
-                FileInfo[] files = fileList.GetFiles();
-                string fileExtension = "";
-
-                for (int i = 0; i < files.Length; i++)
+                con.Open();
+                using (var command = new SqlCommand(sql, con))
                 {
-                    fileExtension = files[i].Extension.ToUpper();
-                    switch (fileExtension)
+                    using (var reader = command.ExecuteReader())
                     {
-                        case ".MP3":
-                        case ".MP2":
-                            listView1.Items.Add(files[i].Name, 3);
-                            break;
-                        case ".EXE":
-                        case ".COM":
-                            listView1.Items.Add(files[i].Name, 5);
-                            break;
-
-                        case ".MP4":
-                        case ".AVI":
-                        case ".MKV":
-                            listView1.Items.Add(files[i].Name, 4);
-                            break;
-                        case ".PDF":
-                            listView1.Items.Add(files[i].Name, 2);
-                            break;
-                        case ".DOC":
-                        case ".DOCX":
-                            listView1.Items.Add(files[i].Name, 1);
-                            break;
-                        case ".PNG":
-                        case ".JPG":
-                        case ".JPEG":
-                            listView1.Items.Add(files[i].Name, 7);
-                            break;
-
-                        default:
-                            listView1.Items.Add(files[i].Name, 6);
-                            break;
+                        listView1.Items.Clear();
+                        while (reader.Read())
+                        {
+                            byte[] fileData = (byte[])reader["FileData"];
+                            string originalFileName = reader["OriginalFileName"].ToString();
+                            string fileExtension = Path.GetExtension(originalFileName).ToUpper();
+                            Console.WriteLine(fileExtension);
+                            int imageIndex;
+                            switch (fileExtension)
+                            {
+                                case ".MP3":
+                                case ".MP2":
+                                    imageIndex = 3;
+                                    break;
+                                case ".EXE":
+                                case ".COM":
+                                    imageIndex = 5;
+                                    break;
+                                case ".MP4":
+                                case ".AVI":
+                                case ".MKV":
+                                    imageIndex = 4;
+                                    break;
+                                case ".PDF":
+                                    imageIndex = 2;
+                                    break;
+                                case ".DOC":
+                                case ".DOCX":
+                                    imageIndex = 1;
+                                    break;
+                                case ".PNG":
+                                case ".JPG":
+                                case ".JPEG":
+                                    imageIndex = 7;
+                                    break;
+                                default:
+                                    imageIndex = 6;
+                                    break;
+                            }
+                            listView1.Items.Add(originalFileName, imageIndex);
+                        }
                     }
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
+
+        public void PopulateCourses()
+        {
+            List<int> courseIds = new List<int>();
+            string sql = $@"
+     SELECT c.courseName, c.courseID 
+     FROM Course c
+     INNER JOIN StudentCourse sc ON c.CourseID = sc.CourseID
+     INNER JOIN Students s ON sc.StudentID = s.StudentID
+     INNER JOIN [User] u ON s.UserID = u.UserID
+     WHERE u.UserID = {userId}
+ ";
+
+            using (var command = new SqlCommand(sql, con))
+            {
+                con.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string courseName = reader["courseName"].ToString();
+                        int courseID = (int)reader["courseID"];
+                        comboBox1.Items.Add($"{courseID} - {courseName}");
+                        courseIds.Add(courseID);
+                    }
+                }
+                con.Close();
+            }
+
+            if (courseIds.Any())
+            {
+                load_file(courseIds[0]);
+            }
+        }
+
+
+
+
 
         private void listView1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -103,6 +166,37 @@ namespace OODProject.student
             {
                 contextMenuStrip1.Show(listView1, e.Location);
             }
+        }
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            // Assuming the selected item in the list view is the file to be downloaded
+            ListViewItem selectedItem = listView1.SelectedItems[0];
+            string fileName = selectedItem.SubItems[1].Text;
+            byte[] fileData = (byte[])selectedItem.Tag; // assuming the file data is stored in the Tag property
+
+            // Show the save file dialog
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "All Files (*.*)|*.*";
+                saveFileDialog.Title = "Save File";
+                saveFileDialog.FileName = fileName;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Save the file
+                    File.WriteAllBytes(saveFileDialog.FileName, fileData);
+                }
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItem = comboBox1.SelectedItem.ToString();
+            string[] parts = selectedItem.Split('-');
+            string courseIDString = parts[0].Trim(); // trim removes any leading or trailing spaces
+            int courseID = int.Parse(courseIDString); // convert the course ID from a string to an integer
+            load_file(courseID);
         }
     }
 }

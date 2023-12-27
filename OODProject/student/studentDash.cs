@@ -81,7 +81,7 @@ namespace OODProject
 
         private void learningBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new learning());
+            showScreen(new learning(ID));
         }
 
         private void mailBtn_Click(object sender, EventArgs e)
