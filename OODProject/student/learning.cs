@@ -61,14 +61,14 @@ namespace OODProject.student
         {
             string sql = courseId.HasValue
                 ? $@"
-         SELECT cf.FileData, cf.OriginalFileName 
-         FROM CourseFiles cf
-         WHERE cf.CourseID = {courseId}
-     "
+    SELECT cf.FileId, cf.FileData, cf.OriginalFileName 
+    FROM CourseFiles cf
+    WHERE cf.CourseID = {courseId}
+ "
                 : $@"
-         SELECT cf.FileData, cf.OriginalFileName 
-         FROM CourseFiles cf
-     ";
+    SELECT cf.FileId, cf.FileData, cf.OriginalFileName 
+    FROM CourseFiles cf
+ ";
             using (var con = new SqlConnection(connectionString))
             {
                 con.Open();
@@ -81,6 +81,7 @@ namespace OODProject.student
                         {
                             byte[] fileData = (byte[])reader["FileData"];
                             string originalFileName = reader["OriginalFileName"].ToString();
+                            int fileId = (int)reader["FileId"];
                             string fileExtension = Path.GetExtension(originalFileName).ToUpper();
                             Console.WriteLine(fileExtension);
                             int imageIndex;
@@ -115,12 +116,40 @@ namespace OODProject.student
                                     imageIndex = 6;
                                     break;
                             }
-                            listView1.Items.Add(originalFileName, imageIndex);
+                            ListViewItem item = new ListViewItem(originalFileName, imageIndex);
+                            item.Tag = fileId; // Assign the fileId to the Tag property
+                            listView1.Items.Add(item);
                         }
                     }
                 }
             }
         }
+
+        private byte[] FetchFileDataFromDatabase(int fileId)
+        {
+            byte[] fileData = null;
+            string sql = $@"
+       SELECT cf.FileData 
+       FROM CourseFiles cf
+       WHERE cf.FileId = {fileId}
+   ";
+            using (var con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (var command = new SqlCommand(sql, con))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            fileData = (byte[])reader["FileData"];
+                        }
+                    }
+                }
+            }
+            return fileData;
+        }
+
 
         public void PopulateCourses()
         {
@@ -170,10 +199,10 @@ namespace OODProject.student
 
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            // Assuming the selected item in the list view is the file to be downloaded
             ListViewItem selectedItem = listView1.SelectedItems[0];
-            string fileName = selectedItem.SubItems[1].Text;
-            byte[] fileData = (byte[])selectedItem.Tag; // assuming the file data is stored in the Tag property
+            int fileId = (int)selectedItem.Tag;
+            byte[] fileData = FetchFileDataFromDatabase(fileId); // Fetch the file data from the database
+            string fileName = selectedItem.Text;
 
             // Show the save file dialog
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
