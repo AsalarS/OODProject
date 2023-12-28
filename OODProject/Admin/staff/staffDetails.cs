@@ -52,7 +52,7 @@ namespace OODProject.Admin
             this.staffForm = staffForm;
             this.teacherID = id;
 
-            string sql = "SELECT T.TeacherId, U.FirstName, U.LastName, U.Email, U.PhoneNumber, B.BranchName FROM [User] U INNER JOIN Teacher T ON U.UserID = T.UserID INNER JOIN Branch B ON T.BranchId = B.BranchId WHERE T.TeacherID = @TeacherId";
+            string sql = "SELECT T.TeacherId, U.FirstName, U.LastName, U.Email, U.PhoneNumber, U.Password, B.BranchName FROM [User] U INNER JOIN Teacher T ON U.UserID = T.UserID INNER JOIN Branch B ON T.BranchId = B.BranchId WHERE T.TeacherID = @TeacherId";
             using (var command = new SqlCommand(sql, con))
             {
                 command.Parameters.AddWithValue("@TeacherId", teacherID);
@@ -66,6 +66,7 @@ namespace OODProject.Admin
                         textBox2.Text = reader["LastName"].ToString();
                         textBox3.Text = reader["Email"].ToString();
                         textBox4.Text = reader["PhoneNumber"].ToString();
+                        textBox5.Text = reader["Password"].ToString();
                         comboBox1.Text = reader["BranchName"].ToString();
                         IDNumber.Text = reader["TeacherId"].ToString();
                         staffLbl.Text = fullName;
@@ -123,6 +124,7 @@ namespace OODProject.Admin
             string lname = textBox2.Text;
             string email = textBox3.Text;
             string phone = textBox4.Text;
+            string pass = textBox5.Text;
             string branchName = comboBox1.Text;
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -149,7 +151,7 @@ namespace OODProject.Admin
                         }
                     }
                     con.Close();
-                    string sqlUpdateUser = "UPDATE [User] SET FirstName = @FirstName, LastName = @LastName, Email = @Email, PhoneNumber = @PhoneNumber WHERE UserID = @UserID";
+                    string sqlUpdateUser = "UPDATE [User] SET FirstName = @FirstName, LastName = @LastName, Password = @Password, Email = @Email, PhoneNumber = @PhoneNumber WHERE UserID = @UserID";
                     using (var commandUpdateUser = new SqlCommand(sqlUpdateUser, con))
                     {
                         commandUpdateUser.Parameters.AddWithValue("@FirstName", fname);
@@ -157,7 +159,7 @@ namespace OODProject.Admin
                         commandUpdateUser.Parameters.AddWithValue("@Email", email);
                         commandUpdateUser.Parameters.AddWithValue("@PhoneNumber", phone);
                         commandUpdateUser.Parameters.AddWithValue("@UserID", userID);
-
+                        commandUpdateUser.Parameters.AddWithValue("@Password", pass);
                         con.Open();
                         commandUpdateUser.ExecuteNonQuery();
                         con.Close();
