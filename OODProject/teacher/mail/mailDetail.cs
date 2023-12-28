@@ -76,6 +76,65 @@ namespace OODProject.teacher.mail
             }
             con.Close();
 
+            load_files();
+
+        }
+
+        public void load_files()
+        {
+            listView1.Items.Clear();
+            con.Open();
+            string sql = "SELECT OriginalFileName FROM EmailAttachments WHERE EmailID = @emailId";
+
+            using (var command = new SqlCommand(sql, con))
+            {
+                command.Parameters.AddWithValue("@emailId", emailId);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string originalFileName = reader["OriginalFileName"].ToString();
+                        string fileExtension = Path.GetExtension(originalFileName).ToUpper();
+                        ListViewItem item = new ListViewItem(originalFileName);
+
+                        switch (fileExtension)
+                        {
+                            case ".MP3":
+                            case ".MP2":
+                                item.ImageIndex = 3;
+                                break;
+                            case ".EXE":
+                            case ".COM":
+                                item.ImageIndex = 5;
+                                break;
+                            case ".MP4":
+                            case ".AVI":
+                            case ".MKV":
+                                item.ImageIndex = 4;
+                                break;
+                            case ".PDF":
+                                item.ImageIndex = 2;
+                                break;
+                            case ".DOC":
+                            case ".DOCX":
+                                item.ImageIndex = 1;
+                                break;
+                            case ".PNG":
+                            case ".JPG":
+                            case ".JPEG":
+                                item.ImageIndex = 7;
+                                break;
+                            default:
+                                item.ImageIndex = 6;
+                                break;
+                        }
+
+                        listView1.Items.Add(item);
+                    }
+                }
+            }
+            con.Close();
         }
 
 

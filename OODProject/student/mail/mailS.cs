@@ -55,7 +55,7 @@ namespace OODProject.student
             InitializeComponent();
             this.dash = dash;
             this.id = id;
-            rows();
+            rows();                                              
           
         }
         private void rows()

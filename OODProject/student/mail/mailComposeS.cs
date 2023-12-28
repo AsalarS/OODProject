@@ -175,7 +175,7 @@ namespace OODProject.student.mail
                 con.Open();
 
 
-                string sql = "INSERT INTO Email (Subject, Content, SenderID, RecipientID, TeacherID, StudentID, EmailDate) VALUES (@subject, @content, @senderID, @recipientID, @TeacherID, @StudentID, @EmailDate)";
+                string sql = "INSERT INTO Email (Subject, Content, SenderID, RecipientID, TeacherID, StudentID, EmailDate) OUTPUT INSERTED.EmailID VALUES (@subject, @content, @senderID, @recipientID, @TeacherID, @StudentID, @EmailDate)";
 
                 using (var command = new SqlCommand(sql, con))
                 {
@@ -187,8 +187,29 @@ namespace OODProject.student.mail
                     command.Parameters.AddWithValue("@StudentID", studentID);
                     command.Parameters.AddWithValue("@EmailDate", DateTime.Now);
 
-                    command.ExecuteNonQuery();
+                    int emailId = (int)command.ExecuteScalar();
                     con.Close();
+
+                    // insert file paths into EmailAttachments table
+                    string sqlAttachment = "INSERT INTO EmailAttachments (EmailID, FileData, OriginalFileName) VALUES (@EmailID, @FileData, @OriginalFileName)";
+
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        byte[] fileData = item.Tag as byte[];
+                        if (fileData != null)
+                        {
+                            using (var commandAttachment = new SqlCommand(sqlAttachment, con))
+                            {
+                                commandAttachment.Parameters.AddWithValue("@EmailID", emailId);
+                                commandAttachment.Parameters.AddWithValue("@FileData", fileData);
+                                commandAttachment.Parameters.AddWithValue("@OriginalFileName", item.Text); // Add the original file name
+
+                                con.Open();
+                                commandAttachment.ExecuteNonQuery();
+                                con.Close();
+                            }
+                        }
+                    }
                 }
                 Dash.showScreen(mailForm);
             }

@@ -64,6 +64,7 @@ namespace OODProject.teacher.mail
 
         private void button2_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 con.Open();
@@ -111,7 +112,7 @@ namespace OODProject.teacher.mail
                 con.Close();
                 con.Open();
 
-                string sql = "INSERT INTO Email (Subject, Content, SenderID, RecipientID, TeacherID, StudentID, EmailDate) VALUES (@subject, @content, @senderID, @recipientID, @TeacherID, @StudentID, @EmailDate)";
+                string sql = "INSERT INTO Email (Subject, Content, SenderID, RecipientID, TeacherID, StudentID, EmailDate) OUTPUT INSERTED.EmailID VALUES (@subject, @content, @senderID, @recipientID, @TeacherID, @StudentID, @EmailDate)";
 
                 using (var command = new SqlCommand(sql, con))
                 {
@@ -123,8 +124,31 @@ namespace OODProject.teacher.mail
                     command.Parameters.AddWithValue("@StudentID", studentID);
                     command.Parameters.AddWithValue("@EmailDate", DateTime.Now);
 
-                    command.ExecuteNonQuery();
+                    int emailId = (int)command.ExecuteScalar();
                     con.Close();
+
+                    // insert file paths into EmailAttachments table
+                    string sqlAttachment = "INSERT INTO EmailAttachments (EmailID, FileData, OriginalFileName) VALUES (@EmailID, @FileData, @OriginalFileName)";
+
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        byte[] fileData = item.Tag as byte[];
+                        if (fileData != null)
+                        {
+                            using (var commandAttachment = new SqlCommand(sqlAttachment, con))
+                            {
+                                commandAttachment.Parameters.AddWithValue("@EmailID", emailId);
+                                commandAttachment.Parameters.AddWithValue("@FileData", fileData);
+                                commandAttachment.Parameters.AddWithValue("@OriginalFileName", item.Text); // Use the original file name
+
+                                con.Open();
+                                commandAttachment.ExecuteNonQuery();
+                                con.Close();
+                            }
+                        }
+                    }
+
+
                 }
                 Dash.showScreen(mailForm);
             }
@@ -134,7 +158,6 @@ namespace OODProject.teacher.mail
                 MessageBox.Show(ex.Message);
             }
         }
-
 
 
 
@@ -162,12 +185,11 @@ namespace OODProject.teacher.mail
                     }
 
                     string targetPath = Path.Combine(filePath, Path.GetFileName(fileName));
-                    byte[] fileData = File.ReadAllBytes(targetPath);
-                    ListViewItem item = new ListViewItem(Path.GetFileName(fileName));
-                    item.Tag = fileData;
-                    listView1.Items.Add(item);
+                    filePaths.Add(targetPath);
+                    uniqueFiles.Add(fileName);
                     count++;
                 }
+                load_file();
             }
         }
 
@@ -176,43 +198,52 @@ namespace OODProject.teacher.mail
             listView1.Items.Clear();
             string fileExtension = "";
 
-            for (int i = 0; i < filePaths.Count; i++)
+            for (int i = 0; i < uniqueFiles.Count; i++)
             {
-                var fileInfo = new FileInfo(filePaths[i]);
-                fileExtension = fileInfo.Extension.ToUpper();
+                string fileName = uniqueFiles.ElementAt(i);
+                string filePath = Path.Combine(this.filePath, fileName);
+                byte[] fileData = File.ReadAllBytes(filePath);
+                fileExtension = Path.GetExtension(fileName).ToUpper();
+                ListViewItem item = new ListViewItem(fileName);
+                item.Tag = fileData;
+
                 switch (fileExtension)
                 {
                     case ".MP3":
                     case ".MP2":
-                        listView1.Items.Add(fileInfo.Name, 3);
+                        item.ImageIndex = 3;
                         break;
                     case ".EXE":
                     case ".COM":
-                        listView1.Items.Add(fileInfo.Name, 5);
+                        item.ImageIndex = 5;
                         break;
                     case ".MP4":
                     case ".AVI":
                     case ".MKV":
-                        listView1.Items.Add(fileInfo.Name, 4);
+                        item.ImageIndex = 4;
                         break;
                     case ".PDF":
-                        listView1.Items.Add(fileInfo.Name, 2);
+                        item.ImageIndex = 2;
                         break;
                     case ".DOC":
                     case ".DOCX":
-                        listView1.Items.Add(fileInfo.Name, 1);
+                        item.ImageIndex = 1;
                         break;
                     case ".PNG":
                     case ".JPG":
                     case ".JPEG":
-                        listView1.Items.Add(fileInfo.Name, 7);
+                        item.ImageIndex = 7;
                         break;
                     default:
-                        listView1.Items.Add(fileInfo.Name, 6);
+                        item.ImageIndex = 6;
                         break;
                 }
+
+                listView1.Items.Add(item);
             }
         }
+
+
 
         private void listView1_MouseClick(object sender, MouseEventArgs e)
         {
