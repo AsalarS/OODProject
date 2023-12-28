@@ -65,7 +65,7 @@ namespace OODProject
 
         private void reportsBtn_Click(object sender, EventArgs e)
         {
-            showScreen(new reports());
+            showScreen(new reports(ID));
         }
 
         private void mailBtn_Click(object sender, EventArgs e)

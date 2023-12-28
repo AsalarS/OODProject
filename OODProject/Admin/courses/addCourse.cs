@@ -46,7 +46,6 @@ namespace OODProject.Admin
             Dash = dash;
             coursesForm = Courses;
 
-
             con.Open();
 
             string sql1 = "SELECT BranchId, BranchName FROM Branch";
@@ -78,11 +77,10 @@ namespace OODProject.Admin
                 }
             }
 
-
-
-
-
+            // Close connection
+            con.Close();
         }
+
         public addCourse()
         {
             InitializeComponent();
@@ -95,6 +93,7 @@ namespace OODProject.Admin
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            con.Open();
             if (comboBox1.SelectedIndex != -1)
             {
                 string sql = @"SELECT u.UserId, u.FirstName, u.LastName 
@@ -116,7 +115,7 @@ namespace OODProject.Admin
                     }
                 }
                 // Remove the line that closes the connection here
-                // con.Close();
+                con.Close();
             }
             else
             {
@@ -145,37 +144,35 @@ namespace OODProject.Admin
                 int branchId = int.Parse(branchInfo.Split(':')[0]);
                 int teacherId = int.Parse(teacherInfo.Split(':')[0]);
 
-                // Open connection
-                con.Open();
+            // Open connection
 
-                // Insert into Course table
-                string sql = $@"INSERT INTO Course (CourseName, CourseDescription, CourseCredit, BranchID, TeacherID) 
-                VALUES ('{courseName}', '{courseDescription}', {courseCredits}, {branchId}, {teacherId});
-                SELECT SCOPE_IDENTITY() AS CourseID;";
-                using (var command = new SqlCommand(sql, con))
-                {
-                    int courseId = Convert.ToInt32(command.ExecuteScalar());
+            con.Open();
+            // Insert into Course table
+            string sql = $@"INSERT INTO Course (CourseName, CourseDescription, CourseCredit, BranchID, TeacherID) 
+   VALUES ('{courseName}', '{courseDescription}', {courseCredits}, {branchId}, {teacherId});
+   SELECT SCOPE_IDENTITY() AS CourseID;";
+           
+            using (var command = new SqlCommand(sql, con))
+            {
+                int courseId = Convert.ToInt32(command.ExecuteScalar());
 
-                    // Close connection
-                    con.Close();
-
-                    // Open connection again
-                    con.Open();
-
-                    // Insert into StudentCourse table
-                    string sql1 = $@"INSERT INTO StudentCourse (StudentID, CourseID) 
-             SELECT s.StudentID, {courseId} 
-             FROM Students s 
-             INNER JOIN [User] u ON s.UserID = u.UserID 
-             WHERE CONCAT(u.FirstName, ' ', u.LastName) IN ({selectedStudents})";
+                // Insert into StudentCourse table
+                string sql1 = $@"INSERT INTO StudentCourse (StudentID, CourseID) 
+       SELECT s.StudentID, {courseId} 
+       FROM Students s 
+       INNER JOIN [User] u ON s.UserID = u.UserID 
+       WHERE CONCAT(u.FirstName, ' ', u.LastName) IN ({selectedStudents})";
                 using (var command1 = new SqlCommand(sql1, con))
-                    {
-                        command1.ExecuteNonQuery();
-                    }
+                {
+                    command1.ExecuteNonQuery();
                 }
+            }
 
-                // Close connection
-                con.Close();
+            // Close connection
+            con.Close();
+
+            // Close connection
+
             textBox1.Text = "";
             textBox2.Text = "";
             textBox3.Text = "";
