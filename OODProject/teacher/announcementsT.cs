@@ -56,9 +56,9 @@ namespace OODProject.teacher
 
             // Query to select announcements from the database
             string query = @"SELECT a.* FROM [dbo].[announcements] a
-                 INNER JOIN [dbo].[User] u ON a.[UserID] = u.[UserID]
-                 INNER JOIN [dbo].[Teacher] t ON u.[UserID] = t.[UserID]
-                 WHERE a.[scope] = 'teachers' AND t.[BranchID] = a.[branchID] AND t.[UserID] = @UserID";
+                INNER JOIN [dbo].[User] u ON a.[UserID] = u.[UserID]
+                INNER JOIN [dbo].[Teacher] t ON u.[UserID] = t.[UserID]
+                WHERE a.[scope] = 'teachers' AND t.[BranchID] = a.[branchID] AND t.[UserID] = @UserID";
 
             try
             {
@@ -112,6 +112,7 @@ namespace OODProject.teacher
                 con.Close();
             }
         }
+
 
     }
 }
