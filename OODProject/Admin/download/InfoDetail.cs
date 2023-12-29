@@ -11,19 +11,19 @@ using System.Windows.Forms;
 
 namespace OODProject.Admin.download
 {
-    public partial class downloadDetail : Form
+    public partial class InfoDetail : Form
     {
         public adminDash Dash { get; set; }
         public information info { get; set; }
         public reports repo { get; set; }
         public bool infoUsed = false;
 
-        public downloadDetail()
+        public InfoDetail()
         {
             InitializeComponent();
         }
 
-        public downloadDetail(adminDash Dash, information info)
+        public InfoDetail(adminDash Dash, information info)
         {
             InitializeComponent();
             this.Dash = Dash;
@@ -31,7 +31,7 @@ namespace OODProject.Admin.download
             infoUsed = true;
         }
 
-        public downloadDetail(adminDash Dash, reports repo)
+        public InfoDetail(adminDash Dash, reports repo)
         {
             InitializeComponent();
             this.Dash = Dash; 

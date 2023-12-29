@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,25 +14,104 @@ namespace OODProject.teacher
 {
     public partial class announcementsT : Form
     {
+        static String path = RemoveLastTwoDirectories(Directory.GetCurrentDirectory());
+        static String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "\"" + path + "\"" + ";Integrated Security=True";
+        static int sessionID;
+        SqlConnection con = new SqlConnection(connectionString);
+
+        static string RemoveLastTwoDirectories(string path)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                path = Path.GetDirectoryName(path);
+
+                // Check if the path is null, meaning there are not enough directories to remove
+                if (path == null)
+                {
+                    // Handle the case where there are not enough directories in the path
+                    return "Invalid Path";
+                }
+            }
+
+            return path + "\\Database.mdf";
+        }
+
         public announcementsT()
         {
             InitializeComponent();
-            rows();
         }
 
-        private void rows()
+        int ID;
+
+        public announcementsT(int iD)
+        {
+            InitializeComponent();
+            ID = iD;
+            rows(ID);
+        }
+
+        private void rows(int userID)
         {
             flowLayoutPanel1.Padding = new Padding(10);
-            UserControlAnnouncement[] lists = new UserControlAnnouncement[20];
-            for (int i = 0; i < lists.Length; i++)
+
+            // Query to select announcements from the database
+            string query = @"SELECT a.* FROM [dbo].[announcements] a
+                 INNER JOIN [dbo].[User] u ON a.[UserID] = u.[UserID]
+                 INNER JOIN [dbo].[Teacher] t ON u.[UserID] = t.[UserID]
+                 WHERE a.[scope] = 'teachers' AND t.[BranchID] = a.[branchID] AND t.[UserID] = @UserID";
+
+            try
             {
-                lists[i] = new UserControlAnnouncement();
-                lists[i].announcementtitle = ("Item " + i);
-                lists[i].date = ("1/1/2024");
-                lists[i].description = ("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.");
-                flowLayoutPanel1.Controls.Add(lists[i]);
-                lists[i].Margin = new Padding(10);
+                // Open the connection
+                con.Open();
+
+                // Create a SqlCommand to execute the query
+                using (SqlCommand command = new SqlCommand(query, con))
+                {
+                    // Add the UserID parameter to the command
+                    command.Parameters.AddWithValue("@UserID", userID);
+
+                    // Execute the query and get the SqlDataReader
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Loop through the result set
+                        while (reader.Read())
+                        {
+                            // Create a new UserControlAnnouncement
+                            UserControlAnnouncement announcementControl = new UserControlAnnouncement();
+
+                            // Populate the UserControlAnnouncement properties with data from the database
+                            announcementControl.announcementtitle = reader["title"].ToString();
+                            // Replace "date" with the actual column name for the date in your table
+                            DateTime dateValue;
+                            if (DateTime.TryParse(reader["date"].ToString(), out dateValue))
+                            {
+                                // Use ToShortDateString to display only the date part
+                                announcementControl.date = dateValue.ToShortDateString();
+                            }
+                            else
+                            {
+                                announcementControl.date = "Invalid Date";
+                            }
+                            announcementControl.description = reader["description"].ToString();
+
+                            // Add the UserControlAnnouncement to the flowLayoutPanel
+                            flowLayoutPanel1.Controls.Add(announcementControl);
+                            announcementControl.Margin = new Padding(10);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading announcements: " + ex.Message);
+            }
+            finally
+            {
+                // Close the connection
+                con.Close();
             }
         }
+
     }
 }
