@@ -42,14 +42,14 @@ namespace OODProject
         {
             this.Icon = new Icon("Resources\\icon.ico");
             InitializeComponent();
-            showScreen(new announcementsS());
+            showScreen(new announcementsS(ID));
         }
 
         public studentDash(int ID)
         {
             this.Icon = new Icon("Resources\\icon.ico");
             InitializeComponent();
-            showScreen(new announcementsS());
+            showScreen(new announcementsS(ID));
             this.ID = ID;
 
 
@@ -130,17 +130,22 @@ namespace OODProject
 
         private void announcements_Click(object sender, EventArgs e)
         {
-            showScreen(new announcementsS());
+            showScreen(new announcementsS(ID));
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            showScreen(new announcementsS());
+            showScreen(new announcementsS(ID));
         }
 
         private void mainScreen_ControlAdded(object sender, ControlEventArgs e)
         {
             announcementsBtn.Image = Properties.Resources.announcements;
+        }
+
+        private void panelLogo_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

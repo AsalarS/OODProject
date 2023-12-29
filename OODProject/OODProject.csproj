@@ -73,11 +73,17 @@
     <Compile Include="Admin\courses\addCourse.Designer.cs">
       <DependentUpon>addCourse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Admin\download\downloadDetail.cs">
+    <Compile Include="Admin\download\InfoDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Admin\download\downloadDetail.Designer.cs">
-      <DependentUpon>downloadDetail.cs</DependentUpon>
+    <Compile Include="Admin\download\InfoDetail.Designer.cs">
+      <DependentUpon>InfoDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\download\reportDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\download\reportDetail.Designer.cs">
+      <DependentUpon>reportDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Feedback\feedbackDetails.cs">
       <SubType>Form</SubType>
@@ -329,8 +335,11 @@
     <EmbeddedResource Include="Admin\courses\course.resx">
       <DependentUpon>course.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\download\downloadDetail.resx">
-      <DependentUpon>downloadDetail.cs</DependentUpon>
+    <EmbeddedResource Include="Admin\download\InfoDetail.resx">
+      <DependentUpon>InfoDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\download\reportDetail.resx">
+      <DependentUpon>reportDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Feedback\feedback.resx">
       <DependentUpon>feedback.cs</DependentUpon>

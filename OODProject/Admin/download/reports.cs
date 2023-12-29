@@ -95,7 +95,7 @@ namespace OODProject.Admin
 
             if (Dash != null)
             {
-                Dash.showScreen(new downloadDetail(Dash, this));
+                Dash.showScreen(new InfoDetail(Dash, this));
             }
 
         }

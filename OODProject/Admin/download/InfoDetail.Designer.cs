@@ -1,6 +1,6 @@
 ﻿namespace OODProject.Admin.download
 {
-    partial class downloadDetail
+    partial class InfoDetail
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(downloadDetail));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InfoDetail));
             this.branchesLbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.label2 = new System.Windows.Forms.Label();
@@ -40,15 +39,14 @@
             this.mailBody = new System.Windows.Forms.RichTextBox();
             this.recipientTextBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.submitBtn = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.button1 = new System.Windows.Forms.Button();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.teachersCheckBox = new System.Windows.Forms.CheckBox();
+            this.studentsCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // branchesLbl
@@ -75,23 +73,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(984, 65);
             this.panel1.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = global::OODProject.Properties.Resources.left_arrow_24px;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 65);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Back";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listView1
             // 
@@ -167,13 +148,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Image = global::OODProject.Properties.Resources.down_arrow;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
-            this.toolStripMenuItem1.Text = "Download";
-            // 
             // submitBtn
             // 
             this.submitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(146)))), ((int)(((byte)(227)))));
@@ -192,49 +166,64 @@
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(201, 155);
+            this.comboBox1.Location = new System.Drawing.Point(242, 155);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(619, 32);
+            this.comboBox1.Size = new System.Drawing.Size(578, 32);
             this.comboBox1.TabIndex = 38;
             // 
-            // groupBox1
+            // button1
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(36, 149);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(159, 38);
-            this.groupBox1.TabIndex = 39;
-            this.groupBox1.TabStop = false;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = global::OODProject.Properties.Resources.left_arrow_24px;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 65);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Back";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // radioButton2
+            // toolStripMenuItem1
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(82, 15);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(70, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Teachers";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.toolStripMenuItem1.Image = global::OODProject.Properties.Resources.down_arrow;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
+            this.toolStripMenuItem1.Text = "Download";
             // 
-            // radioButton1
+            // teachersCheckBox
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(9, 15);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(67, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Students";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.teachersCheckBox.AutoSize = true;
+            this.teachersCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.teachersCheckBox.Location = new System.Drawing.Point(43, 160);
+            this.teachersCheckBox.Name = "teachersCheckBox";
+            this.teachersCheckBox.Size = new System.Drawing.Size(94, 24);
+            this.teachersCheckBox.TabIndex = 39;
+            this.teachersCheckBox.Text = "Teachers";
+            this.teachersCheckBox.UseVisualStyleBackColor = true;
             // 
-            // downloadDetail
+            // studentsCheckBox
+            // 
+            this.studentsCheckBox.AutoSize = true;
+            this.studentsCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.studentsCheckBox.Location = new System.Drawing.Point(143, 160);
+            this.studentsCheckBox.Name = "studentsCheckBox";
+            this.studentsCheckBox.Size = new System.Drawing.Size(93, 24);
+            this.studentsCheckBox.TabIndex = 40;
+            this.studentsCheckBox.Text = "Students";
+            this.studentsCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // InfoDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 631);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.studentsCheckBox);
+            this.Controls.Add(this.teachersCheckBox);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.submitBtn);
             this.Controls.Add(this.listView1);
@@ -244,13 +233,11 @@
             this.Controls.Add(this.recipientTextBox);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "downloadDetail";
+            this.Name = "InfoDetail";
             this.Text = "downloadDetail";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,8 +258,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button submitBtn;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.CheckBox teachersCheckBox;
+        private System.Windows.Forms.CheckBox studentsCheckBox;
     }
 }

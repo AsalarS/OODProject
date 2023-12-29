@@ -39,16 +39,26 @@ namespace OODProject.student
         public announcementsS()
         {
             InitializeComponent();
-            rows();
+
+        }
+        int ID;
+        public announcementsS(int ID)
+        {
+            this.ID = ID;
+            InitializeComponent();
+            rows(ID);
 
         }
 
-        private void rows()
+        private void rows(int userID)
         {
             flowLayoutPanel1.Padding = new Padding(10);
 
             // Query to select announcements from the database
-            string query = "SELECT * FROM [dbo].[announcements]";
+            string query = @"SELECT a.* FROM [dbo].[announcements] a
+                   INNER JOIN [dbo].[Course] c ON a.[branchID] = c.[BranchID]
+                   INNER JOIN [dbo].[Students] s ON c.[CourseID] = s.[CourseID]
+                   WHERE a.[scope] = 'students' AND s.[UserID] = @UserID";
 
             try
             {
@@ -58,6 +68,9 @@ namespace OODProject.student
                 // Create a SqlCommand to execute the query
                 using (SqlCommand command = new SqlCommand(query, con))
                 {
+                    // Add the UserID parameter to the command
+                    command.Parameters.AddWithValue("@UserID", userID);
+
                     // Execute the query and get the SqlDataReader
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -99,6 +112,7 @@ namespace OODProject.student
                 con.Close();
             }
         }
+
 
 
         private void panel1_Paint(object sender, PaintEventArgs e)

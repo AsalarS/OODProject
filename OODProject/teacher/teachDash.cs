@@ -45,7 +45,7 @@ namespace OODProject
         {
             InitializeComponent();
             this.Icon = new Icon("Resources\\icon.ico");
-            showScreen(new announcementsS());
+            showScreen(new announcementsT(ID));
             this.AllowDrop = true;
         }
 
@@ -53,7 +53,7 @@ namespace OODProject
         {
             InitializeComponent();
             this.Icon = new Icon("Resources\\icon.ico");
-            showScreen(new announcementsS());
+            showScreen(new announcementsT(ID));
             this.AllowDrop = true;
             this.ID = ID;
 
@@ -146,7 +146,7 @@ namespace OODProject
 
         private void label1_Click(object sender, EventArgs e)
         {
-            showScreen(new announcementsS());
+            showScreen(new announcementsT(ID));
         }
 
         private void filesBtn_Click(object sender, EventArgs e)
