@@ -1,10 +1,13 @@
 ﻿using OODProject.student;
 using OODProject.teacher;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +18,28 @@ namespace OODProject
 
     public partial class teachDash : Form
     {
+        static String path = RemoveLastTwoDirectories(Directory.GetCurrentDirectory());
+        static String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "\"" + path + "\"" + ";Integrated Security=True";
+        static int sessionID;
+        SqlConnection con = new SqlConnection(connectionString);
+
+        static string RemoveLastTwoDirectories(string path)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                path = Path.GetDirectoryName(path);
+
+                // Check if the path is null, meaning there are not enough directories to remove
+                if (path == null)
+                {
+                    // Handle the case where there are not enough directories in the path
+                    return "Invalid Path";
+                }
+            }
+
+            return path + "\\Database.mdf";
+        }
+
         private int ID;
         public teachDash()
         {
@@ -31,6 +56,80 @@ namespace OODProject
             showScreen(new announcementsS());
             this.AllowDrop = true;
             this.ID = ID;
+
+            // Query to select isNotificationRead for the current user
+            string query = "SELECT isNotificationRead FROM [dbo].[User] WHERE UserID = @SessionID";
+
+            try
+            {
+                // Open the connection
+                con.Open();
+
+                // Create a SqlCommand to execute the query
+                using (SqlCommand command = new SqlCommand(query, con))
+                {
+                    // Set the parameter value
+                    command.Parameters.AddWithValue("@SessionID", sessionID);
+
+                    // Execute the query and get the SqlDataReader
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            bool isNotificationRead = Convert.ToBoolean(reader["isNotificationRead"]);
+
+                            // Update the button image based on the isNotificationRead value
+                            if (!isNotificationRead)
+                            {
+                                // Use the other image
+                                announcementsBtn.Image = Properties.Resources.announcementsRED;
+                            }
+                            else
+                            {
+                                // Use the original image
+                                announcementsBtn.Image = Properties.Resources.announcements;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading announcements: " + ex.Message);
+            }
+            finally
+            {
+                // Close the connection
+                con.Close();
+            }
+
+            string updateQuery = "UPDATE [dbo].[User] SET isNotificationRead = 1 WHERE UserID = @userID";
+
+            try
+            {
+                // Open the connection
+                con.Open();
+
+                // Create a SqlCommand to execute the update query
+                using (SqlCommand command = new SqlCommand(updateQuery, con))
+                {
+                    // Set the parameter value
+                    command.Parameters.AddWithValue("@userID", ID);
+
+                    // Execute the update query
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating isNotificationRead: " + ex.Message);
+            }
+            finally
+            {
+                // Close the connection
+                con.Close();
+            }
         }
 
         public void showScreen(object Form)

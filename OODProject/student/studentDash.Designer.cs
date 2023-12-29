@@ -228,6 +228,7 @@
             this.mainScreen.Name = "mainScreen";
             this.mainScreen.Size = new System.Drawing.Size(984, 631);
             this.mainScreen.TabIndex = 3;
+            this.mainScreen.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.mainScreen_ControlAdded);
             // 
             // studentDash
             // 

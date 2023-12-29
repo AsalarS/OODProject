@@ -46,7 +46,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(53, 18);
+            this.titleLabel.Location = new System.Drawing.Point(53, 30);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(247, 39);
             this.titleLabel.TabIndex = 2;
@@ -101,10 +101,10 @@
             this.descTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.descTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.descTextBox.Location = new System.Drawing.Point(60, 60);
+            this.descTextBox.Location = new System.Drawing.Point(60, 79);
             this.descTextBox.Name = "descTextBox";
             this.descTextBox.ReadOnly = true;
-            this.descTextBox.Size = new System.Drawing.Size(651, 100);
+            this.descTextBox.Size = new System.Drawing.Size(651, 81);
             this.descTextBox.TabIndex = 38;
             this.descTextBox.Text = "Loream IIpsum";
             // 
@@ -115,7 +115,7 @@
             this.dateLbl.AutoSize = true;
             this.dateLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateLbl.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.dateLbl.Location = new System.Drawing.Point(603, 32);
+            this.dateLbl.Location = new System.Drawing.Point(603, 42);
             this.dateLbl.Name = "dateLbl";
             this.dateLbl.Size = new System.Drawing.Size(108, 25);
             this.dateLbl.TabIndex = 39;

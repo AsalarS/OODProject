@@ -51,7 +51,35 @@ namespace OODProject
             InitializeComponent();
             showScreen(new announcementsS());
             this.ID = ID;
-            
+
+
+            string updateQuery = "UPDATE [dbo].[User] SET isNotificationRead = 1 WHERE UserID = @userID";
+
+            try
+            {
+                // Open the connection
+                con.Open();
+
+                // Create a SqlCommand to execute the update query
+                using (SqlCommand command = new SqlCommand(updateQuery, con))
+                {
+                    // Set the parameter value
+                    command.Parameters.AddWithValue("@userID", ID);
+
+                    // Execute the update query
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating isNotificationRead: " + ex.Message);
+            }
+            finally
+            {
+                // Close the connection
+                con.Close();
+            }
+
         }
 
         public void showScreen(object Form)
@@ -108,6 +136,11 @@ namespace OODProject
         private void label1_Click(object sender, EventArgs e)
         {
             showScreen(new announcementsS());
+        }
+
+        private void mainScreen_ControlAdded(object sender, ControlEventArgs e)
+        {
+            announcementsBtn.Image = Properties.Resources.announcements;
         }
     }
 }

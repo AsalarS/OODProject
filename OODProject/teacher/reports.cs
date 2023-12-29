@@ -122,24 +122,69 @@ namespace OODProject.teacher
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                adapter.Update(dt);
-                dataGridView1.DataSource = dt;
+                if (adapter != null && dt != null && dataGridView1 != null && dataGridView1.Rows.Count > 0)
+                {
+                    adapter.Update(dt);
+                    dataGridView1.DataSource = dt;
+
+                    // Open the file to write to.
+                    using (StreamWriter sw = new StreamWriter("grades.txt"))
+                    {
+                        // Iterate through each row
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            // Iterate through each cell in the row
+                            foreach (DataGridViewCell cell in row.Cells)
+                            {
+                                // Check if the cell value is not null before writing it to the file
+                                if (cell.Value != null)
+                                {
+                                    sw.Write(cell.Value.ToString() + "\t");
+                                }
+                            }
+                            // Move to the next line after writing all the values of a row
+                            sw.WriteLine();
+                        }
+                    }
+                    con.Open();
+                    // Fetch the BranchID associated with the UserID
+                    string selectSql = "SELECT BranchID FROM Teacher WHERE UserID = @UserID";
+                    SqlCommand selectCmd = new SqlCommand(selectSql, con);
+                    selectCmd.Parameters.AddWithValue("@UserID", id);
+                    int branchID = (int)selectCmd.ExecuteScalar();
+
+                    // Create a new row in the announcements table
+                    string insertSql = "INSERT INTO announcements (title, description, scope, branchID, FileData, fileName, date) VALUES (@title, @description, @scope, @branchID, @FileData, @fileName, @date)";
+                    SqlCommand insertCmd = new SqlCommand(insertSql, con);
+                    insertCmd.Parameters.AddWithValue("@title", "Grades");
+                    insertCmd.Parameters.AddWithValue("@description", "This is the file containing grades.");
+                    insertCmd.Parameters.AddWithValue("@scope", "students");
+                    insertCmd.Parameters.AddWithValue("@branchID", branchID);
+                    byte[] fileBytes = File.ReadAllBytes("grades.txt");
+                    insertCmd.Parameters.AddWithValue("@FileData", fileBytes);
+                    insertCmd.Parameters.AddWithValue("@fileName", "grades.txt");
+                    insertCmd.Parameters.AddWithValue("@date", DateTime.Now);
+
+                    // Execute the command
+                    insertCmd.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("Grades Sent to Admin!", "Success", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    Console.WriteLine("Adapter, DataTable, or DataGridView is null or no rows in DataGridView.");
+                }
             }
             catch (Exception ex)
             {
                 // Handle or log the exception
                 Console.WriteLine($"An error occurred: {ex.Message}");
             }
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
         }
 
        
