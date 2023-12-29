@@ -15,30 +15,30 @@ namespace OODProject.Admin
 {
     public partial class reports : Form
     {
-       
-            static String path = RemoveLastTwoDirectories(Directory.GetCurrentDirectory());
-            static String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "\"" + path + "\"" + ";Integrated Security=True";
-            static int sessionID;
-            SqlConnection con = new SqlConnection(connectionString);
+        static String path = RemoveLastTwoDirectories(Directory.GetCurrentDirectory());
+        static String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "\"" + path + "\"" + ";Integrated Security=True";
+        static int sessionID;
+        SqlConnection con = new SqlConnection(connectionString);
 
-
-            static string RemoveLastTwoDirectories(string path)
+        static string RemoveLastTwoDirectories(string path)
+        {
+            for (int i = 0; i < 2; i++)
             {
-                for (int i = 0; i < 2; i++)
+                path = Path.GetDirectoryName(path);
+
+                // Check if the path is null, meaning there are not enough directories to remove
+                if (path == null)
                 {
-                    path = Path.GetDirectoryName(path);
-
-                    // Check if the path is null, meaning there are not enough directories to remove
-                    if (path == null)
-                    {
-                        // Handle the case where there are not enough directories in the path
-                        return "Invalid Path";
-                    }
+                    // Handle the case where there are not enough directories in the path
+                    return "Invalid Path";
                 }
-
-                return path + "\\Database.mdf";
             }
-            public adminDash Dash { get; set; }
+
+            return path + "\\Database.mdf";
+        }
+
+        public adminDash Dash { get; set; }
+        private int annoucnementId;
 
         public reports(adminDash dash)
         {
@@ -54,39 +54,48 @@ namespace OODProject.Admin
         }
         private void rows()
         {
-            // Create a new SqlCommand to select the titles from the announcements table
-            SqlCommand cmd = new SqlCommand("SELECT title FROM announcements", con);
-            con.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
+            flowLayoutPanel1.Padding = new Padding(10);
 
-            // Initialize the array of UserControlNormalList controls
-            UserControlNormalList[] lists = new UserControlNormalList[20];
+            // Query to select announcements from the database
+            string query = "SELECT * FROM [dbo].[announcements]";
 
-            // Iterate through the rows returned by the query
-            int i = 0;
-            while (reader.Read() && i < lists.Length)
+            try
             {
-                // Retrieve the title from the current row
-                string title = reader["title"].ToString();
+                // Open the connection
+                con.Open();
 
-                // Create a new UserControlNormalList control and set its ItemName property to the title
-                lists[i] = new UserControlNormalList();
-                lists[i].ItemName = title;
+                // Create a SqlCommand to execute the query
+                using (SqlCommand command = new SqlCommand(query, con))
+                {
+                    // Execute the query and get the SqlDataReader
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Loop through the result set
+                        while (reader.Read())
+                        {
+                            // Create a new UserControlNormalList
+                            UserControlNormalList list = new UserControlNormalList();
+                            list.ItemName = reader["title"].ToString();
+                            flowLayoutPanel1.Controls.Add(list);
+                            list.Margin = new Padding(10);
 
-                // Add the control to the flowLayoutPanel1 and set its Margin property
-                flowLayoutPanel1.Controls.Add(lists[i]);
-                lists[i].Margin = new Padding(10);
+                            // Assign the announcementID to ID from the announcements table
+                            annoucnementId = Convert.ToInt32(reader["id"]);
 
-                // Attach the UserControl_Click event handler to the Clicked event
-                lists[i].Clicked += UserControl_Click;
-
-                // Move to the next iteration
-                i++;
+                            list.Clicked += UserControl_Click;
+                        }
+                    }
+                }
             }
-
-            // Close the SqlDataReader and the SqlConnection
-            reader.Close();
-            con.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading announcements: " + ex.Message);
+            }
+            finally
+            {
+                // Close the connection
+                con.Close();
+            }
         }
 
 
@@ -95,7 +104,7 @@ namespace OODProject.Admin
 
             if (Dash != null)
             {
-                Dash.showScreen(new InfoDetail(Dash, this));
+                Dash.showScreen(new reportDetail(Dash, this, annoucnementId));
             }
 
         }
