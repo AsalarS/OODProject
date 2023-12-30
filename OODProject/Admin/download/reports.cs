@@ -81,8 +81,9 @@ namespace OODProject.Admin
 
                             // Assign the announcementID to ID from the announcements table
                             annoucnementId = Convert.ToInt32(reader["id"]);
+                            list.Clicked += (sender, e) => UserControl_Click(sender, e, annoucnementId);
 
-                            list.Clicked += UserControl_Click;
+                           
                         }
                     }
                 }
@@ -99,7 +100,7 @@ namespace OODProject.Admin
         }
 
 
-        private void UserControl_Click(object sender, EventArgs e)
+        private void UserControl_Click(object sender, EventArgs e, int annoucnementId)
         {
 
             if (Dash != null)

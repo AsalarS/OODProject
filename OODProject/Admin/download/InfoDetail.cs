@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OODProject.Admin.download
 {
@@ -54,93 +55,114 @@ namespace OODProject.Admin.download
             this.info = info;
             infoUsed = true;
             this.id = id;
-            load_file();
+            comboBox1.Items.Clear();
+
+            // Define the SQL query
+            string queryStr = "SELECT BranchName FROM Branch";
+
+            // Create a new SqlCommand with the SQL query and the SqlConnection
+            SqlCommand cmd = new SqlCommand(queryStr, con);
+
+            // Open the SqlConnection
+            con.Open();
+
+            // Execute the SqlCommand and fetch the data into a SqlDataReader
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            // Iterate through the rows returned by the query
+            while (reader.Read())
+            {
+                // Add the branch name to the comboBox
+                comboBox1.Items.Add(reader["BranchName"].ToString());
+            }
+
+            // Close the SqlDataReader and the SqlConnection
+            reader.Close();
+            con.Close();
+
         }
 
-        public void load_file()
-        {
-            listView1.Items.Clear();
-            string fileExtension = "";
 
-            // Query to select announcements from the database
-            string query = @"SELECT * FROM [dbo].[announcements] WHERE [id] = @id";
-
-            try
-            {
-                // Open the connection
-                con.Open();
-
-                // Create a SqlCommand to execute the query
-                using (SqlCommand command = new SqlCommand(query, con))
-                {
-                    // Add the UserID parameter to the command
-                    command.Parameters.AddWithValue("@id", id);
-
-                    // Execute the query and get the SqlDataReader
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        // Loop through the result set
-                        while (reader.Read())
-                        {
-                            string fileName = reader["fileName"].ToString();
-                            byte[] fileData = (byte[])reader["FileData"];
-                            fileExtension = Path.GetExtension(fileName).ToUpper();
-                            ListViewItem item = new ListViewItem(fileName);
-                            item.Tag = fileData;
-
-                            switch (fileExtension)
-                            {
-                                case ".MP3":
-                                case ".MP2":
-                                    item.ImageIndex = 3;
-                                    break;
-                                case ".EXE":
-                                case ".COM":
-                                    item.ImageIndex = 5;
-                                    break;
-                                case ".MP4":
-                                case ".AVI":
-                                case ".MKV":
-                                    item.ImageIndex = 4;
-                                    break;
-                                case ".PDF":
-                                    item.ImageIndex = 2;
-                                    break;
-                                case ".DOC":
-                                case ".DOCX":
-                                    item.ImageIndex = 1;
-                                    break;
-                                case ".PNG":
-                                case ".JPG":
-                                case ".JPEG":
-                                    item.ImageIndex = 7;
-                                    break;
-                                default:
-                                    item.ImageIndex = 6;
-                                    break;
-                            }
-
-                            listView1.Items.Add(item);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading announcements: " + ex.Message);
-            }
-            finally
-            {
-                // Close the connection
-                con.Close();
-            }
-        }
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-             Dash.showScreen(new information(Dash)); 
-            
+            Dash.showScreen(new information(Dash));
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void submitBtn_Click(object sender, EventArgs e)
+        {
+            // Get the values of the checkboxes
+            bool isTeacherChecked = teachersCheckBox.Checked;
+            bool isStudentChecked = studentsCheckBox.Checked;
+
+            // Determine the scope based on the checkboxes
+            string scope;
+            if (isTeacherChecked && isStudentChecked)
+            {
+                scope = "All";
+            }
+            else if (isTeacherChecked)
+            {
+                scope = "teachers";
+            }
+            else if (isStudentChecked)
+            {
+                scope = "students";
+            }
+            else
+            {
+                throw new Exception("No checkbox was selected");
+            }
+
+            string title = recipientTextBox.Text;
+            string desc = mailBody.Text;
+
+            // Get the selected branch name in comboBox1
+            string selectedBranchName = comboBox1.SelectedItem.ToString();
+
+            // Define the SQL query to get the BranchID for the selected BranchName
+            string queryStr2 = "SELECT BranchID FROM Branch WHERE BranchName = @BranchName";
+            SqlCommand cmd2 = new SqlCommand(queryStr2, con);
+            cmd2.Parameters.AddWithValue("@BranchName", selectedBranchName);
+
+            // Open the SqlConnection
+            con.Open();
+
+            // Execute the SqlCommand and get the BranchID
+            int branchID = Convert.ToInt32(cmd2.ExecuteScalar());
+
+            // Close the SqlConnection
+            con.Close();
+
+            // Define the SQL query
+            string queryStr = "UPDATE announcements SET title=@Title, scope=@Scope, description=@Description, branchID=@BranchID WHERE id=@Id";
+
+            // Create a new SqlCommand with the SQL query and the SqlConnection
+            SqlCommand cmd = new SqlCommand(queryStr, con);
+
+            // Add the parameters to the SqlCommand
+            cmd.Parameters.AddWithValue("@Title", title);
+            cmd.Parameters.AddWithValue("@Scope", scope);
+            cmd.Parameters.AddWithValue("@Description", desc);
+            cmd.Parameters.AddWithValue("@BranchID", branchID);
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            // Open the SqlConnection
+            con.Open();
+
+            // Execute the SqlCommand
+            cmd.ExecuteNonQuery();
+
+            // Close the SqlConnection
+            con.Close();
+
         }
     }
 }

@@ -58,7 +58,7 @@ namespace OODProject.Admin
             flowLayoutPanel1.Padding = new Padding(10);
 
             // Query to select announcements from the database
-            string query = "SELECT * FROM [dbo].[announcements]";
+            string query = "SELECT * FROM [dbo].[announcements] where FileData IS NULL";
 
             try
             {
