@@ -134,18 +134,16 @@ namespace OODProject
 
         private void teacherLogin_CheckedChanged(object sender, EventArgs e)
         {
-            this.Hide();
-            teachDash teachDashboard = new teachDash();
-            teachDashboard.ShowDialog();
-            this.Close();
+            emailLogin.Text = "11";
+            passwordLogin.Text = "11";
+            button1_Click(sender, e);
         }
 
         private void studentLogin_CheckedChanged(object sender, EventArgs e)
         {
-            this.Hide();
-            studentDash studentDashboard = new studentDash();
-            studentDashboard.ShowDialog();
-            this.Close();
+            emailLogin.Text = "1";
+            passwordLogin.Text = "1";
+            button1_Click(sender, e);
         }
     }
 }
