@@ -145,5 +145,10 @@ namespace OODProject
             passwordLogin.Text = "1";
             button1_Click(sender, e);
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Please contact an admin to change your password, faustinoReyes@gmail.com", "Alert", MessageBoxButtons.OK);
+        }
     }
 }

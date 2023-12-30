@@ -98,6 +98,7 @@ namespace OODProject
                 if (fileData != null)
                 {
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "Text Files (.txt)|*.txt";
                     saveFileDialog.FileName = originalFileName;
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {

@@ -39,7 +39,6 @@ namespace OODProject.Admin
 
 
         public adminDash Dash { get; set; }
-        private int annoucnementId;
 
         public information(adminDash dash)
         {
@@ -81,9 +80,9 @@ namespace OODProject.Admin
                             list.Margin = new Padding(10);
 
                             // Assign the announcementID to ID from the announcements table
-                            annoucnementId = Convert.ToInt32(reader["id"]);
+                            int annoucnementId = Convert.ToInt32(reader["id"]);
 
-                            list.Clicked += UserControl_Click;
+                            list.Clicked += (sender, e) => UserControl_Click(sender, e, annoucnementId);
                         }
                     }
                 }
@@ -100,7 +99,7 @@ namespace OODProject.Admin
         }
 
 
-        private void UserControl_Click(object sender, EventArgs e)
+        private void UserControl_Click(object sender, EventArgs e, int annoucnementId)
         {
 
             if (Dash != null)

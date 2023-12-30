@@ -41,10 +41,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -189,18 +188,6 @@
             this.comboBox1.Size = new System.Drawing.Size(201, 21);
             this.comboBox1.TabIndex = 23;
             // 
-            // listBox2
-            // 
-            this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 25;
-            this.listBox2.Location = new System.Drawing.Point(690, 301);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBox2.Size = new System.Drawing.Size(205, 152);
-            this.listBox2.TabIndex = 25;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -219,25 +206,23 @@
             this.comboBox2.Size = new System.Drawing.Size(201, 21);
             this.comboBox2.TabIndex = 27;
             // 
-            // label6
+            // checkedListBox1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(495, 293);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 29);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "Students";
+            this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(500, 302);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(391, 196);
+            this.checkedListBox1.TabIndex = 33;
             // 
             // addCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 631);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox3);
@@ -274,9 +259,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }

@@ -45,7 +45,7 @@ namespace OODProject.Admin
             InitializeComponent();
             Dash = dash;
             coursesForm = Courses;
-
+            checkedListBox1.CheckOnClick = true;
             con.Open();
 
             string sql1 = "SELECT BranchId, BranchName FROM Branch";
@@ -59,6 +59,7 @@ namespace OODProject.Admin
                         comboBox1.Items.Add($"{reader["BranchID"]}: {reader["BranchName"]}");
                     }
                 }
+                
             }
 
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
@@ -72,10 +73,11 @@ namespace OODProject.Admin
                 {
                     while (reader.Read())
                     {
-                        listBox2.Items.Add($"{reader["StudentID"]}: {reader["FirstName"]} {reader["LastName"]}");
+                        checkedListBox1.Items.Add($"{reader["StudentID"]}: {reader["FirstName"]} {reader["LastName"]}");
                     }
                 }
             }
+            
 
             // Close connection
             con.Close();
@@ -111,6 +113,7 @@ namespace OODProject.Admin
                         while (reader.Read())
                         {
                             comboBox2.Items.Add($"{reader["UserID"]}: {reader["FirstName"]} {reader["LastName"]}");
+                            
                         }
                     }
                 }
@@ -132,7 +135,7 @@ namespace OODProject.Admin
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            string selectedStudents = string.Join(",", listBox2.SelectedItems.Cast<string>().Select(s => $"'{s.Split(':')[1].Trim()}'"));
+            string selectedStudents = string.Join(",", checkedListBox1.CheckedItems.Cast<string>().Select(s => $"'{s.Split(':')[1].Trim()}'"));
             // Get values from TextBoxes and ComboBoxes
             string courseName = textBox1.Text;
                 string courseDescription = textBox2.Text;
@@ -145,40 +148,47 @@ namespace OODProject.Admin
                 int teacherId = int.Parse(teacherInfo.Split(':')[0]);
 
             // Open connection
-
             con.Open();
+
             // Insert into Course table
             string sql = $@"INSERT INTO Course (CourseName, CourseDescription, CourseCredit, BranchID, TeacherID) 
-   VALUES ('{courseName}', '{courseDescription}', {courseCredits}, {branchId}, {teacherId});
-   SELECT SCOPE_IDENTITY() AS CourseID;";
-           
+  VALUES ('{courseName}', '{courseDescription}', {courseCredits}, {branchId}, {teacherId});
+  SELECT SCOPE_IDENTITY() AS CourseID;";
+
             using (var command = new SqlCommand(sql, con))
             {
                 int courseId = Convert.ToInt32(command.ExecuteScalar());
 
-                // Insert into StudentCourse table
-                string sql1 = $@"INSERT INTO StudentCourse (StudentID, CourseID) 
-       SELECT s.StudentID, {courseId} 
-       FROM Students s 
-       INNER JOIN [User] u ON s.UserID = u.UserID 
-       WHERE CONCAT(u.FirstName, ' ', u.LastName) IN ({selectedStudents})";
-                using (var command1 = new SqlCommand(sql1, con))
+                // Iterate over the checked items
+                for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
                 {
-                    command1.ExecuteNonQuery();
+                    // Get the student ID from the item
+                    string student = checkedListBox1.CheckedItems[i].ToString();
+                    int studentId = int.Parse(student.Split(':')[0].Trim());
+
+                    // Insert into StudentCourse table
+                    string sql1 = $@"INSERT INTO StudentCourse (StudentID, CourseID) 
+      VALUES ({studentId}, {courseId});";
+                    using (var command1 = new SqlCommand(sql1, con))
+                    {
+                        command1.ExecuteNonQuery();
+                    }
                 }
             }
 
             // Close connection
             con.Close();
 
-            // Close connection
-
             textBox1.Text = "";
             textBox2.Text = "";
             textBox3.Text = "";
             comboBox1.Text = "";
             comboBox2.Text = "";
-            }
+
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                checkedListBox1.SetItemCheckState(i, (false ? CheckState.Checked : CheckState.Unchecked));
+
+        }
 
         }
     }

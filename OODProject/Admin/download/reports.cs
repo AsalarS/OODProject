@@ -38,7 +38,6 @@ namespace OODProject.Admin
         }
 
         public adminDash Dash { get; set; }
-        private int annoucnementId;
 
         public reports(adminDash dash)
         {
@@ -57,7 +56,7 @@ namespace OODProject.Admin
             flowLayoutPanel1.Padding = new Padding(10);
 
             // Query to select announcements from the database
-            string query = "SELECT * FROM [dbo].[announcements]";
+            string query = "SELECT * FROM [dbo].[announcements] where FileData IS NOT NULL";
 
             try
             {
@@ -80,7 +79,8 @@ namespace OODProject.Admin
                             list.Margin = new Padding(10);
 
                             // Assign the announcementID to ID from the announcements table
-                            annoucnementId = Convert.ToInt32(reader["id"]);
+                            int annoucnementId = Convert.ToInt32(reader["id"]);
+                            
                             list.Clicked += (sender, e) => UserControl_Click(sender, e, annoucnementId);
 
                            

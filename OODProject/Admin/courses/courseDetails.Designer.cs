@@ -43,9 +43,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -211,15 +211,6 @@
             this.label5.TabIndex = 26;
             this.label5.Text = "Branch";
             // 
-            // listBox2
-            // 
-            this.listBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(569, 307);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(322, 169);
-            this.listBox2.TabIndex = 29;
-            // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
@@ -238,14 +229,23 @@
             this.label6.TabIndex = 31;
             this.label6.Text = "Teacher";
             // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(500, 314);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(391, 196);
+            this.checkedListBox1.TabIndex = 32;
+            // 
             // courseDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 631);
+            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.IDNumber);
@@ -286,8 +286,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }

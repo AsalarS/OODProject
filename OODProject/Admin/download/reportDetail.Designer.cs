@@ -55,11 +55,11 @@
             this.branchesLbl.AutoSize = true;
             this.branchesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.branchesLbl.ForeColor = System.Drawing.Color.White;
-            this.branchesLbl.Location = new System.Drawing.Point(362, 19);
+            this.branchesLbl.Location = new System.Drawing.Point(404, 16);
             this.branchesLbl.Name = "branchesLbl";
-            this.branchesLbl.Size = new System.Drawing.Size(258, 33);
+            this.branchesLbl.Size = new System.Drawing.Size(210, 33);
             this.branchesLbl.TabIndex = 0;
-            this.branchesLbl.Text = "Announcment Title";
+            this.branchesLbl.Text = "Announcement";
             // 
             // panel1
             // 
@@ -127,6 +127,7 @@
             this.listView1.SmallImageList = this.iconList;
             this.listView1.TabIndex = 43;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
             // 
             // iconList
             // 
@@ -166,6 +167,7 @@
             this.toolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
             // 
             // toolStripMenuItem1
             // 

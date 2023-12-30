@@ -50,11 +50,11 @@
             this.branchesLbl.AutoSize = true;
             this.branchesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.branchesLbl.ForeColor = System.Drawing.Color.White;
-            this.branchesLbl.Location = new System.Drawing.Point(362, 19);
+            this.branchesLbl.Location = new System.Drawing.Point(386, 20);
             this.branchesLbl.Name = "branchesLbl";
-            this.branchesLbl.Size = new System.Drawing.Size(258, 33);
+            this.branchesLbl.Size = new System.Drawing.Size(210, 33);
             this.branchesLbl.TabIndex = 0;
-            this.branchesLbl.Text = "Announcment Title";
+            this.branchesLbl.Text = "Announcement";
             // 
             // panel1
             // 

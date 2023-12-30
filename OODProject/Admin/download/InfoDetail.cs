@@ -1,5 +1,6 @@
 ﻿using OODProject.teacher;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -78,11 +79,42 @@ namespace OODProject.Admin.download
 
             // Close the SqlDataReader and the SqlConnection
             reader.Close();
+
             con.Close();
 
+
+            // Query to select announcements from the database
+            string query = @"SELECT a.*, b.BranchName 
+                FROM [dbo].[announcements] a 
+                INNER JOIN [dbo].[Branch] b ON a.BranchID = b.BranchID 
+                WHERE a.[id] = @id";
+
+
+            // Open the connection
+            con.Open();
+
+            // Create a SqlCommand to execute the query
+            using (SqlCommand command = new SqlCommand(query, con))
+            {
+                // Add the UserID parameter to the command
+                command.Parameters.AddWithValue("@id", id);
+
+                // Execute the query and get the SqlDataReader
+                using (SqlDataReader reader1 = command.ExecuteReader())
+                {
+                    while (reader1.Read())
+                    {
+                        recipientTextBox.Text = reader1["Title"].ToString();
+                        mailBody.Text = reader1["description"].ToString();
+                        comboBox1.Text = reader1["BranchName"].ToString();
+                    }
+                }
+            }
+            con.Close();
+
+
+
         }
-
-
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -162,6 +194,8 @@ namespace OODProject.Admin.download
 
             // Close the SqlConnection
             con.Close();
+
+            Dash.showScreen(new information(Dash));
 
         }
     }

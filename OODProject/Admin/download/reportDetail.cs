@@ -53,6 +53,9 @@ namespace OODProject.Admin.download
             this.repo = repo;
             this.id = id;
             load_file();
+
+
+            
         }
 
         public void load_file()
@@ -72,55 +75,37 @@ namespace OODProject.Admin.download
                 using (SqlCommand command = new SqlCommand(query, con))
                 {
                     // Add the UserID parameter to the command
+                    Console.WriteLine(id);
                     command.Parameters.AddWithValue("@id", id);
 
                     // Execute the query and get the SqlDataReader
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
+                        
+
                         // Loop through the result set
                         while (reader.Read())
                         {
-                            string fileName = reader["fileName"].ToString();
-                            byte[] fileData = (byte[])reader["FileData"];
-                            fileExtension = Path.GetExtension(fileName).ToUpper();
-                            ListViewItem item = new ListViewItem(fileName);
-                            item.Tag = fileData;
-
                             recipientTextBox.Text = reader["Title"].ToString();
                             textBox1.Text = reader["scope"].ToString();
                             mailBody.Text = reader["description"].ToString();
 
-                            switch (fileExtension)
+                            string fileName = reader["fileName"].ToString();
+                            byte[] fileData;
+                            if (reader["FileData"] != DBNull.Value)
                             {
-                                case ".MP3":
-                                case ".MP2":
-                                    item.ImageIndex = 3;
-                                    break;
-                                case ".EXE":
-                                case ".COM":
-                                    item.ImageIndex = 5;
-                                    break;
-                                case ".MP4":
-                                case ".AVI":
-                                case ".MKV":
-                                    item.ImageIndex = 4;
-                                    break;
-                                case ".PDF":
-                                    item.ImageIndex = 2;
-                                    break;
-                                case ".DOC":
-                                case ".DOCX":
-                                    item.ImageIndex = 1;
-                                    break;
-                                case ".PNG":
-                                case ".JPG":
-                                case ".JPEG":
-                                    item.ImageIndex = 7;
-                                    break;
-                                default:
-                                    item.ImageIndex = 6;
-                                    break;
+                                fileData = (byte[])reader["FileData"];
                             }
+                            else
+                            {
+                                fileData = null; 
+                            }
+
+                            // Load the files for the announcement
+                            /*string fileName = "grades.txt"; // Hardcoded file name*/
+                            ListViewItem item = new ListViewItem(fileName);
+                            item.Tag = fileData;
+                            item.ImageIndex = 6;
 
                             listView1.Items.Add(item);
                         }
@@ -170,6 +155,38 @@ namespace OODProject.Admin.download
             // Close the SqlConnection
             con.Close();
 
+            Dash.showScreen(new reports(Dash)); ;
+
+        }
+
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && listView1.SelectedItems.Count > 0)
+            {
+                contextMenuStrip1.Show(listView1, e.Location);
+            }
+        }
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listView1.SelectedItems[0];
+                string originalFileName = selectedItem.Text;
+                byte[] fileData = selectedItem.Tag as byte[];
+
+                if (fileData != null)
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "Text Files (.txt)|*.txt";
+                    saveFileDialog.FileName = originalFileName;
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllBytes(saveFileDialog.FileName, fileData);
+                        MessageBox.Show("File downloaded successfully!");
+                    }
+                }
+            }
         }
     }
 }
