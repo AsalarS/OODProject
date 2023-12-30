@@ -124,27 +124,6 @@ namespace OODProject
             this.Close();
         }
 
-        private void adminLogin_CheckedChanged(object sender, EventArgs e)
-        {
-            this.Hide();
-            adminDash adminDashboard = new adminDash();
-            adminDashboard.ShowDialog();
-            this.Close();
-        }
-
-        private void teacherLogin_CheckedChanged(object sender, EventArgs e)
-        {
-            emailLogin.Text = "11";
-            passwordLogin.Text = "11";
-            button1_Click(sender, e);
-        }
-
-        private void studentLogin_CheckedChanged(object sender, EventArgs e)
-        {
-            emailLogin.Text = "1";
-            passwordLogin.Text = "1";
-            button1_Click(sender, e);
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {

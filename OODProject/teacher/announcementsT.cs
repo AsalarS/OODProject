@@ -53,24 +53,24 @@ namespace OODProject.teacher
 
         private void rows(int userID)
         {
-
             flowLayoutPanel1.Padding = new Padding(10);
 
-            string query = @"SELECT DISTINCT a.*, a.FileData, a.fileName FROM [dbo].[announcements] a
-                             INNER JOIN [dbo].[Teacher] t ON a.[branchID] = t.[BranchID]
-                             WHERE a.[scope] != 'students' AND t.[UserID] = @UserID";
-
+            string query = @"SELECT a.*, a.FileData, a.fileName FROM [dbo].[announcements] a
+                   INNER JOIN [dbo].[Teacher] t ON a.[branchID] = t.[BranchID]
+                   WHERE a.[scope] != 'students' AND t.[UserID] = @UserID";
 
             try
             {
                 con.Open();
-
+                
                 using (SqlCommand command = new SqlCommand(query, con))
                 {
+                    
                     command.Parameters.AddWithValue("@UserID", userID);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
+                        Console.WriteLine("Executing reader");
                         while (reader.Read())
                         {
                             UserControl announcementControl;
@@ -90,7 +90,7 @@ namespace OODProject.teacher
                                 {
                                     ((UserControlAnnouncement)announcementControl).date = "Invalid Date";
                                 }
-                               ((UserControlAnnouncement)announcementControl).description = reader["description"].ToString();
+                                ((UserControlAnnouncement)announcementControl).description = reader["description"].ToString();
 
                                 // Load the files for the announcement
                                 string fileName = "grades.txt"; // Hardcoded file name
@@ -98,11 +98,11 @@ namespace OODProject.teacher
                                 item.Tag = fileData;
                                 item.ImageIndex = 6;
 
-
                                 ((UserControlAnnouncement)announcementControl).listViewFiles.Items.Add(item);
                             }
                             else
                             {
+                                Console.WriteLine("File data not found");
                                 announcementControl = new UserControlAnnouncementNoFile();
                                 ((UserControlAnnouncementNoFile)announcementControl).announcementtitle = reader["title"].ToString();
                                 DateTime dateValue;
@@ -114,7 +114,7 @@ namespace OODProject.teacher
                                 {
                                     ((UserControlAnnouncementNoFile)announcementControl).date = "Invalid Date";
                                 }
-                               ((UserControlAnnouncementNoFile)announcementControl).description = reader["description"].ToString();
+                                ((UserControlAnnouncementNoFile)announcementControl).description = reader["description"].ToString();
                             }
 
                             flowLayoutPanel1.Controls.Add(announcementControl);
@@ -125,6 +125,7 @@ namespace OODProject.teacher
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Error: " + ex.Message);
                 MessageBox.Show("Error loading announcements: " + ex.Message);
             }
             finally
@@ -132,6 +133,7 @@ namespace OODProject.teacher
                 con.Close();
             }
         }
+
 
 
     }

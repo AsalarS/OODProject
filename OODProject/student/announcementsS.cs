@@ -56,7 +56,7 @@ namespace OODProject.student
 
             flowLayoutPanel1.Padding = new Padding(10);
 
-            string query = @"SELECT DISTINCT a.*, a.FileData, a.fileName FROM [dbo].[announcements] a
+            string query = @"SELECT a.*, a.FileData, a.fileName FROM [dbo].[announcements] a
                              INNER JOIN [dbo].[Course] c ON a.[branchID] = c.[BranchID]
                              INNER JOIN [dbo].[StudentCourse] sc ON c.[CourseID] = sc.[CourseID]
                              INNER JOIN [dbo].[Students] s ON sc.[StudentID] = s.[StudentID]

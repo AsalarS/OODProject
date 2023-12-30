@@ -107,6 +107,9 @@ namespace OODProject.Admin.download
                         recipientTextBox.Text = reader1["Title"].ToString();
                         mailBody.Text = reader1["description"].ToString();
                         comboBox1.Text = reader1["BranchName"].ToString();
+
+                        teachersCheckBox.Checked = reader1["scope"].ToString() == "All" || reader1["scope"].ToString() == "teachers";
+                        studentsCheckBox.Checked = reader1["scope"].ToString() == "All" || reader1["scope"].ToString() == "students";
                     }
                 }
             }

@@ -32,10 +32,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.loginOption = new System.Windows.Forms.GroupBox();
-            this.studentLogin = new System.Windows.Forms.RadioButton();
-            this.teacherLogin = new System.Windows.Forms.RadioButton();
-            this.adminLogin = new System.Windows.Forms.RadioButton();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.passwordLogin = new System.Windows.Forms.TextBox();
@@ -44,7 +40,6 @@
             this.loginBtn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            this.loginOption.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +50,6 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(201)))), ((int)(((byte)(255)))));
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.loginOption);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.passwordLogin);
@@ -89,52 +83,6 @@
             this.label2.Size = new System.Drawing.Size(53, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "E-mail";
-            // 
-            // loginOption
-            // 
-            this.loginOption.Controls.Add(this.studentLogin);
-            this.loginOption.Controls.Add(this.teacherLogin);
-            this.loginOption.Controls.Add(this.adminLogin);
-            this.loginOption.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.loginOption.Location = new System.Drawing.Point(0, 531);
-            this.loginOption.Name = "loginOption";
-            this.loginOption.Size = new System.Drawing.Size(494, 100);
-            this.loginOption.TabIndex = 6;
-            this.loginOption.TabStop = false;
-            this.loginOption.Text = "Login Option";
-            // 
-            // studentLogin
-            // 
-            this.studentLogin.AutoSize = true;
-            this.studentLogin.Location = new System.Drawing.Point(330, 40);
-            this.studentLogin.Name = "studentLogin";
-            this.studentLogin.Size = new System.Drawing.Size(62, 17);
-            this.studentLogin.TabIndex = 2;
-            this.studentLogin.Text = "Student";
-            this.studentLogin.UseVisualStyleBackColor = true;
-            this.studentLogin.CheckedChanged += new System.EventHandler(this.studentLogin_CheckedChanged);
-            // 
-            // teacherLogin
-            // 
-            this.teacherLogin.AutoSize = true;
-            this.teacherLogin.Location = new System.Drawing.Point(197, 40);
-            this.teacherLogin.Name = "teacherLogin";
-            this.teacherLogin.Size = new System.Drawing.Size(65, 17);
-            this.teacherLogin.TabIndex = 1;
-            this.teacherLogin.Text = "Teacher";
-            this.teacherLogin.UseVisualStyleBackColor = true;
-            this.teacherLogin.CheckedChanged += new System.EventHandler(this.teacherLogin_CheckedChanged);
-            // 
-            // adminLogin
-            // 
-            this.adminLogin.AutoSize = true;
-            this.adminLogin.Location = new System.Drawing.Point(62, 40);
-            this.adminLogin.Name = "adminLogin";
-            this.adminLogin.Size = new System.Drawing.Size(54, 17);
-            this.adminLogin.TabIndex = 0;
-            this.adminLogin.Text = "Admin";
-            this.adminLogin.UseVisualStyleBackColor = true;
-            this.adminLogin.CheckedChanged += new System.EventHandler(this.adminLogin_CheckedChanged);
             // 
             // button3
             // 
@@ -237,8 +185,6 @@
             this.Load += new System.EventHandler(this.login_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.loginOption.ResumeLayout(false);
-            this.loginOption.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -254,10 +200,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox passwordLogin;
         private System.Windows.Forms.TextBox emailLogin;
-        private System.Windows.Forms.GroupBox loginOption;
-        private System.Windows.Forms.RadioButton studentLogin;
-        private System.Windows.Forms.RadioButton teacherLogin;
-        private System.Windows.Forms.RadioButton adminLogin;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
     }
