@@ -56,9 +56,11 @@ namespace OODProject.student
 
             // Query to select announcements from the database
             string query = @"SELECT a.* FROM [dbo].[announcements] a
-               INNER JOIN [dbo].[Course] c ON a.[branchID] = c.[BranchID]
-               INNER JOIN [dbo].[Students] s ON c.[CourseID] = s.[CourseID]
-               WHERE a.[scope] = 'students' AND s.[UserID] = @UserID";
+   INNER JOIN [dbo].[Course] c ON a.[branchID] = c.[BranchID]
+   INNER JOIN [dbo].[StudentCourse] sc ON c.[CourseID] = sc.[CourseID]
+   INNER JOIN [dbo].[Students] s ON sc.[StudentID] = s.[StudentID]
+   WHERE a.[scope] = 'students' AND s.[UserID] = @UserID";
+
 
             try
             {

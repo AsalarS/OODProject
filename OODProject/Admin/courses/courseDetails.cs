@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OODProject.student;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -168,6 +169,63 @@ namespace OODProject.Admin
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void submitBtn_Click(object sender, EventArgs e)
+        {
+            string courseName = textBox1.Text;
+            string courseDescription = textBox2.Text;
+            int courseCredits = int.Parse(textBox3.Text);
+            string branchInfo = comboBox1.SelectedItem.ToString();
+            string teacherInfo = comboBox2.SelectedItem.ToString();
+
+            // Extract BranchID and TeacherID from the selected items
+            int branchId = int.Parse(branchInfo.Split(':')[0]);
+            int teacherId = int.Parse(teacherInfo.Split(':')[0]);
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                // Update Course table
+                string sql = $@"UPDATE Course 
+                  SET CourseName = '{courseName}', 
+                      CourseDescription = '{courseDescription}', 
+                      CourseCredit = {courseCredits}, 
+                      BranchID = {branchId}, 
+                      TeacherID = {teacherId} 
+                  WHERE CourseID = @CourseID";
+
+                using (var command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("@CourseID", id);
+                    command.ExecuteNonQuery();
+                }
+
+                // If the course has students assigned to it, update the StudentCourse table
+                if (listBox2.SelectedItems.Count > 0)
+                {
+                    string selectedStudents = string.Join(",", listBox2.SelectedItems.Cast<string>().Select(s => $"'{s.Split(':')[1].Trim()}'"));
+
+                    string sql1 = $@"INSERT INTO StudentCourse (StudentID, CourseID) 
+                      SELECT s.StudentID, @CourseID
+                      FROM Students s 
+                      INNER JOIN [User] u ON s.UserID = u.UserID 
+                      WHERE CONCAT(u.FirstName, ' ', u.LastName) IN ({selectedStudents})";
+
+                    using (var command1 = new SqlCommand(sql1, con))
+                    {
+                        command1.Parameters.AddWithValue("@CourseID", id);
+                        command1.ExecuteNonQuery();
+                    }
+                }
+
+                con.Close();
+               
+            }
+            MessageBox.Show("Course updated successfully.", "Success", MessageBoxButtons.OK);
+            Dash.showScreen(new course(Dash));
 
         }
     }

@@ -102,6 +102,7 @@
             this.submitBtn.TabIndex = 38;
             this.submitBtn.Text = "Announce";
             this.submitBtn.UseVisualStyleBackColor = false;
+            this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // mailBody
             // 

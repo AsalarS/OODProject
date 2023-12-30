@@ -52,6 +52,7 @@ namespace OODProject.Admin.download
             this.Dash = Dash;
             this.repo = repo;
             this.id = id;
+            load_file();
         }
 
         public void load_file()
@@ -84,6 +85,10 @@ namespace OODProject.Admin.download
                             fileExtension = Path.GetExtension(fileName).ToUpper();
                             ListViewItem item = new ListViewItem(fileName);
                             item.Tag = fileData;
+
+                            recipientTextBox.Text = reader["Title"].ToString();
+                            textBox1.Text = reader["scope"].ToString();
+                            mailBody.Text = reader["description"].ToString();
 
                             switch (fileExtension)
                             {
@@ -136,6 +141,35 @@ namespace OODProject.Admin.download
         private void button1_Click(object sender, EventArgs e)
         {
             Dash.showScreen(new reports(Dash));
+        }
+
+        private void submitBtn_Click(object sender, EventArgs e)
+        {
+            string title = recipientTextBox.Text;
+            string scope = textBox1.Text;
+            string desc = mailBody.Text;
+
+            // Define the SQL query
+            string queryStr = "UPDATE announcements SET title=@Title, scope=@Scope, description=@Description WHERE id=@Id";
+
+            // Create a new SqlCommand with the SQL query and the SqlConnection
+            SqlCommand cmd = new SqlCommand(queryStr, con);
+
+            // Add the parameters to the SqlCommand
+            cmd.Parameters.AddWithValue("@Title", title);
+            cmd.Parameters.AddWithValue("@Scope", scope);
+            cmd.Parameters.AddWithValue("@Description", desc);
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            // Open the SqlConnection
+            con.Open();
+
+            // Execute the SqlCommand
+            cmd.ExecuteNonQuery();
+
+            // Close the SqlConnection
+            con.Close();
+
         }
     }
 }
