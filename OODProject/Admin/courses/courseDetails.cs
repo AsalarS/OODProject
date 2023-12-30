@@ -52,16 +52,20 @@ namespace OODProject.Admin
             this.id = id;
 
             string sql = @"SELECT 
-               c.CourseID, 
-               c.CourseName, 
-               c.CourseCredit, 
-               c.CourseDescription, 
-               b.BranchName, 
-               u.FirstName + ' ' + u.LastName as TeacherName
-               FROM Course c
-               INNER JOIN Branch b ON c.BranchID = b.BranchID
-               INNER JOIN [User] u ON c.TeacherID = u.UserID
-               WHERE c.CourseID = @CourseId";
+  c.CourseID, 
+u.Userid,
+  c.CourseName, 
+  c.CourseCredit, 
+  c.CourseDescription,
+  b.BranchID,
+  b.BranchName, 
+  t.TeacherID,
+  u.FirstName + ' ' + u.LastName as TeacherName
+  FROM Course c
+  INNER JOIN Branch b ON c.BranchID = b.BranchID
+  INNER JOIN [User] u ON c.TeacherID = u.UserID
+  INNER JOIN Teacher t ON u.UserID = t.UserID
+  WHERE c.CourseID = @CourseId";
 
             using (var command = new SqlCommand(sql, con))
             {
@@ -77,10 +81,10 @@ namespace OODProject.Admin
                         IDNumber.Text = reader["CourseID"].ToString();
 
                         // Set the selected branch name in ComboBox1
-                        comboBox1.Text = reader["BranchName"].ToString();
+                        comboBox1.Text = $"{reader["BranchID"]}: {reader["BranchName"]}".ToString();
 
                         // Set the selected teacher name in ComboBox2
-                        comboBox2.Text = reader["TeacherName"].ToString();
+                        comboBox2.Text = $"{reader["Userid"]}: {reader["TeacherName"]}".ToString();
                     }
                 }
                 con.Close();
@@ -118,16 +122,16 @@ namespace OODProject.Admin
                     {
                         comboBox1.Items.Add($"{reader["BranchID"]}: {reader["BranchName"]}");
                     }
+
+                    comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+
+
                 }
             }
 
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+                }
 
-
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+                private void button2_Click(object sender, EventArgs e)
         {
             Dash.showScreen(new course(Dash));
         }
@@ -170,6 +174,27 @@ namespace OODProject.Admin
         private void deleteBtn_Click(object sender, EventArgs e)
         {
 
+            DialogResult confirmDelete = MessageBox.Show("Are you sure you want to delete this course?", "Confirm", MessageBoxButtons.YesNo);
+
+            if (confirmDelete == DialogResult.Yes)
+            {
+                con.Open();
+                string sql = "DELETE FROM Course WHERE CourseID = @CourseID";
+                using (var command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("@CourseID", id);
+                    command.ExecuteNonQuery();
+                }
+                con.Close();
+
+                MessageBox.Show("Course deleted successfully.", "Success", MessageBoxButtons.OK);
+            }
+
+            Dash.showScreen(new course(Dash));
+
+
+
+
         }
 
         private void submitBtn_Click(object sender, EventArgs e)
@@ -177,8 +202,25 @@ namespace OODProject.Admin
             string courseName = textBox1.Text;
             string courseDescription = textBox2.Text;
             int courseCredits = int.Parse(textBox3.Text);
-            string branchInfo = comboBox1.SelectedItem.ToString();
-            string teacherInfo = comboBox2.SelectedItem.ToString();
+            string branchInfo;
+            string teacherInfo;
+            if (comboBox1.SelectedItem == null)
+            {
+                branchInfo = comboBox1.Text;
+            }
+            else
+            {
+                branchInfo = comboBox1.SelectedItem.ToString();
+            }
+            if (comboBox1.SelectedItem == null)
+            {
+                teacherInfo = comboBox2.Text;
+            }
+            else
+            {
+
+                 teacherInfo = comboBox2.SelectedItem.ToString();
+            }
 
             // Extract BranchID and TeacherID from the selected items
             int branchId = int.Parse(branchInfo.Split(':')[0]);
