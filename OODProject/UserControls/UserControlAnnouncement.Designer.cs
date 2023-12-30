@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlAnnouncement));
             this.titleLabel = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewFiles = new System.Windows.Forms.ListView();
             this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,27 +45,27 @@
             this.titleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(53, 30);
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(26, 14);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(247, 39);
+            this.titleLabel.Size = new System.Drawing.Size(231, 37);
             this.titleLabel.TabIndex = 2;
             this.titleLabel.Text = "Announce Title";
             // 
-            // listView1
+            // listViewFiles
             // 
-            this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(213)))), ((int)(((byte)(213)))));
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView1.HideSelection = false;
-            this.listView1.LargeImageList = this.iconList;
-            this.listView1.Location = new System.Drawing.Point(731, 18);
-            this.listView1.Name = "listView1";
-            this.listView1.Scrollable = false;
-            this.listView1.Size = new System.Drawing.Size(141, 140);
-            this.listView1.SmallImageList = this.iconList;
-            this.listView1.TabIndex = 36;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
+            this.listViewFiles.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(213)))), ((int)(((byte)(213)))));
+            this.listViewFiles.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewFiles.HideSelection = false;
+            this.listViewFiles.LargeImageList = this.iconList;
+            this.listViewFiles.Location = new System.Drawing.Point(807, 23);
+            this.listViewFiles.Name = "listViewFiles";
+            this.listViewFiles.Scrollable = false;
+            this.listViewFiles.Size = new System.Drawing.Size(100, 100);
+            this.listViewFiles.SmallImageList = this.iconList;
+            this.listViewFiles.TabIndex = 36;
+            this.listViewFiles.UseCompatibleStateImageBehavior = false;
+            this.listViewFiles.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
             // 
             // iconList
             // 
@@ -101,10 +101,10 @@
             this.descTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.descTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
-            this.descTextBox.Location = new System.Drawing.Point(60, 79);
+            this.descTextBox.Location = new System.Drawing.Point(33, 56);
             this.descTextBox.Name = "descTextBox";
             this.descTextBox.ReadOnly = true;
-            this.descTextBox.Size = new System.Drawing.Size(651, 81);
+            this.descTextBox.Size = new System.Drawing.Size(757, 67);
             this.descTextBox.TabIndex = 38;
             this.descTextBox.Text = "Loream IIpsum";
             // 
@@ -115,7 +115,7 @@
             this.dateLbl.AutoSize = true;
             this.dateLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateLbl.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.dateLbl.Location = new System.Drawing.Point(603, 42);
+            this.dateLbl.Location = new System.Drawing.Point(682, 23);
             this.dateLbl.Name = "dateLbl";
             this.dateLbl.Size = new System.Drawing.Size(108, 25);
             this.dateLbl.TabIndex = 39;
@@ -128,10 +128,10 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
             this.Controls.Add(this.dateLbl);
             this.Controls.Add(this.descTextBox);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listViewFiles);
             this.Controls.Add(this.titleLabel);
             this.Name = "UserControlAnnouncement";
-            this.Size = new System.Drawing.Size(930, 180);
+            this.Size = new System.Drawing.Size(930, 144);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -141,11 +141,11 @@
         #endregion
 
         private System.Windows.Forms.Label titleLabel;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ImageList iconList;
         private System.Windows.Forms.RichTextBox descTextBox;
         private System.Windows.Forms.Label dateLbl;
+        public System.Windows.Forms.ListView listViewFiles;
     }
 }

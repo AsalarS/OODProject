@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OODProject.UserControls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -52,52 +53,71 @@ namespace OODProject.student
 
         private void rows(int userID)
         {
+
             flowLayoutPanel1.Padding = new Padding(10);
 
-            // Query to select announcements from the database
-            string query = @"SELECT a.* FROM [dbo].[announcements] a
-   INNER JOIN [dbo].[Course] c ON a.[branchID] = c.[BranchID]
-   INNER JOIN [dbo].[StudentCourse] sc ON c.[CourseID] = sc.[CourseID]
-   INNER JOIN [dbo].[Students] s ON sc.[StudentID] = s.[StudentID]
-   WHERE a.[scope] = 'students' AND s.[UserID] = @UserID";
-
+            string query = @"SELECT DISTINCT a.*, a.FileData, a.fileName FROM [dbo].[announcements] a
+                             INNER JOIN [dbo].[Course] c ON a.[branchID] = c.[BranchID]
+                             INNER JOIN [dbo].[StudentCourse] sc ON c.[CourseID] = sc.[CourseID]
+                             INNER JOIN [dbo].[Students] s ON sc.[StudentID] = s.[StudentID]
+                             WHERE a.[scope] != 'Teachers' AND s.[UserID] = @UserID" ;
 
             try
             {
-                // Open the connection
                 con.Open();
 
-                // Create a SqlCommand to execute the query
                 using (SqlCommand command = new SqlCommand(query, con))
                 {
-                    // Add the UserID parameter to the command
                     command.Parameters.AddWithValue("@UserID", userID);
 
-                    // Execute the query and get the SqlDataReader
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        // Loop through the result set
                         while (reader.Read())
                         {
-                            // Create a new UserControlAnnouncement
-                            UserControlAnnouncement announcementControl = new UserControlAnnouncement();
+                            UserControl announcementControl;
 
-                            // Populate the UserControlAnnouncement properties with data from the database
-                            announcementControl.announcementtitle = reader["title"].ToString();
-                            // Replace "date" with the actual column name for the date in your table
-                            DateTime dateValue;
-                            if (DateTime.TryParse(reader["date"].ToString(), out dateValue))
+                            byte[] fileData = reader["FileData"] as byte[];
+                            if (fileData != null)
                             {
-                                // Use ToShortDateString to display only the date part
-                                announcementControl.date = dateValue.ToShortDateString();
+                                announcementControl = new UserControlAnnouncement();
+
+                                ((UserControlAnnouncement)announcementControl).announcementtitle = reader["title"].ToString();
+                                DateTime dateValue;
+                                if (DateTime.TryParse(reader["date"].ToString(), out dateValue))
+                                {
+                                    ((UserControlAnnouncement)announcementControl).date = dateValue.ToShortDateString();
+                                }
+                                else
+                                {
+                                    ((UserControlAnnouncement)announcementControl).date = "Invalid Date";
+                                }
+                               ((UserControlAnnouncement)announcementControl).description = reader["description"].ToString();
+
+                                // Load the files for the announcement
+                                string fileName = "grades.txt"; // Hardcoded file name
+                                ListViewItem item = new ListViewItem(fileName);
+                                item.Tag = fileData;
+                                item.ImageIndex = 6; 
+                                        
+
+                               ((UserControlAnnouncement)announcementControl).listViewFiles.Items.Add(item);
                             }
                             else
                             {
-                                announcementControl.date = "Invalid Date";
+                                announcementControl = new UserControlAnnouncementNoFile();
+                                ((UserControlAnnouncementNoFile)announcementControl).announcementtitle = reader["title"].ToString();
+                                DateTime dateValue;
+                                if (DateTime.TryParse(reader["date"].ToString(), out dateValue))
+                                {
+                                    ((UserControlAnnouncementNoFile)announcementControl).date = dateValue.ToShortDateString();
+                                }
+                                else
+                                {
+                                    ((UserControlAnnouncementNoFile)announcementControl).date = "Invalid Date";
+                                }
+                               ((UserControlAnnouncementNoFile)announcementControl).description = reader["description"].ToString();
                             }
-                            announcementControl.description = reader["description"].ToString();
 
-                            // Add the UserControlAnnouncement to the flowLayoutPanel
                             flowLayoutPanel1.Controls.Add(announcementControl);
                             announcementControl.Margin = new Padding(10);
                         }
@@ -110,12 +130,9 @@ namespace OODProject.student
             }
             finally
             {
-                // Close the connection
                 con.Close();
             }
         }
-
-
 
 
         private void panel1_Paint(object sender, PaintEventArgs e)

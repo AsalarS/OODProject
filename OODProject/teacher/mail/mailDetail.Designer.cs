@@ -62,6 +62,7 @@
             this.mailBody.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
             this.mailBody.Location = new System.Drawing.Point(32, 138);
             this.mailBody.Name = "mailBody";
+            this.mailBody.ReadOnly = true;
             this.mailBody.Size = new System.Drawing.Size(918, 383);
             this.mailBody.TabIndex = 17;
             this.mailBody.Text = "";
@@ -149,13 +150,14 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Image = global::OODProject.Properties.Resources.down_arrow;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
             this.toolStripMenuItem1.Text = "Download";
             // 
             // mailDetail

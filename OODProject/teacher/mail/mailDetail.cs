@@ -59,7 +59,7 @@ namespace OODProject.teacher.mail
             this.emailId = emailId; 
             con.Open();
 
-            string sql = "SELECT U.Email, E.Content FROM Email E INNER JOIN [User] U ON E.SenderID = U.UserID WHERE E.EmailID = @emailId";
+            string sql = "SELECT U.Email, E.Content, E.Subject FROM Email E INNER JOIN [User] U ON E.SenderID = U.UserID WHERE E.EmailID = @emailId";
 
             using (var command = new SqlCommand(sql, con))
             {
@@ -71,6 +71,7 @@ namespace OODProject.teacher.mail
                     {
                         recipientTextBox.Text = reader.GetString(0); // Set the User's Email
                         mailBody.Text = reader.GetString(1); // Set the Content
+                        branchesLbl.Text = reader.GetString(2);
                     }
                 }
             }
@@ -83,21 +84,25 @@ namespace OODProject.teacher.mail
         public void load_files()
         {
             listView1.Items.Clear();
-            con.Open();
-            string sql = "SELECT OriginalFileName FROM EmailAttachments WHERE EmailID = @emailId";
+
+            string sql = "SELECT FileData, OriginalFileName FROM EmailAttachments WHERE EmailID = @EmailID";
 
             using (var command = new SqlCommand(sql, con))
             {
-                command.Parameters.AddWithValue("@emailId", emailId);
+                command.Parameters.AddWithValue("@EmailID", emailId);
 
+                con.Open();
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        string originalFileName = reader["OriginalFileName"].ToString();
-                        string fileExtension = Path.GetExtension(originalFileName).ToUpper();
-                        ListViewItem item = new ListViewItem(originalFileName);
+                        byte[] fileData = (byte[])reader["FileData"];
+                        string fileName = reader["OriginalFileName"].ToString();
 
+                        ListViewItem item = new ListViewItem(fileName);
+                        item.Tag = fileData;
+
+                        string fileExtension = Path.GetExtension(fileName).ToUpper();
                         switch (fileExtension)
                         {
                             case ".MP3":
@@ -133,8 +138,8 @@ namespace OODProject.teacher.mail
                         listView1.Items.Add(item);
                     }
                 }
+                con.Close();
             }
-            con.Close();
         }
 
 
@@ -148,6 +153,27 @@ namespace OODProject.teacher.mail
             if (e.Button == MouseButtons.Right && listView1.SelectedItems.Count > 0)
             {
                 contextMenuStrip1.Show(listView1, e.Location);
+            }
+        }
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listView1.SelectedItems[0];
+                string originalFileName = selectedItem.Text;
+                byte[] fileData = selectedItem.Tag as byte[];
+
+                if (fileData != null)
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.FileName = originalFileName;
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllBytes(saveFileDialog.FileName, fileData);
+                        MessageBox.Show("File downloaded successfully!");
+                    }
+                }
             }
         }
     }

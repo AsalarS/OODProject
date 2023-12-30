@@ -71,14 +71,13 @@ namespace OODProject.student
                 using (var reader = command.ExecuteReader())
                 {
                     int i = 0;
-                    int emailID = 0; // Declare the emailID variable
                     while (reader.Read() && i < 20)
                     {
                         UserControlMail list = new UserControlMail();
                         list.ItemName = reader.GetString(0);
                         list.mailContent = reader.GetString(1);
                         list.date = reader.GetDateTime(2).ToString("MM/dd/yyyy");
-                        emailID = reader.GetInt32(3); // Update the emailID variable
+                        int emailID = reader.GetInt32(3); // Update the emailID variable
                         flowLayoutPanel1.Controls.Add(list);
                         list.Margin = new Padding(10);
 
@@ -97,6 +96,7 @@ namespace OODProject.student
             if (dash != null)
             {
                 dash.showScreen(new mailDetailS(dash, this, emailID));
+                Console.WriteLine(emailID);
             }
 
         }

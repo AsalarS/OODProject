@@ -30,8 +30,8 @@
         {
             this.branchesLbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.attachBtn = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +60,21 @@
             this.panel1.Size = new System.Drawing.Size(984, 65);
             this.panel1.TabIndex = 1;
             // 
+            // attachBtn
+            // 
+            this.attachBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.attachBtn.FlatAppearance.BorderSize = 0;
+            this.attachBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.attachBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attachBtn.ForeColor = System.Drawing.Color.White;
+            this.attachBtn.Location = new System.Drawing.Point(909, 0);
+            this.attachBtn.Name = "attachBtn";
+            this.attachBtn.Size = new System.Drawing.Size(75, 65);
+            this.attachBtn.TabIndex = 5;
+            this.attachBtn.Text = "+";
+            this.attachBtn.UseVisualStyleBackColor = true;
+            this.attachBtn.Click += new System.EventHandler(this.attachBtn_Click);
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
@@ -68,21 +83,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(984, 566);
             this.flowLayoutPanel1.TabIndex = 4;
-            // 
-            // attachBtn
-            // 
-            this.attachBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.attachBtn.FlatAppearance.BorderSize = 0;
-            this.attachBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.attachBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.attachBtn.ForeColor = System.Drawing.Color.White;
-            this.attachBtn.Image = global::OODProject.Properties.Resources.attach_file;
-            this.attachBtn.Location = new System.Drawing.Point(909, 0);
-            this.attachBtn.Name = "attachBtn";
-            this.attachBtn.Size = new System.Drawing.Size(75, 65);
-            this.attachBtn.TabIndex = 5;
-            this.attachBtn.UseVisualStyleBackColor = true;
-            this.attachBtn.Click += new System.EventHandler(this.attachBtn_Click);
             // 
             // mailS
             // 

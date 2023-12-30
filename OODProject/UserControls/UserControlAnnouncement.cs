@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -9,27 +10,46 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OODProject
 {
     public partial class UserControlAnnouncement : UserControl
     {
+        static String path = RemoveLastTwoDirectories(Directory.GetCurrentDirectory());
+        static String connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + "\"" + path + "\"" + ";Integrated Security=True";
+        static int sessionID;
+        SqlConnection con = new SqlConnection(connectionString);
+
+        static string RemoveLastTwoDirectories(string path)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                path = Path.GetDirectoryName(path);
+
+                // Check if the path is null, meaning there are not enough directories to remove
+                if (path == null)
+                {
+                    // Handle the case where there are not enough directories in the path
+                    return "Invalid Path";
+                }
+            }
+
+            return path + "\\Database.mdf";
+        }
+
         public UserControlAnnouncement()
         {
             InitializeComponent();
-            load_file();
-            this.MouseClick += OnClick;
-            this.titleLabel.Click += OnClick;
-            this.descTextBox.Click += OnClick;
-            this.dateLbl.Click += OnClick;
         }
-
-        public event EventHandler Clicked;
-
-        private void OnClick(object sender, EventArgs e)
+        public UserControlAnnouncement(int iD)
         {
-            Clicked?.Invoke(this, e);
+            InitializeComponent();
+            ID = iD;
+
         }
+
+        private int ID;
 
         #region Properties
 
@@ -58,70 +78,34 @@ namespace OODProject
 
         #endregion
 
-        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "files");
-
-        public void load_file()
-        {
-            DirectoryInfo fileList;
-            try
-            {
-                listView1.Items.Clear();
-                fileList = new DirectoryInfo(filePath);
-                FileInfo[] files = fileList.GetFiles();
-                string fileExtension = "";
-
-                for (int i = 0; i < files.Length; i++)
-                {
-                    fileExtension = files[i].Extension.ToUpper();
-                    switch (fileExtension)
-                    {
-                        case ".MP3":
-                        case ".MP2":
-                            listView1.Items.Add(files[i].Name, 3);
-                            break;
-                        case ".EXE":
-                        case ".COM":
-                            listView1.Items.Add(files[i].Name, 5);
-                            break;
-
-                        case ".MP4":
-                        case ".AVI":
-                        case ".MKV":
-                            listView1.Items.Add(files[i].Name, 4);
-                            break;
-                        case ".PDF":
-                            listView1.Items.Add(files[i].Name, 2);
-                            break;
-                        case ".DOC":
-                        case ".DOCX":
-                            listView1.Items.Add(files[i].Name, 1);
-                            break;
-                        case ".PNG":
-                        case ".JPG":
-                        case ".JPEG":
-                            listView1.Items.Add(files[i].Name, 7);
-                            break;
-
-                        default:
-                            listView1.Items.Add(files[i].Name, 6);
-                            break;
-                    }
-                }
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }
-
+       
         private void listView1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right && listView1.SelectedItems.Count > 0)
+            if (e.Button == MouseButtons.Right && listViewFiles.SelectedItems.Count > 0)
             {
-                contextMenuStrip1.Show(listView1, e.Location);
+                contextMenuStrip1.Show(listViewFiles, e.Location);
             }
         }
 
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            if (listViewFiles.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listViewFiles.SelectedItems[0];
+                string originalFileName = selectedItem.Text;
+                byte[] fileData = selectedItem.Tag as byte[];
 
+                if (fileData != null)
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.FileName = originalFileName;
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllBytes(saveFileDialog.FileName, fileData);
+                        MessageBox.Show("File downloaded successfully!");
+                    }
+                }
+            }
         }
     }
 }

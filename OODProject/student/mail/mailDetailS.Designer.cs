@@ -34,10 +34,10 @@
             this.branchesLbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.mailBody = new System.Windows.Forms.RichTextBox();
             this.recipientTextBox = new System.Windows.Forms.TextBox();
-            this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
@@ -100,6 +100,19 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
             // 
+            // iconList
+            // 
+            this.iconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iconList.ImageStream")));
+            this.iconList.TransparentColor = System.Drawing.Color.Transparent;
+            this.iconList.Images.SetKeyName(0, "file.png");
+            this.iconList.Images.SetKeyName(1, "doc.png");
+            this.iconList.Images.SetKeyName(2, "pdf.png");
+            this.iconList.Images.SetKeyName(3, "mp3.png");
+            this.iconList.Images.SetKeyName(4, "mp4.png");
+            this.iconList.Images.SetKeyName(5, "exe.png");
+            this.iconList.Images.SetKeyName(6, "unknown.png");
+            this.iconList.Images.SetKeyName(7, "png.png");
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -118,6 +131,7 @@
             this.mailBody.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(38)))), ((int)(((byte)(51)))));
             this.mailBody.Location = new System.Drawing.Point(33, 139);
             this.mailBody.Name = "mailBody";
+            this.mailBody.ReadOnly = true;
             this.mailBody.Size = new System.Drawing.Size(918, 383);
             this.mailBody.TabIndex = 23;
             this.mailBody.Text = "";
@@ -131,31 +145,19 @@
             this.recipientTextBox.Size = new System.Drawing.Size(784, 29);
             this.recipientTextBox.TabIndex = 22;
             // 
-            // iconList
-            // 
-            this.iconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iconList.ImageStream")));
-            this.iconList.TransparentColor = System.Drawing.Color.Transparent;
-            this.iconList.Images.SetKeyName(0, "file.png");
-            this.iconList.Images.SetKeyName(1, "doc.png");
-            this.iconList.Images.SetKeyName(2, "pdf.png");
-            this.iconList.Images.SetKeyName(3, "mp3.png");
-            this.iconList.Images.SetKeyName(4, "mp4.png");
-            this.iconList.Images.SetKeyName(5, "exe.png");
-            this.iconList.Images.SetKeyName(6, "unknown.png");
-            this.iconList.Images.SetKeyName(7, "png.png");
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Image = global::OODProject.Properties.Resources.down_arrow;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
             this.toolStripMenuItem1.Text = "Download";
             // 
             // mailDetailS

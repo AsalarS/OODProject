@@ -290,6 +290,12 @@
     <Compile Include="UserControls\UserControlAnnouncement.Designer.cs">
       <DependentUpon>UserControlAnnouncement.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UserControlAnnouncementNoFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlAnnouncementNoFile.Designer.cs">
+      <DependentUpon>UserControlAnnouncementNoFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UserControlDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -429,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UserControlAnnouncement.resx">
       <DependentUpon>UserControlAnnouncement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserControlAnnouncementNoFile.resx">
+      <DependentUpon>UserControlAnnouncementNoFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UserControlDetail.resx">
       <DependentUpon>UserControlDetail.cs</DependentUpon>

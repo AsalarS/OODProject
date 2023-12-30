@@ -113,7 +113,7 @@ namespace OODProject.teacher.mail
                 con.Open();
 
                 string sql = "INSERT INTO Email (Subject, Content, SenderID, RecipientID, TeacherID, StudentID, EmailDate) OUTPUT INSERTED.EmailID VALUES (@subject, @content, @senderID, @recipientID, @TeacherID, @StudentID, @EmailDate)";
-
+                int emailId;
                 using (var command = new SqlCommand(sql, con))
                 {
                     command.Parameters.AddWithValue("@subject", textBox2.Text);
@@ -124,32 +124,32 @@ namespace OODProject.teacher.mail
                     command.Parameters.AddWithValue("@StudentID", studentID);
                     command.Parameters.AddWithValue("@EmailDate", DateTime.Now);
 
-                    int emailId = (int)command.ExecuteScalar();
+                    emailId = (int)command.ExecuteScalar();
                     con.Close();
+                }
 
-                    // insert file paths into EmailAttachments table
-                    string sqlAttachment = "INSERT INTO EmailAttachments (EmailID, FileData, OriginalFileName) VALUES (@EmailID, @FileData, @OriginalFileName)";
+                // insert file paths into EmailAttachments table
+                string sqlAttachment = "INSERT INTO EmailAttachments (EmailID, FileData, OriginalFileName) VALUES (@EmailID, @FileData, @OriginalFileName)";
 
-                    foreach (ListViewItem item in listView1.Items)
+                foreach (ListViewItem item in listView1.Items)
+                {
+                    byte[] fileData = item.Tag as byte[];
+                    if (fileData != null)
                     {
-                        byte[] fileData = item.Tag as byte[];
-                        if (fileData != null)
+                        using (var commandAttachment = new SqlCommand(sqlAttachment, con))
                         {
-                            using (var commandAttachment = new SqlCommand(sqlAttachment, con))
-                            {
-                                commandAttachment.Parameters.AddWithValue("@EmailID", emailId);
-                                commandAttachment.Parameters.AddWithValue("@FileData", fileData);
-                                commandAttachment.Parameters.AddWithValue("@OriginalFileName", item.Text); // Use the original file name
+                            commandAttachment.Parameters.AddWithValue("@EmailID", emailId);
+                            commandAttachment.Parameters.AddWithValue("@FileData", fileData);
+                            commandAttachment.Parameters.AddWithValue("@OriginalFileName", item.Text); // Use the original file name
 
-                                con.Open();
-                                commandAttachment.ExecuteNonQuery();
-                                con.Close();
-                            }
+                            con.Open();
+                            commandAttachment.ExecuteNonQuery();
+                            con.Close();
                         }
                     }
-
-
                 }
+
+
                 Dash.showScreen(mailForm);
             }
 
@@ -165,10 +165,11 @@ namespace OODProject.teacher.mail
 
 
 
-        private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "files");
+        //private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", "files");
         private List<string> filePaths = new List<string>();
         private HashSet<string> uniqueFiles = new HashSet<string>();
         private int count = 0;
+
 
 
         private void attachBtn_Click(object sender, EventArgs e)
@@ -178,14 +179,13 @@ namespace OODProject.teacher.mail
             {
                 foreach (string fileName in openFileDialog1.FileNames)
                 {
-                    if (count >= 10 || uniqueFiles.Contains(fileName))
+                    if (count > 10 || uniqueFiles.Contains(fileName))
                     {
                         MessageBox.Show("You have reached the maximum number of files or the file is already added.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    string targetPath = Path.Combine(filePath, Path.GetFileName(fileName));
-                    filePaths.Add(targetPath);
+                    filePaths.Add(fileName);
                     uniqueFiles.Add(fileName);
                     count++;
                 }
@@ -196,17 +196,43 @@ namespace OODProject.teacher.mail
         public void load_file()
         {
             listView1.Items.Clear();
-            string fileExtension = "";
+            Dictionary<string, int> fileNameCounts = new Dictionary<string, int>();
 
-            for (int i = 0; i < uniqueFiles.Count; i++)
+            for (int i = 0; i < filePaths.Count; i++)
             {
-                string fileName = uniqueFiles.ElementAt(i);
-                string filePath = Path.Combine(this.filePath, fileName);
-                byte[] fileData = File.ReadAllBytes(filePath);
-                fileExtension = Path.GetExtension(fileName).ToUpper();
+                string filePath = filePaths[i];
+                if (!File.Exists(filePath))
+                {
+                    MessageBox.Show($"File not found: {filePath}");
+                    continue;
+                }
+                byte[] fileData;
+                try
+                {
+                    fileData = File.ReadAllBytes(filePath);
+                }
+                catch (FileNotFoundException e)
+                {
+                    MessageBox.Show($"File not found: {e.FileName}");
+                    continue;
+                }
+                string fileName = Path.GetFileName(filePath);
+
+                // Append a number to the file name if a file with the same name has already been added
+                if (fileNameCounts.ContainsKey(fileName))
+                {
+                    fileNameCounts[fileName]++;
+                    fileName = $"{fileName}({fileNameCounts[fileName]})";
+                }
+                else
+                {
+                    fileNameCounts[fileName] = 1;
+                }
+
                 ListViewItem item = new ListViewItem(fileName);
                 item.Tag = fileData;
 
+                string fileExtension = Path.GetExtension(fileName).ToUpper();
                 switch (fileExtension)
                 {
                     case ".MP3":
@@ -261,6 +287,7 @@ namespace OODProject.teacher.mail
                 selectedItem.Tag = null;
                 count--;
                 listView1.Items.Remove(selectedItem);
+                load_file();
             }
         }
     }
